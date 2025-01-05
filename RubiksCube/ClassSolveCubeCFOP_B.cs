@@ -3,7 +3,7 @@ using static RubiksCube.Globals;
 
 namespace RubiksCube
 {
-    internal sealed class ClassSolveCubeCFOP_FTL
+    internal sealed class ClassSolveCubeCFOP_B
     {
         //// Declare variables
         private const int nLoopTimesMax = 200;
@@ -40,7 +40,7 @@ namespace RubiksCube
         /// Solve the first two layers (F2L)
         /// </summary>
         /// <returns></returns>
-        private static async Task<bool> SolveFirstTwoLayersAsync()
+        public static async Task<bool> SolveFirstTwoLayersAsync()
         {
             string cT;
             int nLoopTimes = 0;
@@ -50,7 +50,7 @@ namespace RubiksCube
                 nLoopTimes++;
                 if (nLoopTimes > nLoopTimesMax)
                 {
-                    Debug.WriteLine("CFOP-F2L: nLoopTimes first two layers: " + nLoopTimes);
+                    Debug.WriteLine("CFOP_B: nLoopTimes first two layers: " + nLoopTimes);
                     return false;
                 }
 
@@ -70,7 +70,7 @@ namespace RubiksCube
                                 cT = aPieces[31];
                                 if (cT == aPieces[30] && cT == aPieces[32] && cT == aPieces[33] && cT == aPieces[34] && cT == aPieces[35])
                                 {
-                                    Debug.WriteLine("CFOP-F2L: number of turns first two layers: " + lCubeTurns.Count);
+                                    Debug.WriteLine("CFOP_B: number of turns first two layers: " + lCubeTurns.Count);
                                     break;
                                 }
                             }
@@ -375,42 +375,176 @@ namespace RubiksCube
                 }
 
                 // 2.1
+                if (aPieces[4] == aPieces[1] && aPieces[4] == aPieces[3] && aPieces[4] == aPieces[6] && aPieces[4] == aPieces[7] && aPieces[4] == aPieces[8])
+                {
+                    if (aPieces[13] == aPieces[14] && aPieces[13] == aPieces[15] && aPieces[13] == aPieces[16] && aPieces[13] == aPieces[17] && aPieces[13] == aPieces[43])
+                    {
+                        await MakeTurnAsync("U R U' R' U' F' U F");
+                        continue;
+                    }
+                }
 
                 // 2.2
+                if (aPieces[4] == aPieces[3] && aPieces[4] == aPieces[6] && aPieces[4] == aPieces[7] && aPieces[4] == aPieces[8] && aPieces[4] == aPieces[41])
+                {
+                    if (aPieces[13] == aPieces[10] && aPieces[13] == aPieces[14] && aPieces[13] == aPieces[15] && aPieces[13] == aPieces[16] && aPieces[13] == aPieces[17])
+                    {
+                        await MakeTurnAsync("U' F' U F U R U' R'");
+                        continue;
+                    }
+                }
 
                 // 2.3
+                if (aPieces[49] == aPieces[15] && aPieces[4] == aPieces[1] && aPieces[4] == aPieces[3] && aPieces[4] == aPieces[6] && aPieces[4] == aPieces[7])
+                {
+                    if (aPieces[13] == aPieces[8] && aPieces[13] == aPieces[14] && aPieces[13] == aPieces[16] && aPieces[13] == aPieces[17] && aPieces[13] == aPieces[43])
+                    {
+                        await MakeTurnAsync("F' U F U' F' U F");
+                        continue;
+                    }
+                }
 
                 // 2.4
+                if (aPieces[49] == aPieces[8] && aPieces[4] == aPieces[3] && aPieces[4] == aPieces[6] && aPieces[4] == aPieces[7] && aPieces[4] == aPieces[15] && aPieces[4] == aPieces[41])
+                {
+                    if (aPieces[13] == aPieces[10] && aPieces[13] == aPieces[14] && aPieces[13] == aPieces[16] && aPieces[13] == aPieces[17])
+                    {
+                        await MakeTurnAsync("R U' R' U R U' R'");
+                        continue;
+                    }
+                }
 
                 // 2.5
+                if (aPieces[49] == aPieces[15] && aPieces[4] == aPieces[3] && aPieces[4] == aPieces[6] && aPieces[4] == aPieces[7] && aPieces[4] == aPieces[43])
+                {
+                    if (aPieces[13] == aPieces[1] && aPieces[13] == aPieces[8] && aPieces[13] == aPieces[14] && aPieces[13] == aPieces[16] && aPieces[13] == aPieces[17])
+                    {
+                        await MakeTurnAsync("U' R U R' U' R U R'");
+                        continue;
+                    }
+                }
 
                 // 2.6
+                if (aPieces[49] == aPieces[8] && aPieces[4] == aPieces[3] && aPieces[4] == aPieces[6] && aPieces[4] == aPieces[7] && aPieces[4] == aPieces[10] && aPieces[4] == aPieces[15])
+                {
+                    if (aPieces[13] == aPieces[14] && aPieces[13] == aPieces[16] && aPieces[13] == aPieces[17] && aPieces[13] == aPieces[41])
+                    {
+                        await MakeTurnAsync("U' R U' R' F' U' F");
+                        continue;
+                    }
+                }
 
                 // 2.7
+                if (aPieces[49] == aPieces[44] && aPieces[4] == aPieces[3] && aPieces[4] == aPieces[5] && aPieces[4] == aPieces[6] && aPieces[4] == aPieces[7] && aPieces[4] == aPieces[9])
+                {
+                    if (aPieces[13] == aPieces[2] && aPieces[13] == aPieces[12] && aPieces[13] == aPieces[14] && aPieces[13] == aPieces[16] && aPieces[13] == aPieces[17])
+                    {
+                        await MakeTurnAsync("R U R' U' R U R' U' R U R'");
+                        continue;
+                    }
+                }
 
                 // 2.8
+                if (aPieces[49] == aPieces[44] && aPieces[4] == aPieces[3] && aPieces[4] == aPieces[6] && aPieces[4] == aPieces[7] && aPieces[4] == aPieces[9] && aPieces[4] == aPieces[12])
+                {
+                    if (aPieces[13] == aPieces[2] && aPieces[13] == aPieces[5] && aPieces[13] == aPieces[14] && aPieces[13] == aPieces[16] && aPieces[13] == aPieces[17])
+                    {
+                        await MakeTurnAsync("R U' R' F' U2 F");
+                        continue;
+                    }
+                }
 
                 // 2.9
+                if (aPieces[49] == aPieces[9] && aPieces[4] == aPieces[2] && aPieces[4] == aPieces[3] && aPieces[4] == aPieces[5] && aPieces[4] == aPieces[6] && aPieces[4] == aPieces[7])
+                {
+                    if (aPieces[13] == aPieces[12] && aPieces[13] == aPieces[14] && aPieces[13] == aPieces[16] && aPieces[13] == aPieces[17] && aPieces[13] == aPieces[44])
+                    {
+                        await MakeTurnAsync("U' R U2 R' U R U R'");
+                        continue;
+                    }
+                }
 
                 // 2.10
+                if (aPieces[49] == aPieces[2] && aPieces[4] == aPieces[3] && aPieces[4] == aPieces[5] && aPieces[4] == aPieces[6] && aPieces[4] == aPieces[7] && aPieces[4] == aPieces[44])
+                {
+                    if (aPieces[13] == aPieces[9] && aPieces[13] == aPieces[12] && aPieces[13] == aPieces[14] && aPieces[13] == aPieces[16] && aPieces[13] == aPieces[17])
+                    {
+                        await MakeTurnAsync("U' R U' R' U2 R U' R'");
+                        continue;
+                    }
+                }
 
                 // 2.11
+                if (aPieces[49] == aPieces[9] && aPieces[4] == aPieces[2] && aPieces[4] == aPieces[3] && aPieces[4] == aPieces[6] && aPieces[4] == aPieces[7] && aPieces[4] == aPieces[12])
+                {
+                    if (aPieces[13] == aPieces[5] && aPieces[13] == aPieces[14] && aPieces[13] == aPieces[16] && aPieces[13] == aPieces[17] && aPieces[13] == aPieces[44])
+                    {
+                        await MakeTurnAsync("d R' U' R d' R U R'");
+                        continue;
+                    }
+                }
 
                 // 2.12
+                if (aPieces[49] == aPieces[2] && aPieces[4] == aPieces[3] && aPieces[4] == aPieces[6] && aPieces[4] == aPieces[7] && aPieces[4] == aPieces[12] && aPieces[4] == aPieces[44])
+                {
+                    if (aPieces[13] == aPieces[5] && aPieces[13] == aPieces[9] && aPieces[13] == aPieces[14] && aPieces[13] == aPieces[16] && aPieces[13] == aPieces[17])
+                    {
+                        await MakeTurnAsync("U' R U R' d R' U' R");
+                        continue;
+                    }
+                }
 
                 // 2.13
 
                 // 2.14
+                if (aPieces[4] == aPieces[3] && aPieces[4] == aPieces[6] && aPieces[4] == aPieces[7] && aPieces[4] == aPieces[8] && aPieces[4] == aPieces[12])
+                {
+                    if (aPieces[13] == aPieces[5] && aPieces[13] == aPieces[14] && aPieces[13] == aPieces[15] && aPieces[13] == aPieces[16] && aPieces[13] == aPieces[17])
+                    {
+                        await MakeTurnAsync("R U2 R' U R U2 R' U F' U' F");
+                        continue;
+                    }
+                }
 
                 // 2.15
+                if (aPieces[49] == aPieces[15] && aPieces[4] == aPieces[3] && aPieces[4] == aPieces[5] && aPieces[4] == aPieces[6] && aPieces[4] == aPieces[7])
+                {
+                    if (aPieces[13] == aPieces[8] && aPieces[13] == aPieces[12] && aPieces[13] == aPieces[14] && aPieces[13] == aPieces[16] && aPieces[13] == aPieces[17])
+                    {
+                        await MakeTurnAsync("R U' R' U R U2 R' U R U' R'");
+                        continue;
+                    }
+                }
 
                 // 2.16
+                if (aPieces[49] == aPieces[8] && aPieces[4] == aPieces[3] && aPieces[4] == aPieces[5] && aPieces[4] == aPieces[6] && aPieces[4] == aPieces[7] && aPieces[4] == aPieces[15])
+                {
+                    if (aPieces[13] == aPieces[12] && aPieces[13] == aPieces[14] && aPieces[13] == aPieces[16] && aPieces[13] == aPieces[17])
+                    {
+                        await MakeTurnAsync("R U R' U' R U2 R' U' R U R'");
+                        continue;
+                    }
+                }
 
                 // 2.17
+                if (aPieces[49] == aPieces[15] && aPieces[4] == aPieces[3] && aPieces[4] == aPieces[6] && aPieces[4] == aPieces[7] && aPieces[4] == aPieces[12])
+                {
+                    if (aPieces[13] == aPieces[5] && aPieces[13] == aPieces[8] && aPieces[13] == aPieces[14] && aPieces[13] == aPieces[16] && aPieces[13] == aPieces[17])
+                    {
+                        await MakeTurnAsync("R U' R' U R' U' R F' U F");
+                        continue;
+                    }
+                }
 
                 // 2.18
-
-
+                if (aPieces[49] == aPieces[8] && aPieces[4] == aPieces[3] && aPieces[4] == aPieces[6] && aPieces[4] == aPieces[7] && aPieces[4] == aPieces[12] && aPieces[4] == aPieces[15])
+                {
+                    if (aPieces[13] == aPieces[5] && aPieces[13] == aPieces[14] && aPieces[13] == aPieces[16] && aPieces[13] == aPieces[17])
+                    {
+                        await MakeTurnAsync("F' U F U2 R U R' U R U' R'");
+                        continue;
+                    }
+                }
             }
 
             return true;
