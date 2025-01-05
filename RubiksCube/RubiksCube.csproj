@@ -54,7 +54,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Compile Remove="ClassSolveCubeCFOP_FTL.cs" />
+	  <Compile Remove="ClassSolveCubeCFOP_B.cs" />
 	  <Compile Remove="ClassTestCubeTurns.cs" />
 	  <Compile Remove="PageWebsite.xaml.cs" />
 	</ItemGroup>

@@ -12,7 +12,7 @@ namespace RubiksCube
         /// Solve the cube using the CFOP method
         /// </summary>
         /// <returns></returns>
-        public static async Task<bool> SolveTheCubeCFOPAsync()
+        private static async Task<bool> SolveTheCubeCFOPAsync()
         {
             // Create and start a stopwatch instance
             //long startTime = Stopwatch.GetTimestamp();

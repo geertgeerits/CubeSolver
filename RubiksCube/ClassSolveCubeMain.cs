@@ -54,7 +54,7 @@ namespace RubiksCube
         }
 
         /// <summary>
-        /// Try to solve the cube from minimum 816 (34 x 6 x 4) different start positions of the cube
+        /// Try to solve the cube from minimum 2208 (46 x 6 x 4 = 1104 x 2) different start positions of the cube
         /// </summary>
         /// <param name="cSolution"></param>
         /// <returns></returns>
@@ -194,30 +194,55 @@ namespace RubiksCube
                 lCubePositions.Add(turnDownCW);
                 await SolveCubeFromMultiplePositions2Async(cSolution);
 
-                //// Turn the 6 faces and the adjacent face clockwise
-                //lCubePositions.Add(turnUpCW);
-                //lCubePositions.Add(turnFrontCW);
-                //await SolveCubeFromMultiplePositions2Async(cSolution);
+                // 35-36-37-38-39-40. Turn the 6 faces clockwise and the adjacent face clockwise
+                lCubePositions.Add(turnUpCW);
+                lCubePositions.Add(turnFrontCW);
+                await SolveCubeFromMultiplePositions2Async(cSolution);
 
-                //lCubePositions.Add(turnDownCW);
-                //lCubePositions.Add(turnBackCW);
-                //await SolveCubeFromMultiplePositions2Async(cSolution);
+                lCubePositions.Add(turnDownCW);
+                lCubePositions.Add(turnBackCW);
+                await SolveCubeFromMultiplePositions2Async(cSolution);
 
-                //lCubePositions.Add(turnFrontCW);
-                //lCubePositions.Add(turnRightCW);
-                //await SolveCubeFromMultiplePositions2Async(cSolution);
+                lCubePositions.Add(turnFrontCW);
+                lCubePositions.Add(turnRightCW);
+                await SolveCubeFromMultiplePositions2Async(cSolution);
 
-                //lCubePositions.Add(turnRightCW);
-                //lCubePositions.Add(turnBackCW);
-                //await SolveCubeFromMultiplePositions2Async(cSolution);
+                lCubePositions.Add(turnRightCW);
+                lCubePositions.Add(turnBackCW);
+                await SolveCubeFromMultiplePositions2Async(cSolution);
 
-                //lCubePositions.Add(turnBackCW);
-                //lCubePositions.Add(turnLeftCW);
-                //await SolveCubeFromMultiplePositions2Async(cSolution);
+                lCubePositions.Add(turnBackCW);
+                lCubePositions.Add(turnLeftCW);
+                await SolveCubeFromMultiplePositions2Async(cSolution);
 
-                //lCubePositions.Add(turnLeftCW);
-                //lCubePositions.Add(turnFrontCW);
-                //await SolveCubeFromMultiplePositions2Async(cSolution);
+                lCubePositions.Add(turnLeftCW);
+                lCubePositions.Add(turnFrontCW);
+                await SolveCubeFromMultiplePositions2Async(cSolution);
+
+                // 41-42-43-44-45-46. Turn the 6 faces counterclockwise and the adjacent face counterclockwise
+                lCubePositions.Add(turnUpCCW);
+                lCubePositions.Add(turnFrontCCW);
+                await SolveCubeFromMultiplePositions2Async(cSolution);
+
+                lCubePositions.Add(turnDownCCW);
+                lCubePositions.Add(turnBackCCW);
+                await SolveCubeFromMultiplePositions2Async(cSolution);
+
+                lCubePositions.Add(turnFrontCCW);
+                lCubePositions.Add(turnRightCCW);
+                await SolveCubeFromMultiplePositions2Async(cSolution);
+
+                lCubePositions.Add(turnRightCCW);
+                lCubePositions.Add(turnBackCCW);
+                await SolveCubeFromMultiplePositions2Async(cSolution);
+
+                lCubePositions.Add(turnBackCCW);
+                lCubePositions.Add(turnLeftCCW);
+                await SolveCubeFromMultiplePositions2Async(cSolution);
+
+                lCubePositions.Add(turnLeftCCW);
+                lCubePositions.Add(turnFrontCCW);
+                await SolveCubeFromMultiplePositions2Async(cSolution);
             }
         }
 

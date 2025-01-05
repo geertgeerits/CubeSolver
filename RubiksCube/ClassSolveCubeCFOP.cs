@@ -30,7 +30,6 @@ namespace RubiksCube
             }
 
             // F2L (Solving the first two layers completely)
-            // if (!await ClassSolveCubeCFOP_B.SolveFirstTwoLayersAsync())
             if (!await SolveFirstTwoLayersAsync())
                 {
                 return false;
