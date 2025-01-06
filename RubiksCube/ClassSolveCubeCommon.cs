@@ -41,264 +41,261 @@ namespace RubiksCube
                 // With this direct method there is a profit of the average number of 1.40 turns or 1.99%
                 // There are slightly more situations of profit than of loss or equal in the number of turns
 
-                if (bSolveSolution2)
+                // Edge is at the bottom
+                if (aPieces[49] == aPieces[46])
                 {
-                    // Edge is at the bottom
-                    if (aPieces[49] == aPieces[46])
+                    if (aPieces[49] != aPieces[43])
                     {
-                        if (aPieces[49] != aPieces[43])
-                        {
-                        }
-                        else if (aPieces[49] != aPieces[41])
-                        {
-                            await MakeTurnAsync("U");
-                        }
-                        else if (aPieces[49] != aPieces[39])
-                        {
-                            await MakeTurnAsync("U'");
-                        }
-                        else if (aPieces[49] != aPieces[37])
-                        {
-                            await MakeTurnAsync("U2");
-                        }
-
-                        await MakeTurnAsync("F2");
+                    }
+                    else if (aPieces[49] != aPieces[41])
+                    {
+                        await MakeTurnAsync("U");
+                    }
+                    else if (aPieces[49] != aPieces[39])
+                    {
+                        await MakeTurnAsync("U'");
+                    }
+                    else if (aPieces[49] != aPieces[37])
+                    {
+                        await MakeTurnAsync("U2");
                     }
 
-                    if (aPieces[49] == aPieces[50])
-                    {
-                        if (aPieces[49] != aPieces[41])
-                        {
-                        }
-                        else if (aPieces[49] != aPieces[37])
-                        {
-                            await MakeTurnAsync("U");
-                        }
-                        else if (aPieces[49] != aPieces[43])
-                        {
-                            await MakeTurnAsync("U'");
-                        }
-                        else if (aPieces[49] != aPieces[39])
-                        {
-                            await MakeTurnAsync("U2");
-                        }
+                    await MakeTurnAsync("F2");
+                }
 
-                        await MakeTurnAsync("R2");
+                if (aPieces[49] == aPieces[50])
+                {
+                    if (aPieces[49] != aPieces[41])
+                    {
+                    }
+                    else if (aPieces[49] != aPieces[37])
+                    {
+                        await MakeTurnAsync("U");
+                    }
+                    else if (aPieces[49] != aPieces[43])
+                    {
+                        await MakeTurnAsync("U'");
+                    }
+                    else if (aPieces[49] != aPieces[39])
+                    {
+                        await MakeTurnAsync("U2");
                     }
 
-                    if (aPieces[49] == aPieces[52])
-                    {
-                        if (aPieces[49] != aPieces[37])
-                        {
-                        }
-                        else if (aPieces[49] != aPieces[39])
-                        {
-                            await MakeTurnAsync("U");
-                        }
-                        else if (aPieces[49] != aPieces[41])
-                        {
-                            await MakeTurnAsync("U'");
-                        }
-                        else if (aPieces[49] != aPieces[43])
-                        {
-                            await MakeTurnAsync("U2");
-                        }
+                    await MakeTurnAsync("R2");
+                }
 
-                        await MakeTurnAsync("B2");
+                if (aPieces[49] == aPieces[52])
+                {
+                    if (aPieces[49] != aPieces[37])
+                    {
+                    }
+                    else if (aPieces[49] != aPieces[39])
+                    {
+                        await MakeTurnAsync("U");
+                    }
+                    else if (aPieces[49] != aPieces[41])
+                    {
+                        await MakeTurnAsync("U'");
+                    }
+                    else if (aPieces[49] != aPieces[43])
+                    {
+                        await MakeTurnAsync("U2");
                     }
 
-                    if (aPieces[49] == aPieces[48])
-                    {
-                        if (aPieces[49] != aPieces[39])
-                        {
-                        }
-                        else if (aPieces[49] != aPieces[43])
-                        {
-                            await MakeTurnAsync("U");
-                        }
-                        else if (aPieces[49] != aPieces[37])
-                        {
-                            await MakeTurnAsync("U'");
-                        }
-                        else if (aPieces[49] != aPieces[41])
-                        {
-                            await MakeTurnAsync("U2");
-                        }
+                    await MakeTurnAsync("B2");
+                }
 
-                        await MakeTurnAsync("L2");
+                if (aPieces[49] == aPieces[48])
+                {
+                    if (aPieces[49] != aPieces[39])
+                    {
+                    }
+                    else if (aPieces[49] != aPieces[43])
+                    {
+                        await MakeTurnAsync("U");
+                    }
+                    else if (aPieces[49] != aPieces[37])
+                    {
+                        await MakeTurnAsync("U'");
+                    }
+                    else if (aPieces[49] != aPieces[41])
+                    {
+                        await MakeTurnAsync("U2");
                     }
 
-                    // Edge is at the front
-                    if (aPieces[49] == aPieces[5])
-                    {
-                        if (aPieces[49] != aPieces[41])
-                        {
-                        }
-                        else if (aPieces[49] != aPieces[37])
-                        {
-                            await MakeTurnAsync("U");
-                        }
-                        else if (aPieces[49] != aPieces[43])
-                        {
-                            await MakeTurnAsync("U'");
-                        }
-                        else if (aPieces[49] != aPieces[39])
-                        {
-                            await MakeTurnAsync("U2");
-                        }
+                    await MakeTurnAsync("L2");
+                }
 
-                        await MakeTurnAsync("R");
+                // Edge is at the front
+                if (aPieces[49] == aPieces[5])
+                {
+                    if (aPieces[49] != aPieces[41])
+                    {
+                    }
+                    else if (aPieces[49] != aPieces[37])
+                    {
+                        await MakeTurnAsync("U");
+                    }
+                    else if (aPieces[49] != aPieces[43])
+                    {
+                        await MakeTurnAsync("U'");
+                    }
+                    else if (aPieces[49] != aPieces[39])
+                    {
+                        await MakeTurnAsync("U2");
                     }
 
-                    if (aPieces[49] == aPieces[3])
-                    {
-                        if (aPieces[49] != aPieces[39])
-                        {
-                        }
-                        else if (aPieces[49] != aPieces[43])
-                        {
-                            await MakeTurnAsync("U");
-                        }
-                        else if (aPieces[49] != aPieces[37])
-                        {
-                            await MakeTurnAsync("U'");
-                        }
-                        else if (aPieces[49] != aPieces[41])
-                        {
-                            await MakeTurnAsync("U2");
-                        }
+                    await MakeTurnAsync("R");
+                }
 
-                        await MakeTurnAsync("L'");
+                if (aPieces[49] == aPieces[3])
+                {
+                    if (aPieces[49] != aPieces[39])
+                    {
+                    }
+                    else if (aPieces[49] != aPieces[43])
+                    {
+                        await MakeTurnAsync("U");
+                    }
+                    else if (aPieces[49] != aPieces[37])
+                    {
+                        await MakeTurnAsync("U'");
+                    }
+                    else if (aPieces[49] != aPieces[41])
+                    {
+                        await MakeTurnAsync("U2");
                     }
 
-                    // Edge is at the right
-                    if (aPieces[49] == aPieces[12])
-                    {
-                        if (aPieces[49] != aPieces[43])
-                        {
-                        }
-                        else if (aPieces[49] != aPieces[41])
-                        {
-                            await MakeTurnAsync("U");
-                        }
-                        else if (aPieces[49] != aPieces[39])
-                        {
-                            await MakeTurnAsync("U'");
-                        }
-                        else if (aPieces[49] != aPieces[37])
-                        {
-                            await MakeTurnAsync("U2");
-                        }
+                    await MakeTurnAsync("L'");
+                }
 
-                        await MakeTurnAsync("F'");
+                // Edge is at the right
+                if (aPieces[49] == aPieces[12])
+                {
+                    if (aPieces[49] != aPieces[43])
+                    {
+                    }
+                    else if (aPieces[49] != aPieces[41])
+                    {
+                        await MakeTurnAsync("U");
+                    }
+                    else if (aPieces[49] != aPieces[39])
+                    {
+                        await MakeTurnAsync("U'");
+                    }
+                    else if (aPieces[49] != aPieces[37])
+                    {
+                        await MakeTurnAsync("U2");
                     }
 
-                    if (aPieces[49] == aPieces[14])
-                    {
-                        if (aPieces[49] != aPieces[37])
-                        {
-                        }
-                        else if (aPieces[49] != aPieces[39])
-                        {
-                            await MakeTurnAsync("U");
-                        }
-                        else if (aPieces[49] != aPieces[41])
-                        {
-                            await MakeTurnAsync("U'");
-                        }
-                        else if (aPieces[49] != aPieces[43])
-                        {
-                            await MakeTurnAsync("U2");
-                        }
+                    await MakeTurnAsync("F'");
+                }
 
-                        await MakeTurnAsync("B");
+                if (aPieces[49] == aPieces[14])
+                {
+                    if (aPieces[49] != aPieces[37])
+                    {
+                    }
+                    else if (aPieces[49] != aPieces[39])
+                    {
+                        await MakeTurnAsync("U");
+                    }
+                    else if (aPieces[49] != aPieces[41])
+                    {
+                        await MakeTurnAsync("U'");
+                    }
+                    else if (aPieces[49] != aPieces[43])
+                    {
+                        await MakeTurnAsync("U2");
                     }
 
-                    // Edge is at the back
-                    if (aPieces[49] == aPieces[21])
-                    {
-                        if (aPieces[49] != aPieces[41])
-                        {
-                        }
-                        else if (aPieces[49] != aPieces[37])
-                        {
-                            await MakeTurnAsync("U");
-                        }
-                        else if (aPieces[49] != aPieces[43])
-                        {
-                            await MakeTurnAsync("U'");
-                        }
-                        else if (aPieces[49] != aPieces[39])
-                        {
-                            await MakeTurnAsync("U2");
-                        }
+                    await MakeTurnAsync("B");
+                }
 
-                        await MakeTurnAsync("R'");
+                // Edge is at the back
+                if (aPieces[49] == aPieces[21])
+                {
+                    if (aPieces[49] != aPieces[41])
+                    {
+                    }
+                    else if (aPieces[49] != aPieces[37])
+                    {
+                        await MakeTurnAsync("U");
+                    }
+                    else if (aPieces[49] != aPieces[43])
+                    {
+                        await MakeTurnAsync("U'");
+                    }
+                    else if (aPieces[49] != aPieces[39])
+                    {
+                        await MakeTurnAsync("U2");
                     }
 
-                    if (aPieces[49] == aPieces[23])
-                    {
-                        if (aPieces[49] != aPieces[39])
-                        {
-                        }
-                        else if (aPieces[49] != aPieces[43])
-                        {
-                            await MakeTurnAsync("U");
-                        }
-                        else if (aPieces[49] != aPieces[37])
-                        {
-                            await MakeTurnAsync("U'");
-                        }
-                        else if (aPieces[49] != aPieces[41])
-                        {
-                            await MakeTurnAsync("U2");
-                        }
+                    await MakeTurnAsync("R'");
+                }
 
-                        await MakeTurnAsync("L");
+                if (aPieces[49] == aPieces[23])
+                {
+                    if (aPieces[49] != aPieces[39])
+                    {
+                    }
+                    else if (aPieces[49] != aPieces[43])
+                    {
+                        await MakeTurnAsync("U");
+                    }
+                    else if (aPieces[49] != aPieces[37])
+                    {
+                        await MakeTurnAsync("U'");
+                    }
+                    else if (aPieces[49] != aPieces[41])
+                    {
+                        await MakeTurnAsync("U2");
                     }
 
-                    // Edge is at the left
-                    if (aPieces[49] == aPieces[30])
-                    {
-                        if (aPieces[49] != aPieces[37])
-                        {
-                        }
-                        else if (aPieces[49] != aPieces[39])
-                        {
-                            await MakeTurnAsync("U");
-                        }
-                        else if (aPieces[49] != aPieces[41])
-                        {
-                            await MakeTurnAsync("U'");
-                        }
-                        else if (aPieces[49] != aPieces[43])
-                        {
-                            await MakeTurnAsync("U2");
-                        }
+                    await MakeTurnAsync("L");
+                }
 
-                        await MakeTurnAsync("B'");
+                // Edge is at the left
+                if (aPieces[49] == aPieces[30])
+                {
+                    if (aPieces[49] != aPieces[37])
+                    {
+                    }
+                    else if (aPieces[49] != aPieces[39])
+                    {
+                        await MakeTurnAsync("U");
+                    }
+                    else if (aPieces[49] != aPieces[41])
+                    {
+                        await MakeTurnAsync("U'");
+                    }
+                    else if (aPieces[49] != aPieces[43])
+                    {
+                        await MakeTurnAsync("U2");
                     }
 
-                    if (aPieces[49] == aPieces[32])
-                    {
-                        if (aPieces[49] != aPieces[43])
-                        {
-                        }
-                        else if (aPieces[49] != aPieces[41])
-                        {
-                            await MakeTurnAsync("U");
-                        }
-                        else if (aPieces[49] != aPieces[39])
-                        {
-                            await MakeTurnAsync("U'");
-                        }
-                        else if (aPieces[49] != aPieces[37])
-                        {
-                            await MakeTurnAsync("U2");
-                        }
+                    await MakeTurnAsync("B'");
+                }
 
-                        await MakeTurnAsync("F");
+                if (aPieces[49] == aPieces[32])
+                {
+                    if (aPieces[49] != aPieces[43])
+                    {
                     }
+                    else if (aPieces[49] != aPieces[41])
+                    {
+                        await MakeTurnAsync("U");
+                    }
+                    else if (aPieces[49] != aPieces[39])
+                    {
+                        await MakeTurnAsync("U'");
+                    }
+                    else if (aPieces[49] != aPieces[37])
+                    {
+                        await MakeTurnAsync("U2");
+                    }
+
+                    await MakeTurnAsync("F");
                 }
 
                 //------------------------------------------------------------------------------------------
