@@ -405,19 +405,39 @@ namespace RubiksCube
                     // 1.  Solved Pair
 
                     // 2.  (R U' R' U') R U R' U2 (R U' R') --- (R U R' U') R U2 R' U'(R U R')
-                    if (aPieces[49] == aPieces[9] && aPieces[4] == aPieces[2] && aPieces[4] == aPieces[12] && aPieces[13] == aPieces[5] && aPieces[13] == aPieces[44])
+                    if (aPieces[49] == aPieces[8] && aPieces[4] == aPieces[5] && aPieces[4] == aPieces[15] && aPieces[13] == aPieces[12])
                     {
-                        await MakeTurnAsync("U F' U' F U' R U R'");
+                        await MakeTurnAsync("R U' R' U' R U R' U2 R U' R'");
                         continue;
                     }
 
                     // 3.  (F' U F) U2 (R U R' U) (R U' R') --- (R U' R') F (R U R' U') F' (R U' R')
+                    if (aPieces[49] == aPieces[8] && aPieces[4] == aPieces[12] && aPieces[4] == aPieces[15] && aPieces[13] == aPieces[5])
+                    {
+                        await MakeTurnAsync("F' U F U2 R U R' U R U' R'");
+                        continue;
+                    }
 
                     // 4.  (R U' R') d (R' U2 R) U2' (R' U R)
+                    if (aPieces[4] == aPieces[8] && aPieces[4] == aPieces[12] && aPieces[13] == aPieces[5] && aPieces[13] == aPieces[15])
+                    {
+                        await MakeTurnAsync("R U' R' d R' U2 R U2 R' U R");
+                        continue;
+                    }
 
                     // 5.  (R U' R' U) (R U2' R') U (R U' R') --- (R U R') U2'(R U' R' U)(R U R')
+                    if (aPieces[49] == aPieces[15] && aPieces[4] == aPieces[5] && aPieces[13] == aPieces[8] && aPieces[13] == aPieces[12])
+                    {
+                        await MakeTurnAsync("R U' R' U R U2 R' U R U' R'");
+                        continue;
+                    }
 
                     // 6.  (R U R' U') (R U' R') U2 y' (R' U' R)
+                    if (aPieces[49] == aPieces[15] && aPieces[4] == aPieces[12] && aPieces[13] == aPieces[5] && aPieces[13] == aPieces[8])
+                    {
+                        await MakeTurnAsync("R U R' U' R U' R' U2 y' R' U' R");
+                        continue;
+                    }
 
 
                     // Page 3
