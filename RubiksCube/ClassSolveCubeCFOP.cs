@@ -1,5 +1,4 @@
-﻿using System.Runtime.CompilerServices;
-using System.Diagnostics;
+﻿using System.Diagnostics;
 using static RubiksCube.Globals;
 
 namespace RubiksCube
@@ -67,7 +66,7 @@ namespace RubiksCube
         /// <returns></returns>
         private static async Task<bool> SolveFirstTwoLayersAsync()
         {
-            //Globals.LogExecutedLine();
+            //ClassProgramLogging.LogExecutedLine();
 
             string cT;
             int nLoopTimes = 0;
