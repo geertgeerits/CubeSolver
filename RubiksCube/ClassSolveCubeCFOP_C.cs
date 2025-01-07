@@ -316,43 +316,108 @@ namespace RubiksCube
                     }
 
                     // Corner in Place, Edge in U Face
-                    // 1.  
+                    // 1.  U' F' (R U R' U') R' F R --- R' F' R U (R U' R') F
+                    if (aPieces[4] == aPieces[8] && aPieces[4] == aPieces[41] && aPieces[13] == aPieces[10] && aPieces[13] == aPieces[15])
+                    {
+                        await MakeTurnAsync("R' F' R U R U' R' F");
+                        continue;
+                    }
 
-                    // 2.  
+                    // 2.  (R U' R' U) (R U' R')
+                    if (aPieces[49] == aPieces[8] && aPieces[4] == aPieces[15] && aPieces[4] == aPieces[41] && aPieces[13] == aPieces[10])
+                    {
+                        await MakeTurnAsync("R U' R' U R U' R'");
+                        continue;
+                    }
 
-                    // 3.  
+                    // 3.  y' (R' U' R U) (R' U' R) --- (R' F R F') U(R U' R')
+                    if (aPieces[49] == aPieces[8] && aPieces[4] == aPieces[1] && aPieces[4] == aPieces[15] && aPieces[13] == aPieces[43])
+                    {
+                        await MakeTurnAsync("y' R' U' R U R' U' R");
+                        continue;
+                    }
 
-                    // 4.  
+                    // 4.  U (R U' R') U' (F' U F) --- U(R U' R')(F R' F' R)
+                    if (aPieces[4] == aPieces[1] && aPieces[4] == aPieces[8] && aPieces[13] == aPieces[15] && aPieces[13] == aPieces[43])
+                    {
+                        await MakeTurnAsync("U R U' R' U' F' U F");
+                        continue;
+                    }
 
-                    // 5.  
+                    // 5.  y' (R' U R U') (R' U R)
+                    if (aPieces[49] == aPieces[15] && aPieces[4] == aPieces[1] && aPieces[13] == aPieces[8] && aPieces[13] == aPieces[43])
+                    {
+                        await MakeTurnAsync("y' R' U R U' R' U R");
+                        continue;
+                    }
 
-                    // 6.  
+                    // 6.  (R U R' U') (R U R')
+                    if (aPieces[49] == aPieces[15] && aPieces[4] == aPieces[41] && aPieces[13] == aPieces[8] && aPieces[13] == aPieces[41])
+                    {
+                        await MakeTurnAsync("R U R' U' R U R'");
+                        continue;
+                    }
 
                     // Edge in Place, Corner in U face
-                    // 1.  
+                    // 1.  (R U' R' U) y' (R' U R) --- U' (R' F R F') (R U' R')
+                    if (aPieces[49] == aPieces[44] && aPieces[4] == aPieces[9] && aPieces[4] == aPieces[12] && aPieces[13] == aPieces[2] && aPieces[13] == aPieces[5])
+                    {
+                        await MakeTurnAsync("R U' R' U y' R' U R");
+                        continue;
+                    }
 
-                    // 2.  
+                    // 2.  (U' R U' R') U2 (R U' R')
+                    if (aPieces[49] == aPieces[2] && aPieces[4] == aPieces[5] && aPieces[4] == aPieces[44] && aPieces[13] == aPieces[9] && aPieces[13] == aPieces[12])
+                    {
+                        await MakeTurnAsync("U' R U' R' U2 R U' R'");
+                        continue;
+                    }
 
-                    // 3.  
+                    // 3.  (U' R U R') d (R' U' R)
+                    if (aPieces[49] == aPieces[2] && aPieces[4] == aPieces[12] && aPieces[4] == aPieces[44] && aPieces[13] == aPieces[5] && aPieces[13] == aPieces[9])
+                    {
+                        await MakeTurnAsync("U' R U R' d R' U' R");
+                        continue;
+                    }
 
-                    // 4.  
+                    // 4.  (U R U' R') (U R U' R') (U R U' R')
+                    if (aPieces[49] == aPieces[44] && aPieces[4] == aPieces[5] && aPieces[4] == aPieces[9] && aPieces[13] == aPieces[2] && aPieces[13] == aPieces[12])
+                    {
+                        await MakeTurnAsync("U R U' R' U R U' R' U R U' R'");
+                        continue;
+                    }
 
-                    // 5.  
+                    // 5.  U (R U R') U2 (R U R')
+                    if (aPieces[49] == aPieces[9] && aPieces[4] == aPieces[2] && aPieces[4] == aPieces[5] && aPieces[13] == aPieces[12] && aPieces[13] == aPieces[44])
+                    {
+                        await MakeTurnAsync("U R U R' U2 R U R'");
+                        continue;
+                    }
 
-                    // 6.  
+                    // 6.  U (F' U' F) U' (R U R')
+                    if (aPieces[49] == aPieces[9] && aPieces[4] == aPieces[2] && aPieces[4] == aPieces[12] && aPieces[13] == aPieces[5] && aPieces[13] == aPieces[44])
+                    {
+                        await MakeTurnAsync("U F' U' F U' R U R'");
+                        continue;
+                    }
 
                     // Edge and Corner in Place
-                    // 1.  
+                    // 1.  Solved Pair
 
-                    // 2.  
+                    // 2.  (R U' R' U') R U R' U2 (R U' R') --- (R U R' U') R U2 R' U'(R U R')
+                    if (aPieces[49] == aPieces[9] && aPieces[4] == aPieces[2] && aPieces[4] == aPieces[12] && aPieces[13] == aPieces[5] && aPieces[13] == aPieces[44])
+                    {
+                        await MakeTurnAsync("U F' U' F U' R U R'");
+                        continue;
+                    }
 
-                    // 3.  
+                    // 3.  (F' U F) U2 (R U R' U) (R U' R') --- (R U' R') F (R U R' U') F' (R U' R')
 
-                    // 4.  
+                    // 4.  (R U' R') d (R' U2 R) U2' (R' U R)
 
-                    // 5.  
+                    // 5.  (R U' R' U) (R U2' R') U (R U' R') --- (R U R') U2'(R U' R' U)(R U R')
 
-                    // 6.  
+                    // 6.  (R U R' U') (R U' R') U2 y' (R' U' R)
 
 
                     // Page 3
