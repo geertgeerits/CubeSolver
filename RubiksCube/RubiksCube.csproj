@@ -55,6 +55,7 @@
 
 	<ItemGroup>
 	  <Compile Remove="ClassSolveCubeCFOP_B.cs" />
+	  <Compile Remove="ClassSolveCubeCFOP_C.cs" />
 	  <Compile Remove="ClassTestCubeTurns.cs" />
 	  <Compile Remove="PageWebsite.xaml.cs" />
 	</ItemGroup>
