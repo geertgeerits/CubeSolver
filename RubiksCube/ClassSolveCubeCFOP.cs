@@ -195,901 +195,910 @@ namespace RubiksCube
 
                 // https://www.youtube.com/watch?v=Hx9ZbPdX8zM
                 // Part 1. Converting cases. Convert any F2L case into one of five using a 3-step process
-                if (aPieces[49] == aPieces[15] && aPieces[4] == aPieces[7] && aPieces[4] == aPieces[14] && aPieces[4] == aPieces[47])
+                if (aPieces[4] == aPieces[7] && aPieces[13] == aPieces[16])
                 {
-                    if (aPieces[13] == aPieces[8] && aPieces[13] == aPieces[16] && aPieces[13] == aPieces[21])
+                    if (aPieces[49] == aPieces[15] && aPieces[4] == aPieces[14] && aPieces[4] == aPieces[47])
                     {
-                        await MakeTurnAsync("R U R' y R U' R'");
-                        continue;
+                        if (aPieces[13] == aPieces[8] && aPieces[13] == aPieces[21])
+                        {
+                            await MakeTurnAsync("R U R' y R U' R'");
+                            continue;
+                        }
                     }
-                }
 
-                if (aPieces[49] == aPieces[44] && aPieces[4] == aPieces[1] && aPieces[4] == aPieces[2] && aPieces[4] == aPieces[7])
-                {
-                    if (aPieces[31] == aPieces[9] && aPieces[31] == aPieces[34] && aPieces[31] == aPieces[43])
+                    // There was no aPieces[13] == aPieces[16]
+                    if (aPieces[49] == aPieces[44] && aPieces[4] == aPieces[1] && aPieces[4] == aPieces[2])
                     {
-                        await MakeTurnAsync("R' U R");
-                        continue;
+                        if (aPieces[31] == aPieces[9] && aPieces[31] == aPieces[34] && aPieces[31] == aPieces[43])
+                        {
+                            await MakeTurnAsync("R' U R");
+                            continue;
+                        }
                     }
-                }
 
-                if (aPieces[49] == aPieces[44] && aPieces[4] == aPieces[7] && aPieces[4] == aPieces[9] && aPieces[4] == aPieces[41])
-                {
-                    if (aPieces[13] == aPieces[2] && aPieces[13] == aPieces[10] && aPieces[13] == aPieces[16])
+                    if (aPieces[49] == aPieces[44] && aPieces[4] == aPieces[9] && aPieces[4] == aPieces[41])
                     {
-                        await MakeTurnAsync("U' R U' R'");
-                        continue;
+                        if (aPieces[13] == aPieces[2] && aPieces[13] == aPieces[10])
+                        {
+                            await MakeTurnAsync("U' R U' R'");
+                            continue;
+                        }
                     }
-                }
 
-                // Part 2. Five fundamental cases
-                // Case 1. Matching
-                if (aPieces[49] == aPieces[9] && aPieces[4] == aPieces[2] && aPieces[4] == aPieces[7] && aPieces[4] == aPieces[19])
-                {
-                    if (aPieces[13] == aPieces[16] && aPieces[13] == aPieces[37] && aPieces[13] == aPieces[44])
+                    // Part 2. Five fundamental cases
+                    // Case 1. Matching
+                    if (aPieces[49] == aPieces[9] && aPieces[4] == aPieces[2] && aPieces[4] == aPieces[19])
                     {
-                        await MakeTurnAsync("R' U2 R y U' L' U L");
-                        continue;
+                        if (aPieces[13] == aPieces[37] && aPieces[13] == aPieces[44])
+                        {
+                            await MakeTurnAsync("R' U2 R y U' L' U L");
+                            continue;
+                        }
                     }
-                }
 
-                // Case 2. Non-matching
-                if (aPieces[49] == aPieces[9] && aPieces[4] == aPieces[2] && aPieces[4] == aPieces[7] && aPieces[4] == aPieces[37])
-                {
-                    if (aPieces[13] == aPieces[16] && aPieces[13] == aPieces[19] && aPieces[13] == aPieces[44])
+                    // Case 2. Non-matching
+                    if (aPieces[49] == aPieces[9] && aPieces[4] == aPieces[2] && aPieces[4] == aPieces[37])
                     {
-                        await MakeTurnAsync("R U R'");
-                        continue;
+                        if (aPieces[13] == aPieces[19] && aPieces[13] == aPieces[44])
+                        {
+                            await MakeTurnAsync("R U R'");
+                            continue;
+                        }
                     }
-                }
 
-                // Case 3. White on top
-                if (aPieces[49] == aPieces[44] && aPieces[4] == aPieces[7] && aPieces[4] == aPieces[9] && aPieces[4] == aPieces[19])
-                {
-                    if (aPieces[13] == aPieces[2] && aPieces[13] == aPieces[16] && aPieces[13] == aPieces[37])
+                    // Case 3. White on top
+                    if (aPieces[49] == aPieces[44] && aPieces[4] == aPieces[9] && aPieces[4] == aPieces[19])
                     {
-                        await MakeTurnAsync("U2 F' U' R y U' L' U L");
-                        continue;
+                        if (aPieces[13] == aPieces[2] && aPieces[13] == aPieces[37])
+                        {
+                            await MakeTurnAsync("U2 F' U' R y U' L' U L");
+                            continue;
+                        }
                     }
-                }
 
-                // Case 4. Mirrored matching
-                if (aPieces[49] == aPieces[2] && aPieces[4] == aPieces[7] && aPieces[4] == aPieces[39] && aPieces[4] == aPieces[44])
-                {
-                    if (aPieces[13] == aPieces[9] && aPieces[13] == aPieces[16] && aPieces[13] == aPieces[28])
+                    // Case 4. Mirrored matching
+                    if (aPieces[49] == aPieces[2] && aPieces[4] == aPieces[39] && aPieces[4] == aPieces[44])
                     {
-                        await MakeTurnAsync("U' R U2 R' U2 R U' R'");
-                        continue;
+                        if (aPieces[13] == aPieces[9] && aPieces[13] == aPieces[28])
+                        {
+                            await MakeTurnAsync("U' R U2 R' U2 R U' R'");
+                            continue;
+                        }
                     }
-                }
 
-                // Case 5. Mirrored non-matching
-                if (aPieces[49] == aPieces[2] && aPieces[4] == aPieces[7] && aPieces[4] == aPieces[28] && aPieces[4] == aPieces[44])
-                {
-                    if (aPieces[13] == aPieces[9] && aPieces[13] == aPieces[16] && aPieces[13] == aPieces[39])
+                    // Case 5. Mirrored non-matching
+                    if (aPieces[49] == aPieces[2] && aPieces[4] == aPieces[28] && aPieces[4] == aPieces[44])
                     {
-                        await MakeTurnAsync("y L' U' L");
-                        continue;
+                        if (aPieces[13] == aPieces[9] && aPieces[13] == aPieces[39])
+                        {
+                            await MakeTurnAsync("y L' U' L");
+                            continue;
+                        }
                     }
-                }
 
-                // Part 3. Solving the last pair
-                if (aPieces[49] == aPieces[9] && aPieces[4] == aPieces[2] && aPieces[4] == aPieces[3] && aPieces[4] == aPieces[6] && aPieces[4] == aPieces[7] && aPieces[4] == aPieces[43])
-                {
-                    if (aPieces[13] == aPieces[1] && aPieces[13] == aPieces[14] && aPieces[13] == aPieces[16] && aPieces[13] == aPieces[17] && aPieces[13] == aPieces[44])
+                    // Part 3. Solving the last pair
+                    if (aPieces[49] == aPieces[9] && aPieces[4] == aPieces[2] && aPieces[4] == aPieces[3] && aPieces[4] == aPieces[6] && aPieces[4] == aPieces[43])
                     {
-                        await MakeTurnAsync("y' U R' U2 R y U' R U R'");
-                        continue;
+                        if (aPieces[13] == aPieces[1] && aPieces[13] == aPieces[14] && aPieces[13] == aPieces[17] && aPieces[13] == aPieces[44])
+                        {
+                            await MakeTurnAsync("y' U R' U2 R y U' R U R'");
+                            continue;
+                        }
                     }
                 }
 
                 //--------------------------------------------------------------------------------------------------------------
 
                 // https://solvethecube.com/algorithms
-
-                // 1. Basic cases
-                // 1.1   R U R'
-                if (aPieces[49] == aPieces[9] && aPieces[4] == aPieces[2] && aPieces[4] == aPieces[37])
+                if (aPieces[4] == aPieces[7] && aPieces[13] == aPieces[16])
                 {
-                    if (aPieces[13] == aPieces[19] && aPieces[13] == aPieces[44])
+                    // 1. Basic cases
+                    // 1.1   R U R'
+                    if (aPieces[49] == aPieces[9] && aPieces[4] == aPieces[2] && aPieces[4] == aPieces[37])
                     {
-                        await MakeTurnAsync("R U R'");
-                        continue;
+                        if (aPieces[13] == aPieces[19] && aPieces[13] == aPieces[44])
+                        {
+                            await MakeTurnAsync("R U R'");
+                            continue;
+                        }
                     }
-                }
 
-                // 1.2   F' U' F
-                if (aPieces[49] == aPieces[2] && aPieces[4] == aPieces[28] && aPieces[4] == aPieces[44])
-                {
-                    if (aPieces[13] == aPieces[9] && aPieces[13] == aPieces[39])
+                    // 1.2   F' U' F
+                    if (aPieces[49] == aPieces[2] && aPieces[4] == aPieces[28] && aPieces[4] == aPieces[44])
                     {
-                        await MakeTurnAsync("F' U' F");
-                        continue;
+                        if (aPieces[13] == aPieces[9] && aPieces[13] == aPieces[39])
+                        {
+                            await MakeTurnAsync("F' U' F");
+                            continue;
+                        }
                     }
-                }
 
-                // 1.3   U R U' R'
-                if (aPieces[49] == aPieces[2] && aPieces[4] == aPieces[41] && aPieces[4] == aPieces[44])
-                {
-                    if (aPieces[13] == aPieces[9] && aPieces[13] == aPieces[10])
+                    // 1.3   U R U' R'
+                    if (aPieces[49] == aPieces[2] && aPieces[4] == aPieces[41] && aPieces[4] == aPieces[44])
                     {
-                        await MakeTurnAsync("U R U' R'");
-                        continue;
+                        if (aPieces[13] == aPieces[9] && aPieces[13] == aPieces[10])
+                        {
+                            await MakeTurnAsync("U R U' R'");
+                            continue;
+                        }
                     }
-                }
 
-                // 1.4   U' F' U F
-                if (aPieces[49] == aPieces[9] && aPieces[4] == aPieces[1] && aPieces[4] == aPieces[2])
-                {
-                    if (aPieces[13] == aPieces[43] && aPieces[13] == aPieces[44])
+                    // 1.4   U' F' U F
+                    if (aPieces[49] == aPieces[9] && aPieces[4] == aPieces[1] && aPieces[4] == aPieces[2])
                     {
-                        await MakeTurnAsync("U' F' U F");
-                        continue;
+                        if (aPieces[13] == aPieces[43] && aPieces[13] == aPieces[44])
+                        {
+                            await MakeTurnAsync("U' F' U F");
+                            continue;
+                        }
                     }
-                }
 
-                // 2. Corner and edge in top
-                // 2.1   (U' R U') (R' U R) U R'
-                if (aPieces[49] == aPieces[9] && aPieces[4] == aPieces[2] && aPieces[4] == aPieces[41])
-                {
-                    if (aPieces[13] == aPieces[10] && aPieces[13] == aPieces[44])
+                    // 2. Corner and edge in top
+                    // 2.1   (U' R U') (R' U R) U R'
+                    if (aPieces[49] == aPieces[9] && aPieces[4] == aPieces[2] && aPieces[4] == aPieces[41])
                     {
-                        await MakeTurnAsync("U' R U' R' U R U R'");
-                        continue;
+                        if (aPieces[13] == aPieces[10] && aPieces[13] == aPieces[44])
+                        {
+                            await MakeTurnAsync("U' R U' R' U R U R'");
+                            continue;
+                        }
                     }
-                }
 
-                // 2.2   (U F' U) (F U' F') U' F
-                if (aPieces[49] == aPieces[2] && aPieces[4] == aPieces[1] && aPieces[4] == aPieces[44])
-                {
-                    if (aPieces[13] == aPieces[9] && aPieces[13] == aPieces[43])
+                    // 2.2   (U F' U) (F U' F') U' F
+                    if (aPieces[49] == aPieces[2] && aPieces[4] == aPieces[1] && aPieces[4] == aPieces[44])
                     {
-                        await MakeTurnAsync("U F' U F U' F' U' F");
-                        continue;
+                        if (aPieces[13] == aPieces[9] && aPieces[13] == aPieces[43])
+                        {
+                            await MakeTurnAsync("U F' U F U' F' U' F");
+                            continue;
+                        }
                     }
-                }
 
-                // 2.3   (U' R U) (R' U R) U R'
-                if (aPieces[49] == aPieces[9] && aPieces[4] == aPieces[2] && aPieces[4] == aPieces[39])
-                {
-                    if (aPieces[13] == aPieces[28] && aPieces[13] == aPieces[44])
+                    // 2.3   (U' R U) (R' U R) U R'
+                    if (aPieces[49] == aPieces[9] && aPieces[4] == aPieces[2] && aPieces[4] == aPieces[39])
                     {
-                        await MakeTurnAsync("U' R U R' U R U R'");
-                        continue;
+                        if (aPieces[13] == aPieces[28] && aPieces[13] == aPieces[44])
+                        {
+                            await MakeTurnAsync("U' R U R' U R U R'");
+                            continue;
+                        }
                     }
-                }
 
-                // 2.4   (U F' U') (F U' F') U' F
-                if (aPieces[49] == aPieces[2] && aPieces[4] == aPieces[19] && aPieces[4] == aPieces[44])
-                {
-                    if (aPieces[13] == aPieces[9] && aPieces[13] == aPieces[37])
+                    // 2.4   (U F' U') (F U' F') U' F
+                    if (aPieces[49] == aPieces[2] && aPieces[4] == aPieces[19] && aPieces[4] == aPieces[44])
                     {
-                        await MakeTurnAsync("U F' U' F U' F' U' F");
-                        continue;
+                        if (aPieces[13] == aPieces[9] && aPieces[13] == aPieces[37])
+                        {
+                            await MakeTurnAsync("U F' U' F U' F' U' F");
+                            continue;
+                        }
                     }
-                }
 
-                // 2.5   d (R' U2 R) d' (R U R')
-                if (aPieces[49] == aPieces[9] && aPieces[4] == aPieces[2] && aPieces[4] == aPieces[43])
-                {
-                    if (aPieces[13] == aPieces[1] && aPieces[13] == aPieces[44])
+                    // 2.5   d (R' U2 R) d' (R U R')
+                    if (aPieces[49] == aPieces[9] && aPieces[4] == aPieces[2] && aPieces[4] == aPieces[43])
                     {
-                        await MakeTurnAsync("d R' U2 R d' R U R'");
-                        continue;
+                        if (aPieces[13] == aPieces[1] && aPieces[13] == aPieces[44])
+                        {
+                            await MakeTurnAsync("d R' U2 R d' R U R'");
+                            continue;
+                        }
                     }
-                }
 
-                // 2.6   U' (R U2 R') d (R' U' R)
-                if (aPieces[49] == aPieces[2] && aPieces[4] == aPieces[10] && aPieces[4] == aPieces[44])
-                {
-                    if (aPieces[13] == aPieces[9] && aPieces[13] == aPieces[41])
+                    // 2.6   U' (R U2 R') d (R' U' R)
+                    if (aPieces[49] == aPieces[2] && aPieces[4] == aPieces[10] && aPieces[4] == aPieces[44])
                     {
-                        await MakeTurnAsync("U' R U2 R' d R' U' R");
-                        continue;
+                        if (aPieces[13] == aPieces[9] && aPieces[13] == aPieces[41])
+                        {
+                            await MakeTurnAsync("U' R U2 R' d R' U' R");
+                            continue;
+                        }
                     }
-                }
 
-                // 2.7   (R U' R' U) d (R' U' R)
-                if (aPieces[49] == aPieces[9] && aPieces[4] == aPieces[2] && aPieces[4] == aPieces[10])
-                {
-                    if (aPieces[13] == aPieces[41] && aPieces[13] == aPieces[44])
+                    // 2.7   (R U' R' U) d (R' U' R)
+                    if (aPieces[49] == aPieces[9] && aPieces[4] == aPieces[2] && aPieces[4] == aPieces[10])
                     {
-                        await MakeTurnAsync("R U' R' U d R' U' R");
-                        continue;
+                        if (aPieces[13] == aPieces[41] && aPieces[13] == aPieces[44])
+                        {
+                            await MakeTurnAsync("R U' R' U d R' U' R");
+                            continue;
+                        }
                     }
-                }
 
-                // 2.8   (F' U F U') d' (F U F')
-                if (aPieces[49] == aPieces[2] && aPieces[4] == aPieces[43] && aPieces[4] == aPieces[44])
-                {
-                    if (aPieces[13] == aPieces[1] && aPieces[13] == aPieces[9])
+                    // 2.8   (F' U F U') d' (F U F')
+                    if (aPieces[49] == aPieces[2] && aPieces[4] == aPieces[43] && aPieces[4] == aPieces[44])
                     {
-                        await MakeTurnAsync("F' U F U' d' F U F'");
-                        continue;
+                        if (aPieces[13] == aPieces[1] && aPieces[13] == aPieces[9])
+                        {
+                            await MakeTurnAsync("F' U F U' d' F U F'");
+                            continue;
+                        }
                     }
-                }
 
-                // 2.9   (U F' U2 F) (U F' U2 F)
-                if (aPieces[49] == aPieces[9] && aPieces[4] == aPieces[2] && aPieces[4] == aPieces[19])
-                {
-                    if (aPieces[13] == aPieces[37] && aPieces[13] == aPieces[44])
+                    // 2.9   (U F' U2 F) (U F' U2 F)
+                    if (aPieces[49] == aPieces[9] && aPieces[4] == aPieces[2] && aPieces[4] == aPieces[19])
                     {
-                        await MakeTurnAsync("U F' U2 F U F' U2 F");
-                        continue;
+                        if (aPieces[13] == aPieces[37] && aPieces[13] == aPieces[44])
+                        {
+                            await MakeTurnAsync("U F' U2 F U F' U2 F");
+                            continue;
+                        }
                     }
-                }
 
-                // 2.10   (U' R U2 R') (U' R U2 R')
-                if (aPieces[49] == aPieces[2] && aPieces[4] == aPieces[39] && aPieces[4] == aPieces[44])
-                {
-                    if (aPieces[13] == aPieces[9] && aPieces[13] == aPieces[28])
+                    // 2.10   (U' R U2 R') (U' R U2 R')
+                    if (aPieces[49] == aPieces[2] && aPieces[4] == aPieces[39] && aPieces[4] == aPieces[44])
                     {
-                        await MakeTurnAsync("U' R U2 R' U' R U2 R'");
-                        continue;
+                        if (aPieces[13] == aPieces[9] && aPieces[13] == aPieces[28])
+                        {
+                            await MakeTurnAsync("U' R U2 R' U' R U2 R'");
+                            continue;
+                        }
                     }
-                }
 
-                // 2.11   (U F' U' F) (U F' U2 F)
-                if (aPieces[49] == aPieces[9] && aPieces[4] == aPieces[2] && aPieces[4] == aPieces[28])
-                {
-                    if (aPieces[13] == aPieces[39] && aPieces[13] == aPieces[44])
+                    // 2.11   (U F' U' F) (U F' U2 F)
+                    if (aPieces[49] == aPieces[9] && aPieces[4] == aPieces[2] && aPieces[4] == aPieces[28])
                     {
-                        await MakeTurnAsync("U F' U' F U F' U2 F");
-                        continue;
+                        if (aPieces[13] == aPieces[39] && aPieces[13] == aPieces[44])
+                        {
+                            await MakeTurnAsync("U F' U' F U F' U2 F");
+                            continue;
+                        }
                     }
-                }
 
-                // 2.12   (U' R U R') (U' R U2 R')
-                if (aPieces[49] == aPieces[2] && aPieces[4] == aPieces[37] && aPieces[4] == aPieces[44])
-                {
-                    if (aPieces[13] == aPieces[9] && aPieces[13] == aPieces[19])
+                    // 2.12   (U' R U R') (U' R U2 R')
+                    if (aPieces[49] == aPieces[2] && aPieces[4] == aPieces[37] && aPieces[4] == aPieces[44])
                     {
-                        await MakeTurnAsync("U' R U R' U' R U2 R'");
-                        continue;
+                        if (aPieces[13] == aPieces[9] && aPieces[13] == aPieces[19])
+                        {
+                            await MakeTurnAsync("U' R U R' U' R U2 R'");
+                            continue;
+                        }
                     }
-                }
 
-                // 3. Corner pointing up, edge in top
-                // 3.1   (R U2 R' U') (R U R')
-                if (aPieces[49] == aPieces[44] && aPieces[4] == aPieces[9] && aPieces[4] == aPieces[41])
-                {
-                    if (aPieces[13] == aPieces[2] && aPieces[13] == aPieces[10])
+                    // 3. Corner pointing up, edge in top
+                    // 3.1   (R U2 R' U') (R U R')
+                    if (aPieces[49] == aPieces[44] && aPieces[4] == aPieces[9] && aPieces[4] == aPieces[41])
                     {
-                        await MakeTurnAsync("R U2 R' U' R U R'");
-                        continue;
+                        if (aPieces[13] == aPieces[2] && aPieces[13] == aPieces[10])
+                        {
+                            await MakeTurnAsync("R U2 R' U' R U R'");
+                            continue;
+                        }
                     }
-                }
 
-                // 3.2   (F' U2 F U) (F' U' F)
-                if (aPieces[49] == aPieces[44] && aPieces[4] == aPieces[1] && aPieces[4] == aPieces[9])
-                {
-                    if (aPieces[13] == aPieces[2] && aPieces[13] == aPieces[43])
+                    // 3.2   (F' U2 F U) (F' U' F)
+                    if (aPieces[49] == aPieces[44] && aPieces[4] == aPieces[1] && aPieces[4] == aPieces[9])
                     {
-                        await MakeTurnAsync("F' U2 F U F' U' F");
-                        continue;
+                        if (aPieces[13] == aPieces[2] && aPieces[13] == aPieces[43])
+                        {
+                            await MakeTurnAsync("F' U2 F U F' U' F");
+                            continue;
+                        }
                     }
-                }
 
-                // 3.3   (U R U2 R') (U R U' R')
-                if (aPieces[49] == aPieces[44] && aPieces[4] == aPieces[9] && aPieces[4] == aPieces[37])
-                {
-                    if (aPieces[13] == aPieces[2] && aPieces[13] == aPieces[19])
+                    // 3.3   (U R U2 R') (U R U' R')
+                    if (aPieces[49] == aPieces[44] && aPieces[4] == aPieces[9] && aPieces[4] == aPieces[37])
                     {
-                        await MakeTurnAsync("U R U2 R' U R U' R'");
-                        continue;
+                        if (aPieces[13] == aPieces[2] && aPieces[13] == aPieces[19])
+                        {
+                            await MakeTurnAsync("U R U2 R' U R U' R'");
+                            continue;
+                        }
                     }
-                }
 
-                // 3.4   (U' F' U2 F) (U' F' U F)
-                if (aPieces[49] == aPieces[44] && aPieces[4] == aPieces[9] && aPieces[4] == aPieces[28])
-                {
-                    if (aPieces[13] == aPieces[2] && aPieces[13] == aPieces[39])
+                    // 3.4   (U' F' U2 F) (U' F' U F)
+                    if (aPieces[49] == aPieces[44] && aPieces[4] == aPieces[9] && aPieces[4] == aPieces[28])
                     {
-                        await MakeTurnAsync("U' F' U2 F U' F' U F");
-                        continue;
+                        if (aPieces[13] == aPieces[2] && aPieces[13] == aPieces[39])
+                        {
+                            await MakeTurnAsync("U' F' U2 F U' F' U F");
+                            continue;
+                        }
                     }
-                }
 
-                // 3.5   U2 (R U R' U) (R U' R')
-                if (aPieces[49] == aPieces[44] && aPieces[4] == aPieces[9] && aPieces[4] == aPieces[39])
-                {
-                    if (aPieces[13] == aPieces[2] && aPieces[13] == aPieces[28])
+                    // 3.5   U2 (R U R' U) (R U' R')
+                    if (aPieces[49] == aPieces[44] && aPieces[4] == aPieces[9] && aPieces[4] == aPieces[39])
                     {
-                        await MakeTurnAsync("U2 R U R' U R U' R'");
-                        continue;
+                        if (aPieces[13] == aPieces[2] && aPieces[13] == aPieces[28])
+                        {
+                            await MakeTurnAsync("U2 R U R' U R U' R'");
+                            continue;
+                        }
                     }
-                }
 
-                // 3.6   U2 (F' U' F U') (F' U F)
-                if (aPieces[49] == aPieces[44] && aPieces[4] == aPieces[9] && aPieces[4] == aPieces[19])
-                {
-                    if (aPieces[13] == aPieces[2] && aPieces[13] == aPieces[37])
+                    // 3.6   U2 (F' U' F U') (F' U F)
+                    if (aPieces[49] == aPieces[44] && aPieces[4] == aPieces[9] && aPieces[4] == aPieces[19])
                     {
-                        await MakeTurnAsync("U2 F' U' F U' F' U F");
-                        continue;
+                        if (aPieces[13] == aPieces[2] && aPieces[13] == aPieces[37])
+                        {
+                            await MakeTurnAsync("U2 F' U' F U' F' U F");
+                            continue;
+                        }
                     }
-                }
 
-                // 3.7   (R U R' U') U' (R U R' U') (R U R')
-                if (aPieces[49] == aPieces[44] && aPieces[4] == aPieces[9] && aPieces[4] == aPieces[43])
-                {
-                    if (aPieces[13] == aPieces[1] && aPieces[13] == aPieces[2])
+                    // 3.7   (R U R' U') U' (R U R' U') (R U R')
+                    if (aPieces[49] == aPieces[44] && aPieces[4] == aPieces[9] && aPieces[4] == aPieces[43])
                     {
-                        await MakeTurnAsync("R U R' U' U' R U R' U' R U R'");
-                        continue;
+                        if (aPieces[13] == aPieces[1] && aPieces[13] == aPieces[2])
+                        {
+                            await MakeTurnAsync("R U R' U' U' R U R' U' R U R'");
+                            continue;
+                        }
                     }
-                }
 
-                // 3.8   y' (R' U' R U) U (R' U' R U) (R' U' R)
-                if (aPieces[49] == aPieces[44] && aPieces[4] == aPieces[9] && aPieces[4] == aPieces[10])
-                {
-                    if (aPieces[13] == aPieces[2] && aPieces[13] == aPieces[41])
+                    // 3.8   y' (R' U' R U) U (R' U' R U) (R' U' R)
+                    if (aPieces[49] == aPieces[44] && aPieces[4] == aPieces[9] && aPieces[4] == aPieces[10])
                     {
-                        await MakeTurnAsync("y' R' U' R U U R' U' R U R' U' R");
-                        continue;
+                        if (aPieces[13] == aPieces[2] && aPieces[13] == aPieces[41])
+                        {
+                            await MakeTurnAsync("y' R' U' R U U R' U' R U R' U' R");
+                            continue;
+                        }
                     }
-                }
 
-                // 4. Corner in top, edge in middle
-                // 4.1   (U F' U F) (U F' U2 F)
-                if (aPieces[49] == aPieces[9] && aPieces[4] == aPieces[2] && aPieces[4] == aPieces[5])
-                {
-                    if (aPieces[13] == aPieces[12] && aPieces[13] == aPieces[44])
+                    // 4. Corner in top, edge in middle
+                    // 4.1   (U F' U F) (U F' U2 F)
+                    if (aPieces[49] == aPieces[9] && aPieces[4] == aPieces[2] && aPieces[4] == aPieces[5])
                     {
-                        await MakeTurnAsync("U F' U F U F' U2 F");
-                        continue;
+                        if (aPieces[13] == aPieces[12] && aPieces[13] == aPieces[44])
+                        {
+                            await MakeTurnAsync("U F' U F U F' U2 F");
+                            continue;
+                        }
                     }
-                }
 
-                // 4.2   (U' R U' R') (U' R U2 R')
-                if (aPieces[49] == aPieces[2] && aPieces[4] == aPieces[5] && aPieces[4] == aPieces[44])
-                {
-                    if (aPieces[13] == aPieces[9] && aPieces[13] == aPieces[12])
+                    // 4.2   (U' R U' R') (U' R U2 R')
+                    if (aPieces[49] == aPieces[2] && aPieces[4] == aPieces[5] && aPieces[4] == aPieces[44])
                     {
-                        await MakeTurnAsync("U' R U' R' U' R U2 R'");
-                        continue;
+                        if (aPieces[13] == aPieces[9] && aPieces[13] == aPieces[12])
+                        {
+                            await MakeTurnAsync("U' R U' R' U' R U2 R'");
+                            continue;
+                        }
                     }
-                }
 
-                // 4.3   (U F' U' F) (d' F U F')
-                if (aPieces[49] == aPieces[9] && aPieces[4] == aPieces[2] && aPieces[4] == aPieces[12])
-                {
-                    if (aPieces[13] == aPieces[5] && aPieces[13] == aPieces[44])
+                    // 4.3   (U F' U' F) (d' F U F')
+                    if (aPieces[49] == aPieces[9] && aPieces[4] == aPieces[2] && aPieces[4] == aPieces[12])
                     {
-                        await MakeTurnAsync("U F' U' F d' F U F'");
-                        continue;
+                        if (aPieces[13] == aPieces[5] && aPieces[13] == aPieces[44])
+                        {
+                            await MakeTurnAsync("U F' U' F d' F U F'");
+                            continue;
+                        }
                     }
-                }
 
-                // 4.4   (U' R U R') (d R' U' R)
-                if (aPieces[49] == aPieces[2] && aPieces[4] == aPieces[12] && aPieces[4] == aPieces[44])
-                {
-                    if (aPieces[13] == aPieces[5] && aPieces[13] == aPieces[9])
+                    // 4.4   (U' R U R') (d R' U' R)
+                    if (aPieces[49] == aPieces[2] && aPieces[4] == aPieces[12] && aPieces[4] == aPieces[44])
                     {
-                        await MakeTurnAsync("U' R U R' d R' U' R");
-                        continue;
+                        if (aPieces[13] == aPieces[5] && aPieces[13] == aPieces[9])
+                        {
+                            await MakeTurnAsync("U' R U R' d R' U' R");
+                            continue;
+                        }
                     }
-                }
 
-                // 4.5   (R U' R') (d R' U R)
-                if (aPieces[49] == aPieces[44] && aPieces[4] == aPieces[9] && aPieces[4] == aPieces[12])
-                {
-                    if (aPieces[13] == aPieces[2] && aPieces[13] == aPieces[5])
+                    // 4.5   (R U' R') (d R' U R)
+                    if (aPieces[49] == aPieces[44] && aPieces[4] == aPieces[9] && aPieces[4] == aPieces[12])
                     {
-                        await MakeTurnAsync("R U' R' d R' U R");
-                        continue;
+                        if (aPieces[13] == aPieces[2] && aPieces[13] == aPieces[5])
+                        {
+                            await MakeTurnAsync("R U' R' d R' U R");
+                            continue;
+                        }
                     }
-                }
 
-                // 4.6   (R U R' U') (R U R' U') (R U R')
-                if (aPieces[49] == aPieces[44] && aPieces[4] == aPieces[5] && aPieces[4] == aPieces[9])
-                {
-                    if (aPieces[13] == aPieces[2] && aPieces[13] == aPieces[12])
+                    // 4.6   (R U R' U') (R U R' U') (R U R')
+                    if (aPieces[49] == aPieces[44] && aPieces[4] == aPieces[5] && aPieces[4] == aPieces[9])
                     {
-                        await MakeTurnAsync("R U R' U' R U R' U' R U R'");
-                        continue;
+                        if (aPieces[13] == aPieces[2] && aPieces[13] == aPieces[12])
+                        {
+                            await MakeTurnAsync("R U R' U' R U R' U' R U R'");
+                            continue;
+                        }
                     }
-                }
 
-                // 5. Corner in bottom, edge in top
-                // 5.1   (U R U' R') (U' F' U F)
-                if (aPieces[49] == aPieces[47] && aPieces[4] == aPieces[1] && aPieces[4] == aPieces[8])
-                {
-                    if (aPieces[13] == aPieces[15] && aPieces[13] == aPieces[43])
+                    // 5. Corner in bottom, edge in top
+                    // 5.1   (U R U' R') (U' F' U F)
+                    if (aPieces[49] == aPieces[47] && aPieces[4] == aPieces[1] && aPieces[4] == aPieces[8])
                     {
-                        await MakeTurnAsync("U R U' R' U' F' U F");
-                        continue;
+                        if (aPieces[13] == aPieces[15] && aPieces[13] == aPieces[43])
+                        {
+                            await MakeTurnAsync("U R U' R' U' F' U F");
+                            continue;
+                        }
                     }
-                }
 
-                // 5.2   (U' F' U F) (U R U' R')
-                if (aPieces[49] == aPieces[47] && aPieces[4] == aPieces[8] && aPieces[4] == aPieces[41])
-                {
-                    if (aPieces[13] == aPieces[10] && aPieces[13] == aPieces[15])
+                    // 5.2   (U' F' U F) (U R U' R')
+                    if (aPieces[49] == aPieces[47] && aPieces[4] == aPieces[8] && aPieces[4] == aPieces[41])
                     {
-                        await MakeTurnAsync("U' F' U F U R U' R'");
-                        continue;
+                        if (aPieces[13] == aPieces[10] && aPieces[13] == aPieces[15])
+                        {
+                            await MakeTurnAsync("U' F' U F U R U' R'");
+                            continue;
+                        }
                     }
-                }
 
-                // 5.3   (F' U F) (U' F' U F)
-                if (aPieces[49] == aPieces[15] && aPieces[4] == aPieces[1] && aPieces[4] == aPieces[47])
-                {
-                    if (aPieces[13] == aPieces[8] && aPieces[13] == aPieces[43])
+                    // 5.3   (F' U F) (U' F' U F)
+                    if (aPieces[49] == aPieces[15] && aPieces[4] == aPieces[1] && aPieces[4] == aPieces[47])
                     {
-                        await MakeTurnAsync("F' U F U' F' U F");
-                        continue;
+                        if (aPieces[13] == aPieces[8] && aPieces[13] == aPieces[43])
+                        {
+                            await MakeTurnAsync("F' U F U' F' U F");
+                            continue;
+                        }
                     }
-                }
 
-                // 5.4   (R U' R') (U R U' R')
-                if (aPieces[49] == aPieces[8] && aPieces[4] == aPieces[15] && aPieces[4] == aPieces[41])
-                {
-                    if (aPieces[13] == aPieces[10] && aPieces[13] == aPieces[47])
+                    // 5.4   (R U' R') (U R U' R')
+                    if (aPieces[49] == aPieces[8] && aPieces[4] == aPieces[15] && aPieces[4] == aPieces[41])
                     {
-                        await MakeTurnAsync("R U' R' U R U' R'");
-                        continue;
+                        if (aPieces[13] == aPieces[10] && aPieces[13] == aPieces[47])
+                        {
+                            await MakeTurnAsync("R U' R' U R U' R'");
+                            continue;
+                        }
                     }
-                }
 
-                // 5.5   (R U R') (U' R U R')
-                if (aPieces[49] == aPieces[15] && aPieces[4] == aPieces[41] && aPieces[4] == aPieces[47])
-                {
-                    if (aPieces[13] == aPieces[8] && aPieces[13] == aPieces[10])
+                    // 5.5   (R U R') (U' R U R')
+                    if (aPieces[49] == aPieces[15] && aPieces[4] == aPieces[41] && aPieces[4] == aPieces[47])
                     {
-                        await MakeTurnAsync("R U R' U' R U R'");
-                        continue;
+                        if (aPieces[13] == aPieces[8] && aPieces[13] == aPieces[10])
+                        {
+                            await MakeTurnAsync("R U R' U' R U R'");
+                            continue;
+                        }
                     }
-                }
 
-                // 5.6   (F' U' F) (U F' U' F)
-                if (aPieces[49] == aPieces[8] && aPieces[4] == aPieces[1] && aPieces[4] == aPieces[15])
-                {
-                    if (aPieces[13] == aPieces[43] && aPieces[13] == aPieces[47])
+                    // 5.6   (F' U' F) (U F' U' F)
+                    if (aPieces[49] == aPieces[8] && aPieces[4] == aPieces[1] && aPieces[4] == aPieces[15])
                     {
-                        await MakeTurnAsync("F' U' F U F' U' F");
-                        continue;
+                        if (aPieces[13] == aPieces[43] && aPieces[13] == aPieces[47])
+                        {
+                            await MakeTurnAsync("F' U' F U F' U' F");
+                            continue;
+                        }
                     }
-                }
 
-                // 6. Corner in bottom, edge in middle
-                // 6.1   (R U' R' U) R U2 R' (U R U' R')
-                if (aPieces[49] == aPieces[15] && aPieces[4] == aPieces[5] && aPieces[4] == aPieces[47])
-                {
-                    if (aPieces[13] == aPieces[8] && aPieces[13] == aPieces[12])
+                    // 6. Corner in bottom, edge in middle
+                    // 6.1   (R U' R' U) R U2 R' (U R U' R')
+                    if (aPieces[49] == aPieces[15] && aPieces[4] == aPieces[5] && aPieces[4] == aPieces[47])
                     {
-                        await MakeTurnAsync("R U' R' U R U2 R' U R U' R'");
-                        continue;
+                        if (aPieces[13] == aPieces[8] && aPieces[13] == aPieces[12])
+                        {
+                            await MakeTurnAsync("R U' R' U R U2 R' U R U' R'");
+                            continue;
+                        }
                     }
-                }
 
-                // 6.2   (R U' R' U') (R U R' U') (R U2 R')
-                if (aPieces[49] == aPieces[8] && aPieces[4] == aPieces[5] && aPieces[4] == aPieces[15])
-                {
-                    if (aPieces[13] == aPieces[12] && aPieces[13] == aPieces[47])
+                    // 6.2   (R U' R' U') (R U R' U') (R U2 R')
+                    if (aPieces[49] == aPieces[8] && aPieces[4] == aPieces[5] && aPieces[4] == aPieces[15])
                     {
-                        await MakeTurnAsync("R U' R' U' R U R' U' R U2 R'");
-                        continue;
+                        if (aPieces[13] == aPieces[12] && aPieces[13] == aPieces[47])
+                        {
+                            await MakeTurnAsync("R U' R' U' R U R' U' R U2 R'");
+                            continue;
+                        }
                     }
-                }
 
-                // 6.3   (R U R' U') (R U' R') U d (R' U' R)
-                if (aPieces[49] == aPieces[15] && aPieces[4] == aPieces[12] && aPieces[4] == aPieces[47])
-                {
-                    if (aPieces[13] == aPieces[5] && aPieces[13] == aPieces[8])
+                    // 6.3   (R U R' U') (R U' R') U d (R' U' R)
+                    if (aPieces[49] == aPieces[15] && aPieces[4] == aPieces[12] && aPieces[4] == aPieces[47])
                     {
-                        await MakeTurnAsync("R U R' U' R U' R' U d R' U' R");
-                        continue;
+                        if (aPieces[13] == aPieces[5] && aPieces[13] == aPieces[8])
+                        {
+                            await MakeTurnAsync("R U R' U' R U' R' U d R' U' R");
+                            continue;
+                        }
                     }
-                }
 
-                // 6.4   (R U' R') d (R' U' R U') (R' U' R)
-                if (aPieces[49] == aPieces[8] && aPieces[4] == aPieces[12] && aPieces[4] == aPieces[15])
-                {
-                    if (aPieces[13] == aPieces[5] && aPieces[13] == aPieces[47])
+                    // 6.4   (R U' R') d (R' U' R U') (R' U' R)
+                    if (aPieces[49] == aPieces[8] && aPieces[4] == aPieces[12] && aPieces[4] == aPieces[15])
                     {
-                        await MakeTurnAsync("R U' R' d R' U' R U' R' U' R");
-                        continue;
+                        if (aPieces[13] == aPieces[5] && aPieces[13] == aPieces[47])
+                        {
+                            await MakeTurnAsync("R U' R' d R' U' R U' R' U' R");
+                            continue;
+                        }
                     }
-                }
 
-                // 6.5   (R U' R' d R' U2 R) (U R' U2 R)
-                if (aPieces[49] == aPieces[47] && aPieces[4] == aPieces[8] && aPieces[4] == aPieces[12])
-                {
-                    if (aPieces[13] == aPieces[5] && aPieces[13] == aPieces[15])
+                    // 6.5   (R U' R' d R' U2 R) (U R' U2 R)
+                    if (aPieces[49] == aPieces[47] && aPieces[4] == aPieces[8] && aPieces[4] == aPieces[12])
                     {
-                        await MakeTurnAsync("R U' R' d R' U2 R U R' U2 R");
-                        continue;
+                        if (aPieces[13] == aPieces[5] && aPieces[13] == aPieces[15])
+                        {
+                            await MakeTurnAsync("R U' R' d R' U2 R U R' U2 R");
+                            continue;
+                        }
                     }
                 }
 
                 //--------------------------------------------------------------------------------------------------------------
 
                 // https://www.cubelelo.com/blogs/cubing/f2l-method-explained-solve-rubiks-cube-under-30-seconds
-                // Case 1: Basic cases
-                // 1 Case
-                if (aPieces[49] == aPieces[9] && aPieces[4] == aPieces[2] && aPieces[4] == aPieces[37])
+                if (aPieces[4] == aPieces[3] && aPieces[4] == aPieces[6] && aPieces[4] == aPieces[7] && aPieces[13] == aPieces[14] && aPieces[13] == aPieces[16] && aPieces[13] == aPieces[17])
                 {
-                    if (aPieces[13] == aPieces[19] && aPieces[13] == aPieces[44])
+                    // Case 1: Basic cases
+                    // 1 Case
+                    if (aPieces[49] == aPieces[9] && aPieces[4] == aPieces[2] && aPieces[4] == aPieces[37])
                     {
-                        await MakeTurnAsync("R U R'");
-                        continue;
+                        if (aPieces[13] == aPieces[19] && aPieces[13] == aPieces[44])
+                        {
+                            await MakeTurnAsync("R U R'");
+                            continue;
+                        }
                     }
-                }
 
-                // 1 Case mirror
-                if (aPieces[49] == aPieces[2] && aPieces[4] == aPieces[28] && aPieces[4] == aPieces[44])
-                {
-                    if (aPieces[13] == aPieces[9] && aPieces[13] == aPieces[39])
+                    // 1 Case mirror
+                    if (aPieces[49] == aPieces[2] && aPieces[4] == aPieces[28] && aPieces[4] == aPieces[44])
                     {
-                        await MakeTurnAsync("F' U' F");
-                        continue;
+                        if (aPieces[13] == aPieces[9] && aPieces[13] == aPieces[39])
+                        {
+                            await MakeTurnAsync("F' U' F");
+                            continue;
+                        }
                     }
-                }
 
-                // 2 Case
-                if (aPieces[49] == aPieces[2] && aPieces[4] == aPieces[41] && aPieces[4] == aPieces[44])
-                {
-                    if (aPieces[13] == aPieces[9] && aPieces[13] == aPieces[10])
+                    // 2 Case
+                    if (aPieces[49] == aPieces[2] && aPieces[4] == aPieces[41] && aPieces[4] == aPieces[44])
                     {
-                        await MakeTurnAsync("U R U' R'");
-                        continue;
+                        if (aPieces[13] == aPieces[9] && aPieces[13] == aPieces[10])
+                        {
+                            await MakeTurnAsync("U R U' R'");
+                            continue;
+                        }
                     }
-                }
 
-                // 2 Case mirror
-                if (aPieces[49] == aPieces[9] && aPieces[4] == aPieces[1] && aPieces[4] == aPieces[2])
-                {
-                    if (aPieces[13] == aPieces[43] && aPieces[13] == aPieces[44])
+                    // 2 Case mirror
+                    if (aPieces[49] == aPieces[9] && aPieces[4] == aPieces[1] && aPieces[4] == aPieces[2])
                     {
-                        await MakeTurnAsync("U' F' U F");
-                        continue;
+                        if (aPieces[13] == aPieces[43] && aPieces[13] == aPieces[44])
+                        {
+                            await MakeTurnAsync("U' F' U F");
+                            continue;
+                        }
                     }
-                }
 
-                // Case 2: Corner and the Edge in Top Layer
-                // Type 1 Cases
-                // 1 Case
-                if (aPieces[49] == aPieces[9] && aPieces[4] == aPieces[2] && aPieces[4] == aPieces[41])
-                {
-                    if (aPieces[13] == aPieces[10] && aPieces[13] == aPieces[44])
+                    // Case 2: Corner and the Edge in Top Layer
+                    // Type 1 Cases
+                    // 1 Case
+                    if (aPieces[49] == aPieces[9] && aPieces[4] == aPieces[2] && aPieces[4] == aPieces[41])
                     {
-                        await MakeTurnAsync("U' R U' R' U");
-                        continue;
+                        if (aPieces[13] == aPieces[10] && aPieces[13] == aPieces[44])
+                        {
+                            await MakeTurnAsync("U' R U' R' U");
+                            continue;
+                        }
                     }
-                }
 
-                // 1 Case mirror
-                if (aPieces[49] == aPieces[2] && aPieces[4] == aPieces[1] && aPieces[4] == aPieces[44])
-                {
-                    if (aPieces[13] == aPieces[9] && aPieces[13] == aPieces[43])
+                    // 1 Case mirror
+                    if (aPieces[49] == aPieces[2] && aPieces[4] == aPieces[1] && aPieces[4] == aPieces[44])
                     {
-                        await MakeTurnAsync("U F' U F U'");
-                        continue;
+                        if (aPieces[13] == aPieces[9] && aPieces[13] == aPieces[43])
+                        {
+                            await MakeTurnAsync("U F' U F U'");
+                            continue;
+                        }
                     }
-                }
 
-                // 2 Case
-                if (aPieces[49] == aPieces[9] && aPieces[4] == aPieces[2] && aPieces[4] == aPieces[39])
-                {
-                    if (aPieces[13] == aPieces[28] && aPieces[13] == aPieces[39])
+                    // 2 Case
+                    if (aPieces[49] == aPieces[9] && aPieces[4] == aPieces[2] && aPieces[4] == aPieces[39])
                     {
-                        await MakeTurnAsync("U' R U R' U");
-                        continue;
+                        if (aPieces[13] == aPieces[28] && aPieces[13] == aPieces[39])
+                        {
+                            await MakeTurnAsync("U' R U R' U");
+                            continue;
+                        }
                     }
-                }
 
-                // 2 Case mirror
-                if (aPieces[49] == aPieces[2] && aPieces[4] == aPieces[19] && aPieces[4] == aPieces[44])
-                {
-                    if (aPieces[13] == aPieces[9] && aPieces[13] == aPieces[37])
+                    // 2 Case mirror
+                    if (aPieces[49] == aPieces[2] && aPieces[4] == aPieces[19] && aPieces[4] == aPieces[44])
                     {
-                        await MakeTurnAsync("U F' U' F U'");
-                        continue;
+                        if (aPieces[13] == aPieces[9] && aPieces[13] == aPieces[37])
+                        {
+                            await MakeTurnAsync("U F' U' F U'");
+                            continue;
+                        }
                     }
-                }
 
-                // 3 Case
-                if (aPieces[49] == aPieces[9] && aPieces[4] == aPieces[2] && aPieces[4] == aPieces[43])
-                {
-                    if (aPieces[13] == aPieces[1] && aPieces[13] == aPieces[44])
+                    // 3 Case
+                    if (aPieces[49] == aPieces[9] && aPieces[4] == aPieces[2] && aPieces[4] == aPieces[43])
                     {
-                        await MakeTurnAsync("U F' U2 F U'");
-                        continue;
+                        if (aPieces[13] == aPieces[1] && aPieces[13] == aPieces[44])
+                        {
+                            await MakeTurnAsync("U F' U2 F U'");
+                            continue;
+                        }
                     }
-                }
 
-                // 3 Case mirror
-                if (aPieces[49] == aPieces[2] && aPieces[4] == aPieces[10] && aPieces[4] == aPieces[44])
-                {
-                    if (aPieces[13] == aPieces[9] && aPieces[13] == aPieces[41])
+                    // 3 Case mirror
+                    if (aPieces[49] == aPieces[2] && aPieces[4] == aPieces[10] && aPieces[4] == aPieces[44])
                     {
-                        await MakeTurnAsync("U' R U2 R' U");
-                        continue;
+                        if (aPieces[13] == aPieces[9] && aPieces[13] == aPieces[41])
+                        {
+                            await MakeTurnAsync("U' R U2 R' U");
+                            continue;
+                        }
                     }
-                }
 
-                // 4 Case
-                if (aPieces[49] == aPieces[9] && aPieces[4] == aPieces[2] && aPieces[4] == aPieces[19])
-                {
-                    if (aPieces[13] == aPieces[37] && aPieces[13] == aPieces[44])
+                    // 4 Case
+                    if (aPieces[49] == aPieces[9] && aPieces[4] == aPieces[2] && aPieces[4] == aPieces[19])
                     {
-                        await MakeTurnAsync("U F' U2 F U'");
-                        continue;
+                        if (aPieces[13] == aPieces[37] && aPieces[13] == aPieces[44])
+                        {
+                            await MakeTurnAsync("U F' U2 F U'");
+                            continue;
+                        }
                     }
-                }
 
-                // 4 Case mirror
-                if (aPieces[49] == aPieces[2] && aPieces[4] == aPieces[39] && aPieces[4] == aPieces[44])
-                {
-                    if (aPieces[13] == aPieces[9] && aPieces[13] == aPieces[28])
+                    // 4 Case mirror
+                    if (aPieces[49] == aPieces[2] && aPieces[4] == aPieces[39] && aPieces[4] == aPieces[44])
                     {
-                        await MakeTurnAsync("U' R U2 R' U");
-                        continue;
+                        if (aPieces[13] == aPieces[9] && aPieces[13] == aPieces[28])
+                        {
+                            await MakeTurnAsync("U' R U2 R' U");
+                            continue;
+                        }
                     }
-                }
 
-                // 5 Case
-                if (aPieces[49] == aPieces[9] && aPieces[4] == aPieces[2] && aPieces[4] == aPieces[28])
-                {
-                    if (aPieces[13] == aPieces[39] && aPieces[13] == aPieces[44])
+                    // 5 Case
+                    if (aPieces[49] == aPieces[9] && aPieces[4] == aPieces[2] && aPieces[4] == aPieces[28])
                     {
-                        await MakeTurnAsync("U F' U' F U'");
-                        continue;
+                        if (aPieces[13] == aPieces[39] && aPieces[13] == aPieces[44])
+                        {
+                            await MakeTurnAsync("U F' U' F U'");
+                            continue;
+                        }
                     }
-                }
 
-                // 5 Case mirror (!!! no picture of cube !!!)
-                if (aPieces[49] == aPieces[2] && aPieces[4] == aPieces[37] && aPieces[4] == aPieces[44])
-                {
-                    if (aPieces[13] == aPieces[9] && aPieces[13] == aPieces[19])
+                    // 5 Case mirror (!!! no picture of cube !!!)
+                    if (aPieces[49] == aPieces[2] && aPieces[4] == aPieces[37] && aPieces[4] == aPieces[44])
                     {
-                        await MakeTurnAsync("U' R U R' U");
-                        continue;
+                        if (aPieces[13] == aPieces[9] && aPieces[13] == aPieces[19])
+                        {
+                            await MakeTurnAsync("U' R U R' U");
+                            continue;
+                        }
                     }
-                }
-                
-                // Type 2 Cases
-                // 1 Case
-                if (aPieces[49] == aPieces[9] && aPieces[4] == aPieces[2] && aPieces[4] == aPieces[10])
-                {
-                    if (aPieces[13] == aPieces[41] && aPieces[13] == aPieces[44])
-                    {
-                        await MakeTurnAsync("R U' R'");
-                        continue;
-                    }
-                }
 
-                // 1 Case mirror
-                if (aPieces[49] == aPieces[2] && aPieces[4] == aPieces[43] && aPieces[4] == aPieces[44])
-                {
-                    if (aPieces[13] == aPieces[1] && aPieces[13] == aPieces[9])
+                    // Type 2 Cases
+                    // 1 Case
+                    if (aPieces[49] == aPieces[9] && aPieces[4] == aPieces[2] && aPieces[4] == aPieces[10])
                     {
-                        await MakeTurnAsync("F' U F");
-                        continue;
+                        if (aPieces[13] == aPieces[41] && aPieces[13] == aPieces[44])
+                        {
+                            await MakeTurnAsync("R U' R'");
+                            continue;
+                        }
                     }
-                }
 
-                // 2 Case (!!! no picture of cube !!!)
-                if (aPieces[49] == aPieces[44] && aPieces[4] == aPieces[9] && aPieces[4] == aPieces[41])
-                {
-                    if (aPieces[13] == aPieces[2] && aPieces[13] == aPieces[10])
+                    // 1 Case mirror
+                    if (aPieces[49] == aPieces[2] && aPieces[4] == aPieces[43] && aPieces[4] == aPieces[44])
                     {
-                        await MakeTurnAsync("R U2 R'");
-                        continue;
+                        if (aPieces[13] == aPieces[1] && aPieces[13] == aPieces[9])
+                        {
+                            await MakeTurnAsync("F' U F");
+                            continue;
+                        }
                     }
-                }
 
-                // 2 Case mirror
-                if (aPieces[49] == aPieces[44] && aPieces[4] == aPieces[1] && aPieces[4] == aPieces[9])
-                {
-                    if (aPieces[13] == aPieces[2] && aPieces[13] == aPieces[43])
+                    // 2 Case (!!! no picture of cube !!!)
+                    if (aPieces[49] == aPieces[44] && aPieces[4] == aPieces[9] && aPieces[4] == aPieces[41])
                     {
-                        await MakeTurnAsync("F' U2 F");
-                        continue;
+                        if (aPieces[13] == aPieces[2] && aPieces[13] == aPieces[10])
+                        {
+                            await MakeTurnAsync("R U2 R'");
+                            continue;
+                        }
                     }
-                }
 
-                // 3 Case
-                if (aPieces[49] == aPieces[44] && aPieces[4] == aPieces[9] && aPieces[4] == aPieces[37])
-                {
-                    if (aPieces[13] == aPieces[2] && aPieces[13] == aPieces[19])
+                    // 2 Case mirror
+                    if (aPieces[49] == aPieces[44] && aPieces[4] == aPieces[1] && aPieces[4] == aPieces[9])
                     {
-                        await MakeTurnAsync("U R U2 R'");
-                        continue;
+                        if (aPieces[13] == aPieces[2] && aPieces[13] == aPieces[43])
+                        {
+                            await MakeTurnAsync("F' U2 F");
+                            continue;
+                        }
                     }
-                }
 
-                // 3 Case mirror
-                if (aPieces[49] == aPieces[44] && aPieces[4] == aPieces[9] && aPieces[4] == aPieces[28])
-                {
-                    if (aPieces[13] == aPieces[2] && aPieces[13] == aPieces[39])
+                    // 3 Case
+                    if (aPieces[49] == aPieces[44] && aPieces[4] == aPieces[9] && aPieces[4] == aPieces[37])
                     {
-                        await MakeTurnAsync("U' F' U2 F");
-                        continue;
+                        if (aPieces[13] == aPieces[2] && aPieces[13] == aPieces[19])
+                        {
+                            await MakeTurnAsync("U R U2 R'");
+                            continue;
+                        }
                     }
-                }
 
-                // 4 Case
-                if (aPieces[49] == aPieces[44] && aPieces[4] == aPieces[9] && aPieces[4] == aPieces[39])
-                {
-                    if (aPieces[13] == aPieces[2] && aPieces[13] == aPieces[28])
+                    // 3 Case mirror
+                    if (aPieces[49] == aPieces[44] && aPieces[4] == aPieces[9] && aPieces[4] == aPieces[28])
                     {
-                        await MakeTurnAsync("U2 R U R'");
-                        continue;
+                        if (aPieces[13] == aPieces[2] && aPieces[13] == aPieces[39])
+                        {
+                            await MakeTurnAsync("U' F' U2 F");
+                            continue;
+                        }
                     }
-                }
 
-                // 4 Case mirror
-                if (aPieces[49] == aPieces[44] && aPieces[4] == aPieces[9] && aPieces[4] == aPieces[19])
-                {
-                    if (aPieces[13] == aPieces[2] && aPieces[13] == aPieces[37])
+                    // 4 Case
+                    if (aPieces[49] == aPieces[44] && aPieces[4] == aPieces[9] && aPieces[4] == aPieces[39])
                     {
-                        await MakeTurnAsync("U2 F' U' F");
-                        continue;
+                        if (aPieces[13] == aPieces[2] && aPieces[13] == aPieces[28])
+                        {
+                            await MakeTurnAsync("U2 R U R'");
+                            continue;
+                        }
                     }
-                }
 
-                // Case 3: Corner on Bottom, Edge on Top
-                // 1 Case
-                if (aPieces[49] == aPieces[47] && aPieces[4] == aPieces[1] && aPieces[4] == aPieces[8])
-                {
-                    if (aPieces[13] == aPieces[15] && aPieces[13] == aPieces[43])
+                    // 4 Case mirror
+                    if (aPieces[49] == aPieces[44] && aPieces[4] == aPieces[9] && aPieces[4] == aPieces[19])
                     {
-                        await MakeTurnAsync("U R U' R'");
-                        continue;
+                        if (aPieces[13] == aPieces[2] && aPieces[13] == aPieces[37])
+                        {
+                            await MakeTurnAsync("U2 F' U' F");
+                            continue;
+                        }
                     }
-                }
 
-                // 1 Case mirror
-                if (aPieces[49] == aPieces[47] && aPieces[4] == aPieces[8] && aPieces[4] == aPieces[41])
-                {
-                    if (aPieces[13] == aPieces[10] && aPieces[13] == aPieces[15])
+                    // Case 3: Corner on Bottom, Edge on Top
+                    // 1 Case
+                    if (aPieces[49] == aPieces[47] && aPieces[4] == aPieces[1] && aPieces[4] == aPieces[8])
                     {
-                        await MakeTurnAsync("U' F' U F");
-                        continue;
+                        if (aPieces[13] == aPieces[15] && aPieces[13] == aPieces[43])
+                        {
+                            await MakeTurnAsync("U R U' R'");
+                            continue;
+                        }
                     }
-                }
 
-                // 2 Case
-                if (aPieces[49] == aPieces[47] && aPieces[4] == aPieces[8] && aPieces[4] == aPieces[41])
-                {
-                    if (aPieces[13] == aPieces[10] && aPieces[13] == aPieces[15])
+                    // 1 Case mirror
+                    if (aPieces[49] == aPieces[47] && aPieces[4] == aPieces[8] && aPieces[4] == aPieces[41])
                     {
-                        await MakeTurnAsync("F' U F");
-                        continue;
+                        if (aPieces[13] == aPieces[10] && aPieces[13] == aPieces[15])
+                        {
+                            await MakeTurnAsync("U' F' U F");
+                            continue;
+                        }
                     }
-                }
 
-                // 2 Case mirror
-                if (aPieces[49] == aPieces[8] && aPieces[4] == aPieces[15] && aPieces[4] == aPieces[41])
-                {
-                    if (aPieces[13] == aPieces[10] && aPieces[13] == aPieces[47])
+                    // 2 Case
+                    if (aPieces[49] == aPieces[47] && aPieces[4] == aPieces[8] && aPieces[4] == aPieces[41])
                     {
-                        await MakeTurnAsync("R U' R'");
-                        continue;
+                        if (aPieces[13] == aPieces[10] && aPieces[13] == aPieces[15])
+                        {
+                            await MakeTurnAsync("F' U F");
+                            continue;
+                        }
                     }
-                }
 
-                // 3 Case
-                if (aPieces[49] == aPieces[15] && aPieces[4] == aPieces[41] && aPieces[4] == aPieces[47])
-                {
-                    if (aPieces[13] == aPieces[8] && aPieces[13] == aPieces[10])
+                    // 2 Case mirror
+                    if (aPieces[49] == aPieces[8] && aPieces[4] == aPieces[15] && aPieces[4] == aPieces[41])
                     {
-                        await MakeTurnAsync("R U R'");
-                        continue;
+                        if (aPieces[13] == aPieces[10] && aPieces[13] == aPieces[47])
+                        {
+                            await MakeTurnAsync("R U' R'");
+                            continue;
+                        }
                     }
-                }
 
-                // 3 Case mirror
-                if (aPieces[49] == aPieces[8] && aPieces[4] == aPieces[1] && aPieces[4] == aPieces[15])
-                {
-                    if (aPieces[13] == aPieces[43] && aPieces[13] == aPieces[47])
+                    // 3 Case
+                    if (aPieces[49] == aPieces[15] && aPieces[4] == aPieces[41] && aPieces[4] == aPieces[47])
                     {
-                        await MakeTurnAsync("F' U' F");
-                        continue;
+                        if (aPieces[13] == aPieces[8] && aPieces[13] == aPieces[10])
+                        {
+                            await MakeTurnAsync("R U R'");
+                            continue;
+                        }
                     }
-                }
 
-                // Case 4: Corner on Top, Edge in Middle
-                // 1 Case
-                if (aPieces[49] == aPieces[9] && aPieces[4] == aPieces[2] && aPieces[4] == aPieces[5])
-                {
-                    if (aPieces[13] == aPieces[12] && aPieces[13] == aPieces[44])
+                    // 3 Case mirror
+                    if (aPieces[49] == aPieces[8] && aPieces[4] == aPieces[1] && aPieces[4] == aPieces[15])
                     {
-                        await MakeTurnAsync("U F' U F");
-                        continue;
+                        if (aPieces[13] == aPieces[43] && aPieces[13] == aPieces[47])
+                        {
+                            await MakeTurnAsync("F' U' F");
+                            continue;
+                        }
                     }
-                }
 
-                // 1 Case mirror
-                if (aPieces[49] == aPieces[2] && aPieces[4] == aPieces[5] && aPieces[4] == aPieces[44])
-                {
-                    if (aPieces[13] == aPieces[9] && aPieces[13] == aPieces[12])
+                    // Case 4: Corner on Top, Edge in Middle
+                    // 1 Case
+                    if (aPieces[49] == aPieces[9] && aPieces[4] == aPieces[2] && aPieces[4] == aPieces[5])
                     {
-                        await MakeTurnAsync("U' R U' R'");
-                        continue;
+                        if (aPieces[13] == aPieces[12] && aPieces[13] == aPieces[44])
+                        {
+                            await MakeTurnAsync("U F' U F");
+                            continue;
+                        }
                     }
-                }
 
-                // 2 Case
-                if (aPieces[49] == aPieces[2] && aPieces[4] == aPieces[5] && aPieces[4] == aPieces[44])
-                {
-                    if (aPieces[13] == aPieces[9] && aPieces[13] == aPieces[12])
+                    // 1 Case mirror
+                    if (aPieces[49] == aPieces[2] && aPieces[4] == aPieces[5] && aPieces[4] == aPieces[44])
                     {
-                        await MakeTurnAsync("U F' U' F");
-                        continue;
+                        if (aPieces[13] == aPieces[9] && aPieces[13] == aPieces[12])
+                        {
+                            await MakeTurnAsync("U' R U' R'");
+                            continue;
+                        }
                     }
-                }
 
-                // 2 Case mirror
-                if (aPieces[49] == aPieces[2] && aPieces[4] == aPieces[12] && aPieces[4] == aPieces[44])
-                {
-                    if (aPieces[13] == aPieces[5] && aPieces[13] == aPieces[9])
+                    // 2 Case
+                    if (aPieces[49] == aPieces[2] && aPieces[4] == aPieces[5] && aPieces[4] == aPieces[44])
                     {
-                        await MakeTurnAsync("U' R U R'");
-                        continue;
+                        if (aPieces[13] == aPieces[9] && aPieces[13] == aPieces[12])
+                        {
+                            await MakeTurnAsync("U F' U' F");
+                            continue;
+                        }
                     }
-                }
 
-                // 3 Case
-                if (aPieces[49] == aPieces[44] && aPieces[4] == aPieces[9] && aPieces[4] == aPieces[12])
-                {
-                    if (aPieces[13] == aPieces[2] && aPieces[13] == aPieces[5])
+                    // 2 Case mirror
+                    if (aPieces[49] == aPieces[2] && aPieces[4] == aPieces[12] && aPieces[4] == aPieces[44])
                     {
-                        await MakeTurnAsync("R U2 R'");
-                        continue;
+                        if (aPieces[13] == aPieces[5] && aPieces[13] == aPieces[9])
+                        {
+                            await MakeTurnAsync("U' R U R'");
+                            continue;
+                        }
                     }
-                }
 
-                // 4 Case
-                if (aPieces[49] == aPieces[44] && aPieces[4] == aPieces[5] && aPieces[4] == aPieces[9])
-                {
-                    if (aPieces[13] == aPieces[2] && aPieces[13] == aPieces[12])
+                    // 3 Case
+                    if (aPieces[49] == aPieces[44] && aPieces[4] == aPieces[9] && aPieces[4] == aPieces[12])
                     {
-                        await MakeTurnAsync("R U R' U' R U R'");
-                        continue;
+                        if (aPieces[13] == aPieces[2] && aPieces[13] == aPieces[5])
+                        {
+                            await MakeTurnAsync("R U2 R'");
+                            continue;
+                        }
                     }
-                }
 
-                // Case 5: Corner on Bottom, Edge in Middle
-                // 1 Special Case
-                if (aPieces[49] == aPieces[15] && aPieces[4] == aPieces[5] && aPieces[4] == aPieces[47])
-                {
-                    if (aPieces[13] == aPieces[8] && aPieces[13] == aPieces[12])
+                    // 4 Case
+                    if (aPieces[49] == aPieces[44] && aPieces[4] == aPieces[5] && aPieces[4] == aPieces[9])
                     {
-                        await MakeTurnAsync("R U2 R U R' U R U2 R2");
-                        continue;
+                        if (aPieces[13] == aPieces[2] && aPieces[13] == aPieces[12])
+                        {
+                            await MakeTurnAsync("R U R' U' R U R'");
+                            continue;
+                        }
                     }
-                }
 
-                // 1 Special Case mirror
-                if (aPieces[49] == aPieces[8] && aPieces[4] == aPieces[5] && aPieces[4] == aPieces[15])
-                {
-                    if (aPieces[13] == aPieces[12] && aPieces[13] == aPieces[47])
+                    // Case 5: Corner on Bottom, Edge in Middle
+                    // 1 Special Case
+                    if (aPieces[49] == aPieces[15] && aPieces[4] == aPieces[5] && aPieces[4] == aPieces[47])
                     {
-                        await MakeTurnAsync("R2 U2 R' U' R U' R' U2 R'");
-                        continue;
+                        if (aPieces[13] == aPieces[8] && aPieces[13] == aPieces[12])
+                        {
+                            await MakeTurnAsync("R U2 R U R' U R U2 R2");
+                            continue;
+                        }
                     }
-                }
 
-                // 2 Special Case
-                if (aPieces[49] == aPieces[15] && aPieces[4] == aPieces[12] && aPieces[4] == aPieces[47])
-                {
-                    if (aPieces[13] == aPieces[5] && aPieces[13] == aPieces[8])
+                    // 1 Special Case mirror
+                    if (aPieces[49] == aPieces[8] && aPieces[4] == aPieces[5] && aPieces[4] == aPieces[15])
                     {
-                        await MakeTurnAsync("R U' R' F' L' U2 L F");
-                        continue;
+                        if (aPieces[13] == aPieces[12] && aPieces[13] == aPieces[47])
+                        {
+                            await MakeTurnAsync("R2 U2 R' U' R U' R' U2 R'");
+                            continue;
+                        }
                     }
-                }
 
-                // 2 Special Case mirror
-                if (aPieces[49] == aPieces[8] && aPieces[4] == aPieces[12] && aPieces[4] == aPieces[15])
-                {
-                    if (aPieces[13] == aPieces[5] && aPieces[13] == aPieces[47])
+                    // 2 Special Case
+                    if (aPieces[49] == aPieces[15] && aPieces[4] == aPieces[12] && aPieces[4] == aPieces[47])
                     {
-                        await MakeTurnAsync("R U' R U y' L U' L' B2");
-                        continue;
+                        if (aPieces[13] == aPieces[5] && aPieces[13] == aPieces[8])
+                        {
+                            await MakeTurnAsync("R U' R' F' L' U2 L F");
+                            continue;
+                        }
+                    }
+
+                    // 2 Special Case mirror
+                    if (aPieces[49] == aPieces[8] && aPieces[4] == aPieces[12] && aPieces[4] == aPieces[15])
+                    {
+                        if (aPieces[13] == aPieces[5] && aPieces[13] == aPieces[47])
+                        {
+                            await MakeTurnAsync("R U' R U y' L U' L' B2");
+                            continue;
+                        }
                     }
                 }
 
@@ -1640,418 +1649,295 @@ namespace RubiksCube
                 {
                     // Corner on top, FL color facing side, edge colors match
                     // 1   U (R U' R') or  R' F R F'
-                    if (aPieces[49] == aPieces[2] && aPieces[4] == aPieces[41] && aPieces[4] == aPieces[44])
+                    if (aPieces[49] == aPieces[2] && aPieces[4] == aPieces[41] && aPieces[4] == aPieces[44] && aPieces[13] == aPieces[9] && aPieces[13] == aPieces[10])
                     {
-                        if (aPieces[13] == aPieces[9] && aPieces[13] == aPieces[10] && aPieces[13] == aPieces[14] && aPieces[13] == aPieces[16] && aPieces[13] == aPieces[17])
-                        {
-                            await MakeTurnAsync("U R U' R'");
-                            continue;
-                        }
+                        await MakeTurnAsync("U R U' R'");
+                        continue;
                     }
 
                     // 2   y' U' (R' U R) or F R' F' R
-                    if (aPieces[49] == aPieces[9] && aPieces[4] == aPieces[1] && aPieces[4] == aPieces[2])
+                    if (aPieces[49] == aPieces[9] && aPieces[4] == aPieces[1] && aPieces[4] == aPieces[2] && aPieces[13] == aPieces[43] && aPieces[13] == aPieces[44])
                     {
-                        if (aPieces[13] == aPieces[14] && aPieces[13] == aPieces[16] && aPieces[13] == aPieces[17] && aPieces[13] == aPieces[43] && aPieces[13] == aPieces[44])
-                        {
-                            await MakeTurnAsync("F R' F' R");
-                            continue;
-                        }
+                        await MakeTurnAsync("F R' F' R");
+                        continue;
                     }
 
                     // 3   U' R U R' U2 (R U' R')
-                    if (aPieces[49] == aPieces[2] && aPieces[4] == aPieces[37] && aPieces[4] == aPieces[44])
+                    if (aPieces[49] == aPieces[2] && aPieces[4] == aPieces[37] && aPieces[4] == aPieces[44] && aPieces[13] == aPieces[9])
                     {
-                        if (aPieces[13] == aPieces[9] && aPieces[13] == aPieces[14] && aPieces[13] == aPieces[16] && aPieces[13] == aPieces[17])
-                        {
-                            await MakeTurnAsync("U' R U R' U2 R U' R'");
-                            continue;
-                        }
+                        await MakeTurnAsync("U' R U R' U2 R U' R'");
+                        continue;
                     }
 
                     // 4   d R' U' R U2' (R' U R) or y' (U R' U' R) U2 (R' U R)
-                    if (aPieces[49] == aPieces[9] && aPieces[4] == aPieces[2])
+                    if (aPieces[49] == aPieces[9] && aPieces[4] == aPieces[2] && aPieces[13] == aPieces[39] && aPieces[13] == aPieces[44])
                     {
-                        if (aPieces[13] == aPieces[14] && aPieces[13] == aPieces[16] && aPieces[13] == aPieces[17] && aPieces[13] == aPieces[39] && aPieces[13] == aPieces[44])
-                        {
-                            await MakeTurnAsync("d R' U' R U2 R' U R");
-                            continue;
-                        }
+                        await MakeTurnAsync("d R' U' R U2 R' U R");
+                        continue;
                     }
 
                     // 5   U' R U2' R' U2 (R U' R')
-                    if (aPieces[49] == aPieces[2] && aPieces[4] == aPieces[39] && aPieces[4] == aPieces[44])
+                    if (aPieces[49] == aPieces[2] && aPieces[4] == aPieces[39] && aPieces[4] == aPieces[44] && aPieces[13] == aPieces[9])
                     {
-                        if (aPieces[13] == aPieces[9] && aPieces[13] == aPieces[14] && aPieces[13] == aPieces[16] && aPieces[13] == aPieces[17])
-                        {
-                            await MakeTurnAsync("U' R U2 R' U2 R U' R'");
-                            continue;
-                        }
+                        await MakeTurnAsync("U' R U2 R' U2 R U' R'");
+                        continue;
                     }
 
                     // 6   d R' U2 R U2' (R' U R) or R' F R F'
-                    if (aPieces[49] == aPieces[9] && aPieces[4] == aPieces[2])
+                    if (aPieces[49] == aPieces[9] && aPieces[4] == aPieces[2] && aPieces[13] == aPieces[37] && aPieces[13] == aPieces[44])
                     {
-                        if (aPieces[13] == aPieces[14] && aPieces[13] == aPieces[16] && aPieces[13] == aPieces[17] && aPieces[13] == aPieces[37] && aPieces[13] == aPieces[44])
-                        {
-                            await MakeTurnAsync("R' F R F'");
-                            continue;
-                        }
+                        await MakeTurnAsync("R' F R F'");
+                        continue;
                     }
 
                     // 7   y' R' U R U' d' (R U R') or y L' U L U2 y (R U R')
-                    if (aPieces[49] == aPieces[2] && aPieces[4] == aPieces[43] && aPieces[4] == aPieces[44])
+                    if (aPieces[49] == aPieces[2] && aPieces[4] == aPieces[43] && aPieces[4] == aPieces[44] && aPieces[13] == aPieces[1] && aPieces[13] == aPieces[9])
                     {
-                        if (aPieces[13] == aPieces[1] && aPieces[13] == aPieces[9] && aPieces[13] == aPieces[14] && aPieces[13] == aPieces[16] && aPieces[13] == aPieces[17])
-                        {
-                            await MakeTurnAsync("y L' U L U2 y R U R'");
-                            continue;
-                        }
+                        await MakeTurnAsync("y L' U L U2 y R U R'");
+                        continue;
                     }
 
                     // 8   R U' R' U d (R' U' R) or R U' R' U2 y' (R' U' R) or (R U' R') U2 (F' U' F)
-                    if (aPieces[49] == aPieces[9] && aPieces[4] == aPieces[2] && aPieces[4] == aPieces[10])
+                    if (aPieces[49] == aPieces[9] && aPieces[4] == aPieces[2] && aPieces[4] == aPieces[10] && aPieces[13] == aPieces[41] && aPieces[13] == aPieces[44])
                     {
-                        if (aPieces[13] == aPieces[14] && aPieces[13] == aPieces[16] && aPieces[13] == aPieces[17] && aPieces[13] == aPieces[41] && aPieces[13] == aPieces[44])
-                        {
-                            await MakeTurnAsync("R U' R' U2 F' U' F");
-                            continue;
-                        }
+                        await MakeTurnAsync("R U' R' U2 F' U' F");
+                        continue;
                     }
 
                     // Corner on top, FL color facing side, edge colors opposite
                     // 9   y' (R' U' R)
-                    if (aPieces[49] == aPieces[2] && aPieces[4] == aPieces[44])
+                    if (aPieces[49] == aPieces[2] && aPieces[4] == aPieces[44] && aPieces[13] == aPieces[9] && aPieces[13] == aPieces[39])
                     {
-                        if (aPieces[13] == aPieces[9] && aPieces[13] == aPieces[14] && aPieces[13] == aPieces[16] && aPieces[13] == aPieces[17] && aPieces[13] == aPieces[39])
-                        {
-                            await MakeTurnAsync("y' R' U' R");
-                            continue;
-                        }
+                        await MakeTurnAsync("y' R' U' R");
+                        continue;
                     }
 
                     // 10   (R U R')
-                    if (aPieces[49] == aPieces[9] && aPieces[4] == aPieces[2] && aPieces[4] == aPieces[37])
+                    if (aPieces[49] == aPieces[9] && aPieces[4] == aPieces[2] && aPieces[4] == aPieces[37] && aPieces[13] == aPieces[44])
                     {
-                        if (aPieces[13] == aPieces[14] && aPieces[13] == aPieces[16] && aPieces[13] == aPieces[17] && aPieces[13] == aPieces[44])
-                        {
-                            await MakeTurnAsync("R U R'");
-                            continue;
-                        }
+                        await MakeTurnAsync("R U R'");
+                        continue;
                     }
 
                     // 11   d R' U' R U' (R' U' R) or U' R U' R' d R' U' R or U' R U' R' U y' R' U' R
-                    if (aPieces[49] == aPieces[2] && aPieces[4] == aPieces[44])
+                    if (aPieces[49] == aPieces[2] && aPieces[4] == aPieces[44] && aPieces[13] == aPieces[9] && aPieces[13] == aPieces[37])
                     {
-                        if (aPieces[13] == aPieces[9] && aPieces[13] == aPieces[14] && aPieces[13] == aPieces[16] && aPieces[13] == aPieces[17] && aPieces[13] == aPieces[37])
-                        {
-                            await MakeTurnAsync("d R' U' R U' R' U' R");
-                            continue;
-                        }
+                        await MakeTurnAsync("d R' U' R U' R' U' R");
+                        continue;
                     }
 
                     // 12   U' R U R' U (R U R')
-                    if (aPieces[49] == aPieces[9] && aPieces[4] == aPieces[2] && aPieces[4] == aPieces[39])
+                    if (aPieces[49] == aPieces[9] && aPieces[4] == aPieces[2] && aPieces[4] == aPieces[39] && aPieces[13] == aPieces[44])
                     {
-                        if (aPieces[13] == aPieces[14] && aPieces[13] == aPieces[16] && aPieces[13] == aPieces[17] && aPieces[13] == aPieces[44])
-                        {
-                            await MakeTurnAsync("U' R U R' U R U R'");
-                            continue;
-                        }
+                        await MakeTurnAsync("U' R U R' U R U R'");
+                        continue;
                     }
 
                     // 13   U' R U2' R' d (R' U' R)
-                    if (aPieces[49] == aPieces[2] && aPieces[4] == aPieces[10] && aPieces[4] == aPieces[44])
+                    if (aPieces[49] == aPieces[2] && aPieces[4] == aPieces[10] && aPieces[4] == aPieces[44] && aPieces[13] == aPieces[9] && aPieces[13] == aPieces[41])
                     {
-                        if (aPieces[13] == aPieces[9] && aPieces[13] == aPieces[14] && aPieces[13] == aPieces[16] && aPieces[13] == aPieces[17] && aPieces[13] == aPieces[41])
-                        {
-                            await MakeTurnAsync("U' R U2 R' d R' U' R");
-                            continue;
-                        }
+                        await MakeTurnAsync("U' R U2 R' d R' U' R");
+                        continue;
                     }
 
                     // 14   R' U2 R2 U R2' U R or R U' R' U R U' R' U2 (R U' R') or d R' U2 R d' (R U R')	*Last R' U R can be avoided if back slot is empty.
-                    if (aPieces[49] == aPieces[9] && aPieces[4] == aPieces[2] && aPieces[4] == aPieces[43])
+                    if (aPieces[49] == aPieces[9] && aPieces[4] == aPieces[2] && aPieces[4] == aPieces[43] && aPieces[13] == aPieces[1] && aPieces[13] == aPieces[44])
                     {
-                        if (aPieces[13] == aPieces[1] && aPieces[13] == aPieces[14] && aPieces[13] == aPieces[16] && aPieces[13] == aPieces[17] && aPieces[13] == aPieces[44])
-                        {
-                            await MakeTurnAsync("R' U2 R2 U R2 U R");
-                            continue;
-                        }
+                        await MakeTurnAsync("R' U2 R2 U R2 U R");
+                        continue;
                     }
 
                     // 15   d R' U R U' (R' U' R)
-                    if (aPieces[49] == aPieces[2] && aPieces[4] == aPieces[1] && aPieces[4] == aPieces[44])
+                    if (aPieces[49] == aPieces[2] && aPieces[4] == aPieces[1] && aPieces[4] == aPieces[44] && aPieces[13] == aPieces[9] && aPieces[13] == aPieces[43])
                     {
-                        if (aPieces[13] == aPieces[9] && aPieces[13] == aPieces[14] && aPieces[13] == aPieces[16] && aPieces[13] == aPieces[17] && aPieces[13] == aPieces[43])
-                        {
-                            await MakeTurnAsync("d R' U R U' R' U' R");
-                            continue;
-                        }
+                        await MakeTurnAsync("d R' U R U' R' U' R");
+                        continue;
                     }
 
                     // 16   U' R U' R' U (R U R')
-                    if (aPieces[49] == aPieces[9] && aPieces[4] == aPieces[2] && aPieces[4] == aPieces[41])
+                    if (aPieces[49] == aPieces[9] && aPieces[4] == aPieces[2] && aPieces[4] == aPieces[41] && aPieces[13] == aPieces[10] && aPieces[13] == aPieces[44])
                     {
-                        if (aPieces[13] == aPieces[10] && aPieces[13] == aPieces[14] && aPieces[13] == aPieces[16] && aPieces[13] == aPieces[17] && aPieces[13] == aPieces[44])
-                        {
-                            await MakeTurnAsync("U' R U' R' U R U R'");
-                            continue;
-                        }
+                        await MakeTurnAsync("U' R U' R' U R U R'");
+                        continue;
                     }
 
                     // Corner on top, FL color facing up
                     // 17   R U2' R' U' (R U R')
-                    if (aPieces[49] == aPieces[44] && aPieces[4] == aPieces[9] && aPieces[4] == aPieces[41])
+                    if (aPieces[49] == aPieces[44] && aPieces[4] == aPieces[9] && aPieces[4] == aPieces[41] && aPieces[13] == aPieces[2] && aPieces[13] == aPieces[10])
                     {
-                        if (aPieces[13] == aPieces[2] && aPieces[13] == aPieces[10] && aPieces[13] == aPieces[14] && aPieces[13] == aPieces[16] && aPieces[13] == aPieces[17])
-                        {
-                            await MakeTurnAsync("R U2 R' U' R U R'");
-                            continue;
-                        }
+                        await MakeTurnAsync("R U2 R' U' R U R'");
+                        continue;
                     }
 
                     // 18   y' R' U2 R U (R' U' R) or y (L' U2 L) U (L' U' L)
-                    if (aPieces[49] == aPieces[44] && aPieces[4] == aPieces[1] && aPieces[4] == aPieces[9])
+                    if (aPieces[49] == aPieces[44] && aPieces[4] == aPieces[1] && aPieces[4] == aPieces[9] && aPieces[13] == aPieces[2] && aPieces[13] == aPieces[43])
                     {
-                        if (aPieces[13] == aPieces[2] && aPieces[13] == aPieces[14] && aPieces[13] == aPieces[16] && aPieces[13] == aPieces[17] && aPieces[13] == aPieces[43])
-                        {
-                            await MakeTurnAsync("y' R' U2 R U R' U' R");
-                            continue;
-                        }
+                        await MakeTurnAsync("y' R' U2 R U R' U' R");
+                        continue;
                     }
 
                     // 19   U R U2 R' U (R U' R') or U R U2 R2 F R F'
-                    if (aPieces[49] == aPieces[44] && aPieces[4] == aPieces[9] && aPieces[4] == aPieces[37])
+                    if (aPieces[49] == aPieces[44] && aPieces[4] == aPieces[9] && aPieces[4] == aPieces[37] && aPieces[13] == aPieces[2])
                     {
-                        if (aPieces[13] == aPieces[2] && aPieces[13] == aPieces[14] && aPieces[13] == aPieces[16] && aPieces[13] == aPieces[17])
-                        {
-                            await MakeTurnAsync("U R U2 R2 F R F'");
-                            continue;
-                        }
+                        await MakeTurnAsync("U R U2 R2 F R F'");
+                        continue;
                     }
 
                     // 20   y' U' R' U2 R U' (R' U R)
-                    if (aPieces[49] == aPieces[44] && aPieces[4] == aPieces[9])
+                    if (aPieces[49] == aPieces[44] && aPieces[4] == aPieces[9] && aPieces[13] == aPieces[2] && aPieces[13] == aPieces[39])
                     {
-                        if (aPieces[13] == aPieces[2] && aPieces[13] == aPieces[14] && aPieces[13] == aPieces[16] && aPieces[13] == aPieces[17] && aPieces[13] == aPieces[39])
-                        {
-                            await MakeTurnAsync("y' U' R' U2 R U' R' U R");
-                            continue;
-                        }
+                        await MakeTurnAsync("y' U' R' U2 R U' R' U R");
+                        continue;
                     }
 
                     // 21   U2 R U R' U (R U' R') or (R U' R') U2' (R U R')
-                    if (aPieces[49] == aPieces[44] && aPieces[4] == aPieces[9] && aPieces[4] == aPieces[39])
+                    if (aPieces[49] == aPieces[44] && aPieces[4] == aPieces[9] && aPieces[4] == aPieces[39] && aPieces[13] == aPieces[2])
                     {
-                        if (aPieces[13] == aPieces[2] && aPieces[13] == aPieces[14] && aPieces[13] == aPieces[16] && aPieces[13] == aPieces[17])
-                        {
-                            await MakeTurnAsync("R U' R' U2 R U R'");
-                            continue;
-                        }
+                        await MakeTurnAsync("R U' R' U2 R U R'");
+                        continue;
                     }
 
                     // 22   y' U2 R' U' R U' (R' U R) or y' R' U R U2 (R' U' R)
-                    if (aPieces[49] == aPieces[44] && aPieces[4] == aPieces[9])
+                    if (aPieces[49] == aPieces[44] && aPieces[4] == aPieces[9] && aPieces[13] == aPieces[2] && aPieces[13] == aPieces[37])
                     {
-                        if (aPieces[13] == aPieces[2] && aPieces[13] == aPieces[14] && aPieces[13] == aPieces[16] && aPieces[13] == aPieces[17] && aPieces[13] == aPieces[37])
-                        {
-                            await MakeTurnAsync("y' R' U R U2 R' U' R");
-                            continue;
-                        }
+                        await MakeTurnAsync("y' R' U R U2 R' U' R");
+                        continue;
                     }
 
                     // 23   y' U R' U2 R y R U2 R' U R U' R' or U2 R2 U2 R' U' R U' R2 or R U R' U2' R U R' U'(R U R')
-                    if (aPieces[49] == aPieces[44] && aPieces[4] == aPieces[9] && aPieces[4] == aPieces[43])
+                    if (aPieces[49] == aPieces[44] && aPieces[4] == aPieces[9] && aPieces[4] == aPieces[43] && aPieces[13] == aPieces[1] && aPieces[13] == aPieces[2])
                     {
-                        if (aPieces[13] == aPieces[1] && aPieces[13] == aPieces[2] && aPieces[13] == aPieces[14] && aPieces[13] == aPieces[16] && aPieces[13] == aPieces[17])
-                        {
-                            await MakeTurnAsync("U2 R2 U2 R' U' R U' R2");
-                            continue;
-                        }
+                        await MakeTurnAsync("U2 R2 U2 R' U' R U' R2");
+                        continue;
                     }
 
                     // 24   U' R U2' R' y' R' U2 R U' R' U R or R U R' d R' U R U' (R' U R) or y' U2 R2 U2 R U R' U R2
-                    if (aPieces[49] == aPieces[44] && aPieces[4] == aPieces[9] && aPieces[4] == aPieces[10])
+                    if (aPieces[49] == aPieces[44] && aPieces[4] == aPieces[9] && aPieces[4] == aPieces[10] && aPieces[13] == aPieces[2] && aPieces[13] == aPieces[41])
                     {
-                        if (aPieces[13] == aPieces[2] && aPieces[13] == aPieces[14] && aPieces[13] == aPieces[16] && aPieces[13] == aPieces[17] && aPieces[13] == aPieces[41])
-                        {
-                            await MakeTurnAsync("y' U2 R2 U2 R U R' U R2");
-                            continue;
-                        }
+                        await MakeTurnAsync("y' U2 R2 U2 R U R' U R2");
+                        continue;
                     }
 
                     // Corner down, edge on top
                     // 25   U R U' R' d' (L' U L) or U R U' R' U' y (L' U L)
-                    if (aPieces[49] == aPieces[47] && aPieces[4] == aPieces[1] && aPieces[4] == aPieces[8])
+                    if (aPieces[49] == aPieces[47] && aPieces[4] == aPieces[1] && aPieces[4] == aPieces[8] && aPieces[13] == aPieces[15] && aPieces[13] == aPieces[43])
                     {
-                        if (aPieces[13] == aPieces[14] && aPieces[13] == aPieces[15] && aPieces[13] == aPieces[16] && aPieces[13] == aPieces[17] && aPieces[13] == aPieces[43])
-                        {
-                            await MakeTurnAsync("U R U' R' U' y L' U L");
-                            continue;
-                        }
+                        await MakeTurnAsync("U R U' R' U' y L' U L");
+                        continue;
                     }
 
                     // 26   y' U' R' U R r' U' R U M' or d' L' U L d(R U' R') or y U' (L' U L) y' U (R U' R')
-                    if (aPieces[49] == aPieces[47] && aPieces[4] == aPieces[8] && aPieces[4] == aPieces[41])
+                    if (aPieces[49] == aPieces[47] && aPieces[4] == aPieces[8] && aPieces[4] == aPieces[41] && aPieces[13] == aPieces[10] && aPieces[13] == aPieces[15])
                     {
-                        if (aPieces[13] == aPieces[10] && aPieces[13] == aPieces[14] && aPieces[13] == aPieces[15] && aPieces[13] == aPieces[16] && aPieces[13] == aPieces[17])
-                        {
-                            await MakeTurnAsync("y U' L' U L y' U R U' R'");
-                            continue;
-                        }
+                        await MakeTurnAsync("y U' L' U L y' U R U' R'");
+                        continue;
                     }
 
                     // 27   y' R' U' R U (R' U' R)
-                    if (aPieces[49] == aPieces[8] && aPieces[4] == aPieces[1] && aPieces[4] == aPieces[15])
+                    if (aPieces[49] == aPieces[8] && aPieces[4] == aPieces[1] && aPieces[4] == aPieces[15] && aPieces[13] == aPieces[43])
                     {
-                        if (aPieces[13] == aPieces[14] && aPieces[13] == aPieces[16] && aPieces[13] == aPieces[17] && aPieces[13] == aPieces[43])
-                        {
-                            await MakeTurnAsync("y' R' U' R U R' U' R");
-                            continue;
-                        }
+                        await MakeTurnAsync("y' R' U' R U R' U' R");
+                        continue;
                     }
 
                     // 28   R U R' U' (R U R')
-                    if (aPieces[49] == aPieces[15] && aPieces[4] == aPieces[41])
+                    if (aPieces[49] == aPieces[15] && aPieces[4] == aPieces[41] && aPieces[13] == aPieces[8] && aPieces[13] == aPieces[10])
                     {
-                        if (aPieces[13] == aPieces[8] && aPieces[13] == aPieces[10] && aPieces[13] == aPieces[14] && aPieces[13] == aPieces[16] && aPieces[13] == aPieces[17])
-                        {
-                            await MakeTurnAsync("R U R' U' R U R'");
-                            continue;
-                        }
+                        await MakeTurnAsync("R U R' U' R U R'");
+                        continue;
                     }
 
                     // 29   R U' R' U (R U' R')
-                    if (aPieces[49] == aPieces[8] && aPieces[4] == aPieces[15] && aPieces[4] == aPieces[41])
+                    if (aPieces[49] == aPieces[8] && aPieces[4] == aPieces[15] && aPieces[4] == aPieces[41] && aPieces[13] == aPieces[10])
                     {
-                        if (aPieces[13] == aPieces[10] && aPieces[13] == aPieces[14] && aPieces[13] == aPieces[16] && aPieces[13] == aPieces[17])
-                        {
-                            await MakeTurnAsync("R U' R' U R U' R'");
-                            continue;
-                        }
+                        await MakeTurnAsync("R U' R' U R U' R'");
+                        continue;
                     }
 
                     // 30   y' R' U R U' (R' U R) or R U R' d (R' U2 R)
-                    if (aPieces[49] == aPieces[15] && aPieces[4] == aPieces[1])
+                    if (aPieces[49] == aPieces[15] && aPieces[4] == aPieces[1] && aPieces[13] == aPieces[8] && aPieces[13] == aPieces[43])
                     {
-                        if (aPieces[13] == aPieces[8] && aPieces[13] == aPieces[14] && aPieces[13] == aPieces[16] && aPieces[13] == aPieces[17] && aPieces[13] == aPieces[43])
-                        {
-                            await MakeTurnAsync("R U R' d R' U2 R");
-                            continue;
-                        }
+                        await MakeTurnAsync("R U R' d R' U2 R");
+                        continue;
                     }
 
                     // Edge down, corner on top
                     // 31   U' R U' R' U2 (R U' R') or d' L' U' R' U L U' R
-                    if (aPieces[49] == aPieces[2] && aPieces[4] == aPieces[5] && aPieces[4] == aPieces[44])
+                    if (aPieces[49] == aPieces[2] && aPieces[4] == aPieces[5] && aPieces[4] == aPieces[44] && aPieces[13] == aPieces[9] && aPieces[13] == aPieces[12])
                     {
-                        if (aPieces[13] == aPieces[9] && aPieces[13] == aPieces[12] && aPieces[13] == aPieces[14] && aPieces[13] == aPieces[16] && aPieces[13] == aPieces[17])
-                        {
-                            await MakeTurnAsync("U' R U' R' U2 R U' R'");
-                            continue;
-                        }
+                        await MakeTurnAsync("U' R U' R' U2 R U' R'");
+                        continue;
                     }
 
                     // 32   d R' U R U2 (R' U R) or U' (R U2' R') U (R U R') or U R U R' U2 (R U R')
-                    if (aPieces[49] == aPieces[9] && aPieces[4] == aPieces[2] && aPieces[4] == aPieces[5])
+                    if (aPieces[49] == aPieces[9] && aPieces[4] == aPieces[2] && aPieces[4] == aPieces[5] && aPieces[13] == aPieces[12] && aPieces[13] == aPieces[44])
                     {
-                        if (aPieces[13] == aPieces[12] && aPieces[13] == aPieces[14] && aPieces[13] == aPieces[16] && aPieces[13] == aPieces[17] && aPieces[13] == aPieces[44])
-                        {
-                            await MakeTurnAsync("U R U R' U2 R U R'");
-                            continue;
-                        }
+                        await MakeTurnAsync("U R U R' U2 R U R'");
+                        continue;
                     }
 
                     // 33   U' R U R' d (R' U' R)
-                    if (aPieces[49] == aPieces[2] && aPieces[4] == aPieces[12] && aPieces[4] == aPieces[44])
+                    if (aPieces[49] == aPieces[2] && aPieces[4] == aPieces[12] && aPieces[4] == aPieces[44] && aPieces[13] == aPieces[5] && aPieces[13] == aPieces[9])
                     {
-                        if (aPieces[13] == aPieces[5] && aPieces[13] == aPieces[9] && aPieces[13] == aPieces[14] && aPieces[13] == aPieces[16] && aPieces[13] == aPieces[17])
-                        {
-                            await MakeTurnAsync("U' R U R' d R' U' R");
-                            continue;
-                        }
+                        await MakeTurnAsync("U' R U R' d R' U' R");
+                        continue;
                     }
 
                     // 34   d R' U' R d' (R U R') or y U2 (L' U L) U y (L U L')
-                    if (aPieces[49] == aPieces[9] && aPieces[4] == aPieces[2] && aPieces[4] == aPieces[12])
+                    if (aPieces[49] == aPieces[9] && aPieces[4] == aPieces[2] && aPieces[4] == aPieces[12] && aPieces[13] == aPieces[5] && aPieces[13] == aPieces[44])
                     {
-                        if (aPieces[13] == aPieces[5] && aPieces[13] == aPieces[14] && aPieces[13] == aPieces[16] && aPieces[13] == aPieces[17] && aPieces[13] == aPieces[44])
-                        {
-                            await MakeTurnAsync("d R' U' R d' R U R'");
-                            continue;
-                        }
+                        await MakeTurnAsync("d R' U' R d' R U R'");
+                        continue;
                     }
 
                     // 35   R U' R' d (R' U R)
-                    if (aPieces[49] == aPieces[44] && aPieces[4] == aPieces[9] && aPieces[4] == aPieces[12])
+                    if (aPieces[49] == aPieces[44] && aPieces[4] == aPieces[9] && aPieces[4] == aPieces[12] && aPieces[13] == aPieces[2] && aPieces[13] == aPieces[5])
                     {
-                        if (aPieces[13] == aPieces[2] && aPieces[13] == aPieces[5] && aPieces[13] == aPieces[14] && aPieces[13] == aPieces[16] && aPieces[13] == aPieces[17])
-                        {
-                            await MakeTurnAsync("R U' R' d R' U R");
-                            continue;
-                        }
+                        await MakeTurnAsync("R U' R' d R' U R");
+                        continue;
                     }
 
                     // 36   [R U R' U'][R U R' U'](R U R') or U [R U' R' U][R U' R' U](R U' R')
-                    if (aPieces[49] == aPieces[44] && aPieces[4] == aPieces[5] && aPieces[4] == aPieces[9])
+                    if (aPieces[49] == aPieces[44] && aPieces[4] == aPieces[5] && aPieces[4] == aPieces[9] && aPieces[13] == aPieces[2] && aPieces[13] == aPieces[12])
                     {
-                        if (aPieces[13] == aPieces[2] && aPieces[13] == aPieces[12] && aPieces[13] == aPieces[14] && aPieces[13] == aPieces[16] && aPieces[13] == aPieces[17])
-                        {
-                            await MakeTurnAsync("R U R' U' R U R' U' R U R'");
-                            continue;
-                        }
+                        await MakeTurnAsync("R U R' U' R U R' U' R U R'");
+                        continue;
                     }
 
                     // Corner down, edge down
                     // 37   R U' R' U' R U R' U2 (R U' R') or y' R' U' R U2 R' U R U' (R' U' R)
-                    if (aPieces[49] == aPieces[8] && aPieces[4] == aPieces[5] && aPieces[4] == aPieces[15])
+                    if (aPieces[49] == aPieces[8] && aPieces[4] == aPieces[5] && aPieces[4] == aPieces[15] && aPieces[13] == aPieces[12] && aPieces[13] == aPieces[47])
                     {
-                        if (aPieces[13] == aPieces[12] && aPieces[13] == aPieces[14] && aPieces[13] == aPieces[16] && aPieces[13] == aPieces[17] && aPieces[13] == aPieces[47])
-                        {
-                            await MakeTurnAsync("R U' R' U' R U R' U2 R U' R'");
-                            continue;
-                        }
+                        await MakeTurnAsync("R U' R' U' R U R' U2 R U' R'");
+                        continue;
                     }
 
                     // 38   R U R' U2 R U' R' U (R U R') or R U' R' U R U2' R' U (R U' R')
-                    if (aPieces[49] == aPieces[15] && aPieces[4] == aPieces[5] && aPieces[4] == aPieces[47])
+                    if (aPieces[49] == aPieces[15] && aPieces[4] == aPieces[5] && aPieces[4] == aPieces[47] && aPieces[13] == aPieces[8] && aPieces[13] == aPieces[12])
                     {
-                        if (aPieces[13] == aPieces[8] && aPieces[13] == aPieces[12] && aPieces[13] == aPieces[14] && aPieces[13] == aPieces[16] && aPieces[13] == aPieces[17])
-                        {
-                            await MakeTurnAsync("R U R' U2 R U' R' U R U R'");
-                            continue;
-                        }
+                        await MakeTurnAsync("R U R' U2 R U' R' U R U R'");
+                        continue;
                     }
 
                     // 39   R U' R' d R' U' R U' (R' U' R)
-                    if (aPieces[49] == aPieces[8] && aPieces[4] == aPieces[12] && aPieces[4] == aPieces[15])
+                    if (aPieces[49] == aPieces[8] && aPieces[4] == aPieces[12] && aPieces[4] == aPieces[15] && aPieces[13] == aPieces[5] && aPieces[13] == aPieces[47])
                     {
-                        if (aPieces[13] == aPieces[5] && aPieces[13] == aPieces[14] && aPieces[13] == aPieces[16] && aPieces[13] == aPieces[17] && aPieces[13] == aPieces[47])
-                        {
-                            await MakeTurnAsync("R U' R' d R' U' R U' R' U' R");
-                            continue;
-                        }
+                        await MakeTurnAsync("R U' R' d R' U' R U' R' U' R");
+                        continue;
                     }
 
                     // 40   R U R' U' R U' R' U2 y' (R' U' R) or R U' R' U d R' U' R U' (R' U R)
-                    if (aPieces[49] == aPieces[15] && aPieces[4] == aPieces[12] && aPieces[4] == aPieces[47])
+                    if (aPieces[49] == aPieces[15] && aPieces[4] == aPieces[12] && aPieces[4] == aPieces[47] && aPieces[13] == aPieces[5] && aPieces[13] == aPieces[8])
                     {
-                        if (aPieces[13] == aPieces[5] && aPieces[13] == aPieces[8] && aPieces[13] == aPieces[14] && aPieces[13] == aPieces[16] && aPieces[13] == aPieces[17])
-                        {
-                            await MakeTurnAsync("R U' R' U d R' U' R U' R' U R");
-                            continue;
-                        }
+                        await MakeTurnAsync("R U' R' U d R' U' R U' R' U R");
+                        continue;
                     }
 
                     // 41   R U' R' U y' R' U2 R U2' (R' U R) or R U' R' d R' U2 R U2' (R' U R) or [R' F R F'][R U' R' U][R U' R' U2](R U' R')
-                    if (aPieces[49] == aPieces[47] && aPieces[4] == aPieces[8] && aPieces[4] == aPieces[12])
+                    if (aPieces[49] == aPieces[47] && aPieces[4] == aPieces[8] && aPieces[4] == aPieces[12] && aPieces[13] == aPieces[5] && aPieces[13] == aPieces[15])
                     {
-                        if (aPieces[13] == aPieces[5] && aPieces[13] == aPieces[14] && aPieces[13] == aPieces[15] && aPieces[13] == aPieces[16] && aPieces[13] == aPieces[17])
-                        {
-                            await MakeTurnAsync("R U' R' d R' U2 R U2 R' U R");
-                            continue;
-                        }
+                        await MakeTurnAsync("R U' R' d R' U2 R U2 R' U R");
+                        continue;
                     }
                 }
 
