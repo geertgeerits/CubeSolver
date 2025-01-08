@@ -137,7 +137,7 @@ namespace RubiksCube
                 // F2L Algorithms – All Four Slot Angles - Developed by Feliks Zemdegs and Andy Klise
 
                 // Piece 4 = 3, 6, 7 and piece 13 = 14, 16, 17
-                if (aPieces[4] == aPieces[3] && aPieces[4] == aPieces[6] && aPieces[4] == aPieces[7] && aPieces[13] == aPieces[14] && aPieces[13] == aPieces[16] && aPieces[13] == aPieces[17]) 
+                if (aPieces[4] == aPieces[3] && aPieces[4] == aPieces[6] && aPieces[4] == aPieces[7] && aPieces[13] == aPieces[14] && aPieces[13] == aPieces[16] && aPieces[13] == aPieces[17])
                 {
                     // Page 1
                     // Basic Inserts
