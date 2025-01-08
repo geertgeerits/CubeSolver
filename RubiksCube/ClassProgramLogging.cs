@@ -5,6 +5,11 @@ namespace RubiksCube
 {
     internal sealed class ClassProgramLogging
     {
+        public static void LogExecutedLineTest()
+        {
+            LogExecutedLine();
+        }
+
         /// <summary>
         /// Log executed lines
         /// </summary>

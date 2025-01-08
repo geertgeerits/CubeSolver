@@ -3,7 +3,7 @@
  * Author ......: Geert Geerits - E-mail: geertgeerits@gmail.com
  * Copyright ...: (C) 1981-2025
  * Version .....: 2.0.34
- * Date ........: 2025-01-07 (YYYY-MM-DD)
+ * Date ........: 2025-01-08 (YYYY-MM-DD)
  * Language ....: Microsoft Visual Studio 2022: .NET MAUI 9 - C# 13.0
  * Description .: Solving the Rubik's Cube
  * Note ........: This program is based on the program 'SolCube' I wrote in 1981 in MS Basic-80 for a Commodore PET 2001
@@ -127,6 +127,9 @@ namespace RubiksCube
             //// Set the button to true and 'bSolveNewSolutionsTest' to false in debug mode for testing purposes
             btnSolveNewSolutionsTest.IsVisible = false;
             Globals.bSolveNewSolutionsTest = false;
+
+            // For testing the logging of the executed line in the class 'ClassProgramLogging.cs'
+            //ClassProgramLogging.LogExecutedLineTest();
 #endif
         }
 
@@ -334,8 +337,8 @@ namespace RubiksCube
                     bSolved = await ClassSolveCubeMain.SolveCubeFromMultiplePositionsAsync("Cross");
                 }
 
-                // For testing comment out the lines 270-271 and 315-330 (and change the line 357 to bTestSolveCube = true)
-                // and uncomment one of the lines 337-341/342 to test one of the solutions to solve the cube.
+                // For testing comment out the lines 278-279 and 322-338 (and change the line 365 to bTestSolveCube = true)
+                // and uncomment one of the lines 345-349/350 to test one of the solutions to solve the cube.
                 // If using the method 'TestCubeTurnsAsync()' then include the file 'ClassTestCubeTurns.cs' in the project,
                 // otherwise exclude the file 'ClassTestCubeTurns.cs' from the project.
 
