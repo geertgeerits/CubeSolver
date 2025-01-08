@@ -189,8 +189,26 @@ namespace RubiksCube
                         await MakeTurnAsync("U' R U");
                         continue;
                     }
-                }
 
+                    // Insert
+                    if (aPieces[49] == aPieces[2] && aPieces[4] == aPieces[3] && aPieces[4] == aPieces[6] && aPieces[4] == aPieces[7] && aPieces[4] == aPieces[41] && aPieces[4] == aPieces[44])
+                    {
+                         if(aPieces[13] == aPieces[9] && aPieces[13] == aPieces[10] && aPieces[13] == aPieces[14] && aPieces[13] == aPieces[16] && aPieces[13] == aPieces[17])
+                        {
+                            await MakeTurnAsync("U R U' R'");
+                            continue;
+                        }
+                    }
+
+                    if (aPieces[49] == aPieces[0] && aPieces[4] == aPieces[5] && aPieces[4] == aPieces[7] && aPieces[4] == aPieces[8] && aPieces[4] == aPieces[39] && aPieces[4] == aPieces[42])
+                    {
+                        if (aPieces[13] == aPieces[12] && aPieces[13] == aPieces[14] && aPieces[13] == aPieces[15] && aPieces[13] == aPieces[16] && aPieces[13] == aPieces[17])
+                        {
+                            await MakeTurnAsync("U' L' U L");
+                            continue;
+                        }
+                    }
+                }
                 //--------------------------------------------------------------------------------------------------------------
 
                 // https://www.youtube.com/watch?v=Hx9ZbPdX8zM
