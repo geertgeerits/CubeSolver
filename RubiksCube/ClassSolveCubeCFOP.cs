@@ -225,7 +225,6 @@ namespace RubiksCube
                         continue;
                     }
 
-                    // There was no aPieces[13] == aPieces[16]
                     if (aPieces[49] == aPieces[44] && aPieces[4] == aPieces[1] && aPieces[4] == aPieces[2] && aPieces[31] == aPieces[9] && aPieces[31] == aPieces[34] && aPieces[31] == aPieces[43])
                     {
                         await MakeTurnAsync("R' U R");
@@ -246,14 +245,21 @@ namespace RubiksCube
                         continue;
                     }
 
-                    // Case 2. Non-matching
+                    // Case 2. Non-matching  
                     if (aPieces[49] == aPieces[9] && aPieces[4] == aPieces[2] && aPieces[4] == aPieces[37] && aPieces[13] == aPieces[19] && aPieces[13] == aPieces[44])
                     {
-                        await MakeTurnAsync("R U R'");
+                        await MakeTurnAsync("R U R'"); 
                         continue;
                     }
 
-                    // Case 3. White on top
+                    // Case 3. White on top - edge at the left
+                    //if (aPieces[49] == aPieces[44] && aPieces[4] == aPieces[9] && aPieces[4] == aPieces[28] && aPieces[13] == aPieces[2] && aPieces[13] == aPieces[39])
+                    //{
+                    //    await MakeTurnAsync("U' F' U' R y U' L' U L"); 
+                    //    continue;
+                    //}
+
+                    // Case 3. White on top - edge at the back
                     if (aPieces[49] == aPieces[44] && aPieces[4] == aPieces[9] && aPieces[4] == aPieces[19] && aPieces[13] == aPieces[2] && aPieces[13] == aPieces[37])
                     {
                         await MakeTurnAsync("U2 F' U' R y U' L' U L");
