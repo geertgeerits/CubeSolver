@@ -1,6 +1,7 @@
 ﻿//// Global usings
 global using RubiksCube.Resources.Languages;
 global using System.Globalization;
+using System.Diagnostics;
 
 namespace RubiksCube
 {
@@ -151,6 +152,36 @@ namespace RubiksCube
                     lCubeTurns.Add(cTurnPart);
                 }
             }
+        }
+
+        /// <summary>
+        /// Make a turn (with 1 letter [plus ' or 2]) of the cube/face/side - with line number for testing
+        /// </summary>
+        /// <param name="cTurn"></param>
+        /// <param name="nLineNo"></param>
+        /// <returns></returns>
+        public static async Task MakeTurnAsync2(string cTurn, int nLineNo = 0)
+        {
+            // Remove leading and trailing whitespace
+            cTurn = cTurn.Trim();
+
+            // Split the string into individual turns
+            foreach (string cTurnPart in cTurn.Split(' '))
+            {
+                // Turn the cube/face/side
+                if (await ClassCubeTurns.TurnCubeLayersAsync(cTurnPart))
+                {
+                    // Add the turn to the list
+                    lCubeTurns.Add(cTurnPart);
+                }
+            }
+#if DEBUG
+            // Output the line number and turn
+            if (nLineNo > 0)
+            {
+                Debug.WriteLine($"LineNo {nLineNo}: {cTurn}");
+            }
+#endif
         }
     }
 }
