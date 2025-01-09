@@ -54,6 +54,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <Compile Remove="ClassProgramLogging.cs" />
 	  <Compile Remove="ClassSolveCubeCFOP_A.cs" />
 	  <Compile Remove="ClassSolveCubeCFOP_B.cs" />
 	  <Compile Remove="ClassSolveCubeCFOP_C.cs" />
