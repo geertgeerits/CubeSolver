@@ -160,6 +160,7 @@ namespace RubiksCube
 
                 // https://kubuspuzzel.nl/3x3-kubus-oplossen/f2l/
                 // Split
+                // Piece 4 = 3, 6, 7 and piece 13 = 14, 16, 17
                 if (aPieces[4] == aPieces[3] && aPieces[4] == aPieces[6] && aPieces[4] == aPieces[7] && aPieces[13] == aPieces[14] && aPieces[13] == aPieces[16] && aPieces[13] == aPieces[17])
                 {
                     // Situation 1
@@ -192,6 +193,7 @@ namespace RubiksCube
                 }
 
                 // Insert
+                // Piece 4 = 7 and piece 13 = 14, 16, 17
                 if (aPieces[4] == aPieces[7] && aPieces[13] == aPieces[14] && aPieces[13] == aPieces[16] && aPieces[13] == aPieces[17])
                 {
                     if (aPieces[49] == aPieces[2] && aPieces[4] == aPieces[3] && aPieces[4] == aPieces[6] && aPieces[4] == aPieces[41] && aPieces[4] == aPieces[44])
@@ -217,6 +219,7 @@ namespace RubiksCube
 
                 // https://www.youtube.com/watch?v=Hx9ZbPdX8zM
                 // Part 1. Converting cases. Convert any F2L case into one of five using a 3-step process
+                // Piece 4 = 7 and piece 13 = 16
                 if (aPieces[4] == aPieces[7] && aPieces[13] == aPieces[16])
                 {
                     if (aPieces[49] == aPieces[15] && aPieces[4] == aPieces[14] && aPieces[4] == aPieces[47] && aPieces[13] == aPieces[8] && aPieces[13] == aPieces[21])
@@ -291,6 +294,7 @@ namespace RubiksCube
                 //--------------------------------------------------------------------------------------------------------------
 
                 // https://solvethecube.com/algorithms
+                // Piece 4 = 7 and piece 13 = 16
                 if (aPieces[4] == aPieces[7] && aPieces[13] == aPieces[16])
                 {
                     // 1. Basic cases
@@ -590,6 +594,7 @@ namespace RubiksCube
                 //--------------------------------------------------------------------------------------------------------------
 
                 // https://www.cubelelo.com/blogs/cubing/f2l-method-explained-solve-rubiks-cube-under-30-seconds
+                // Piece 4 = 3, 6, 7 and piece 13 = 14, 16, 17
                 if (aPieces[4] == aPieces[3] && aPieces[4] == aPieces[6] && aPieces[4] == aPieces[7] && aPieces[13] == aPieces[14] && aPieces[13] == aPieces[16] && aPieces[13] == aPieces[17])
                 {
                     // Case 1: Basic cases
@@ -975,7 +980,7 @@ namespace RubiksCube
                 //--------------------------------------------------------------------------------------------------------------
 
                 // https://ruwix.com/the-rubiks-cube/advanced-cfop-fridrich/first-two-layers-f2l/
-
+                // Piece 4 = 7 and piece 13 = 16
                 if (aPieces[4] == aPieces[7] && aPieces[13] == aPieces[16])
                 {
                     // Step 2: First two layers - F2L
@@ -1259,7 +1264,7 @@ namespace RubiksCube
                 //--------------------------------------------------------------------------------------------------------------
 
                 // https://www.rubiksplace.com/speedcubing/F2L-algorithms/
-
+                // Piece 4 = 3, 6, 7 and piece 13 = 14, 16, 17
                 if (aPieces[4] == aPieces[3] && aPieces[4] == aPieces[6] && aPieces[4] == aPieces[7] && aPieces[13] == aPieces[14] && aPieces[13] == aPieces[16] && aPieces[13] == aPieces[17])
                 {
                     // Corner on top, FL color facing side, edge colors match
@@ -1644,7 +1649,7 @@ namespace RubiksCube
                 //--------------------------------------------------------------------------------------------------------------
 
                 // https://drive.google.com/file/d/1nzAXYUWZJ6H2wIOXaHdWXep3W57tArbR/view
-
+                // Piece 4 = 7 and piece 13 = 16
                 if (aPieces[4] == aPieces[7] && aPieces[13] == aPieces[16])
                 {
                     // Section 2: Advanced F2L

@@ -442,66 +442,84 @@ namespace RubiksCube
 
                     // Page 3
                     // Algorithms for slot in back - right position
-                    // Basic Inserts
+                    // Piece 4 = 3, 5, 6, 7, 8 and piece 13 = 12, 15, 16
+                    if (aPieces[4] == aPieces[3] && aPieces[4] == aPieces[5] && aPieces[4] == aPieces[6] && aPieces[4] == aPieces[7] && aPieces[4] == aPieces[8] && aPieces[13] == aPieces[12] && aPieces[13] == aPieces[15] && aPieces[13] == aPieces[16])
+                    {
+                        // Basic Inserts
 
-                    // F2L Case 1
+                        // F2L Case 1
 
-                    // F2L Case 2
+                        // F2L Case 2
 
-                    // F2L Case 3
-
-
-                    // Page 4
-                    // Incorrectly Connected Pieces
-
-                    // Corner in Place, Edge in U Face
-
-                    // Edge in Place, Corner in U face
-
-                    // Edge and Corner in Place
+                        // F2L Case 3
 
 
-                    // Page 5
-                    // Algorithms for slot in front-left position
-                    // Basic Inserts
+                        // Page 4
+                        // Incorrectly Connected Pieces
 
-                    // F2L Case 1
+                        // Corner in Place, Edge in U Face
 
-                    // F2L Case 2
+                        // Edge in Place, Corner in U face
 
-                    // F2L Case 3
+                        // Edge and Corner in Place
 
+                    }
 
-                    // Page 6
-                    // Incorrectly Connected Pieces
+                    // Piece 4 = 3, 5, 6, 7, 8 and piece 13 = 12, 14, 15, 16, 17
+                    if (aPieces[4] == aPieces[3] && aPieces[4] == aPieces[5] && aPieces[4] == aPieces[6] && aPieces[4] == aPieces[7] && aPieces[4] == aPieces[8] && aPieces[13] == aPieces[12] && aPieces[13] == aPieces[14] && aPieces[13] == aPieces[15] && aPieces[13] == aPieces[16] && aPieces[13] == aPieces[17])
+                    {
+                        // Page 5
+                        // Algorithms for slot in front-left position
+                        // Basic Inserts
 
-                    // Corner in Place, Edge in U Face
+                        // F2L Case 1
 
-                    // Edge in Place, Corner in U face
+                        // F2L Case 2
 
-                    // Edge and Corner in Place
-
-
-                    // Page 7
-                    // Algorithms for slot in back-left position
-                    // Basic Inserts
-
-                    // F2L Case 1
-
-                    // F2L Case 2
-
-                    // F2L Case 3
+                        // F2L Case 3
 
 
-                    // Page 8
-                    // Incorrectly Connected Pieces
+                        // Page 6
+                        // Incorrectly Connected Pieces
 
-                    // Corner in Place, Edge in U Face
+                        // Corner in Place, Edge in U Face
 
-                    // Edge in Place, Corner in U face
+                        // Edge in Place, Corner in U face
 
-                    // Edge and Corner in Place
+                        // Edge and Corner in Place
 
+                    }
+
+                    // Piece 4 = 5, 7, 8 and piece 13 = 12, 14, 15, 16, 17
+                    if (aPieces[4] == aPieces[5] && aPieces[4] == aPieces[7] && aPieces[4] == aPieces[8] && aPieces[13] == aPieces[12] && aPieces[13] == aPieces[14] && aPieces[13] == aPieces[15] && aPieces[13] == aPieces[16] && aPieces[13] == aPieces[17])
+                    {
+                        // Page 7
+                        // Algorithms for slot in back-left position
+                        // Basic Inserts
+
+                        // F2L Case 1
+
+                        // F2L Case 2
+
+                        // F2L Case 3
+
+                        // Page 8
+                        // Incorrectly Connected Pieces
+
+                    }
+
+
+                    // Piece 4 = 3, 6, 7 and piece 13 = 14, 16, 17
+                    if (aPieces[4] == aPieces[3] && aPieces[4] == aPieces[6] && aPieces[4] == aPieces[7] && aPieces[13] == aPieces[14] && aPieces[13] == aPieces[16] && aPieces[13] == aPieces[17])
+                    {
+                        // Page 8
+                        // Corner in Place, Edge in U Face
+
+                        // Edge in Place, Corner in U face
+
+                        // Edge and Corner in Place
+
+                    }
                 }
             }
 
