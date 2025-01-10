@@ -26,13 +26,13 @@ namespace RubiksCube
             lCubePositions.Clear();
 
             // Try to solve the cube for the first time
-            //bSolveSolution2 = true;
+            bSolveSolution2 = true;
             await SolveCubeFromMultiplePositions1Async(cSolution);
 
-            // Try to solve the cube for the second time (for testing)
+            // Try to solve the cube for the second time
             // Using an other solution in the method ClassSolveCubeCommon.SolveTopLayerEdgesAsync()
-            //bSolveSolution2 = false;
-            //await SolveCubeFromMultiplePositions1Async(cSolution);
+            bSolveSolution2 = false;
+            await SolveCubeFromMultiplePositions1Async(cSolution);
 
             // Copy the temp list to the list lCubeTurns
             if (lCubeTurnsTemp.Count > 0)
