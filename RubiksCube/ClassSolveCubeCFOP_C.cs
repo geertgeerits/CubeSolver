@@ -467,53 +467,165 @@ namespace RubiksCube
                         }
 
                         // 4.  y (R U R') --- y' (L U L') 
-                        if (aPieces[49] == aPieces[18] && aPieces[13] == aPieces[11] && aPieces[13] == aPieces[39] && aPieces[31] == aPieces[38])
+                        if (aPieces[49] == aPieces[18] && aPieces[13] == aPieces[11] && aPieces[13] == aPieces[39] && aPieces[22] == aPieces[38])
                         {
                             await MakeTurnAsync("y R U R'");
                             continue;
                         }
 
-
                         // F2L Case 1
                         // 1.  U (R' U' R U') (R' U' R)
+                        if (aPieces[49] == aPieces[11] && aPieces[13] == aPieces[38] && aPieces[22] == aPieces[39])
+                        {
+                            await MakeTurnAsync("U R' U' R U' R' U' R");
+                            continue;
+                        }
 
                         // 2.  R U2' R2' U' (R2 U' R')
+                        if (aPieces[49] == aPieces[11] && aPieces[13] == aPieces[38] && aPieces[22] == aPieces[37])
+                        {
+                            await MakeTurnAsync("R U2 R2 U' R2 U' R'");
+                            continue;
+                        }
 
                         // 3.  U (R' U R U') (R' U' R)
+                        if (aPieces[49] == aPieces[11] && aPieces[13] == aPieces[38] && aPieces[22] == aPieces[41])
+                        {
+                            await MakeTurnAsync("U R' U R U' R' U' R");
+                            continue;
+                        }
 
                         // 4.  U (R' U R U') y (R U R')
+                        if (aPieces[49] == aPieces[18] && aPieces[13] == aPieces[11] && aPieces[13] == aPieces[43] && aPieces[22] == aPieces[1] && aPieces[22] == aPieces[38])
+                        {
+                            await MakeTurnAsync("U R' U R U' y R U R'");
+                            continue;
+                        }
 
                         // 5.  U (R' U2 R) U' y (R U R')
+                        if (aPieces[49] == aPieces[18] && aPieces[13] == aPieces[11] && aPieces[13] == aPieces[41] && aPieces[22] == aPieces[10] && aPieces[22] == aPieces[38])
+                        {
+                            await MakeTurnAsync("U R' U2 R U' y R U R'");
+                            continue;
+                        }
 
                         // 6.  y U' (R U' R' U) (R U R')
+                        if (aPieces[49] == aPieces[18] && aPieces[13] == aPieces[11] && aPieces[13] == aPieces[37] && aPieces[22] == aPieces[38])
+                        {
+                            await MakeTurnAsync("y U' R U' R' U R U R'");
+                            continue;
+                        }
 
                         // F2L Case 2
                         // 1.  y (U' R U R') U2 (R U' R') --- U r' (U R U' R') U' r
+                        if (aPieces[49] == aPieces[11] && aPieces[13] == aPieces[38] && aPieces[13] == aPieces[39])
+                        {
+                            await MakeTurnAsync("y U' R U R' U2 R U' R'");
+                            continue;
+                        }
 
                         // 2.  y U' (R U2' R') U2 (R U' R')
+                        if (aPieces[49] == aPieces[11] && aPieces[13] == aPieces[38] && aPieces[13] == aPieces[43] && aPieces[22] == aPieces[1])
+                        {
+                            await MakeTurnAsync("y U' R U2 R' U2 R U' R'");
+                            continue;
+                        }
 
                         // 3.  (U R' U' R) U2' (R' U R)
+                        if (aPieces[49] == aPieces[18] && aPieces[13] == aPieces[1] && aPieces[13] == aPieces[11] && aPieces[22] == aPieces[38] && aPieces[22] == aPieces[43])
+                        {
+                            await MakeTurnAsync("U R' U' R U2 R' U R");
+                            continue;
+                        }
 
                         // 4.  U (R' U2 R) U2' (R' U R)
+                        if (aPieces[49] == aPieces[18] && aPieces[13] == aPieces[11] && aPieces[22] == aPieces[38] && aPieces[22] == aPieces[39])
+                        {
+                            await MakeTurnAsync("U R' U2 R U2 R' U R");
+                            continue;
+                        }
 
                         // F2L Case 3
                         // 1.  y U (R U2' R') U (R U' R')
+                        if (aPieces[49] == aPieces[38] && aPieces[13] == aPieces[39] && aPieces[22] == aPieces[11])
+                        {
+                            await MakeTurnAsync("y U R U2 R' U R U' R'");
+                            continue;
+                        }
 
                         // 2.  y U2 (R U R' U) (R U' R')
+                        if (aPieces[49] == aPieces[38] && aPieces[13] == aPieces[43] && aPieces[22] == aPieces[1] && aPieces[22] == aPieces[11])
+                        {
+                            await MakeTurnAsync("y U2 R U R' U R U' R'");
+                            continue;
+                        }
 
                         // 3.  U' (R' U2 R) U' (R' U R)
+                        if (aPieces[49] == aPieces[38] && aPieces[13] == aPieces[1] && aPieces[22] == aPieces[11] && aPieces[22] == aPieces[43])
+                        {
+                            await MakeTurnAsync("U' R' U2 R U' R' U R");
+                            continue;
+                        }
 
                         // 4.  U2 (R' U' R) U' (R' U R) --- R' F' U2 F R --- Note: The second algorithm is fewer moves, but less intuitive and less finger-friendly.
-
+                        if (aPieces[49] == aPieces[38] && aPieces[22] == aPieces[11] && aPieces[22] == aPieces[39])
+                        {
+                            await MakeTurnAsync("R' F' U2 F R");
+                            continue;
+                        }
 
                         // Page 4
                         // Incorrectly Connected Pieces
+                        // 1.  (R' U R) U2' y (R U R') --- (R2' F R F' R) U2' (R' U R)
+
+                        // 2.  y (R U2 R') U' (R U R')
+
+                        // 3.  (R' U' R U' y) (R U' R' U) (R U' R') --- (U R' U2' R) y (R U2' R' U) (R U' R')
+
+                        // 4.  y (R U' R' U2) y' (R' U' R) --- U (R U' R' U) (R' U' R) --- Note: the second algorithm should only be used when the front-right slot is empty.
+
+                        // 5.  (R' U2' R) U (R' U' R)
+
+                        // 6.  U' (R' U R U) (R' U R U') (R' U R) --- y F (U R U' R') F' (R U' R')
 
                         // Corner in Place, Edge in U Face
+                        // 1.  (U' R' U R) y U (R U' R')
+
+                        // 2.  y (R U' R' U) (R U' R') --- R' U2 R' F R F' R
+
+                        // 3.  (R' U' R U) (R' U' R)
+
+                        // 4.  y U (R U' R') U' (F' U F) --- y U (R U' R') (F R' F' R)
+
+                        // 5.  (R' U R U') (R' U R)
+
+                        // 6.  y (R U R' U') (R U R')
 
                         // Edge in Place, Corner in U face
+                        // 1.  (R' U R' F) (R F' R) --- (R' U R U') y (R U' R')
+
+                        // 2.  (U' R' U' R) U2 (R' U' R)
+
+                        // 3.  y (U' R U R') d (R' U' R)
+
+                        // 4.  (U' R' U R) (U' R' U R) (U' R' U R)
+
+                        // 5.  U (R' U R) U2' (R' U R)
+
+                        // 6.  U (R' U' R) y U' (R U R')
 
                         // Edge and Corner in Place
+                        // 1.  Solved Pair
+
+                        // 2.  (R' U R U') (R' U2 R U') (R' U R) 
+
+                        // 3.  (R' U R) U2' y (R U R' U) (R U' R') 
+
+                        // 4.  (R' U R) d' (R U2' R') U2 (R U' R')
+
+                        // 5.  (R' U' R U) (R' U2' R) U (R' U' R) --- (R' U R U) (R' U' R U2') (R' U R)
+
+                        // 6.  (R' U R U) (R' U R U') y (R U R')
 
                     }
 
@@ -523,22 +635,97 @@ namespace RubiksCube
                         // Page 5
                         // Algorithms for slot in front-left position
                         // Basic Inserts
+                        // 1.  
+
+                        // 2.  
+
+                        // 3.
+
+                        // 4.
 
                         // F2L Case 1
+                        // 1.  
+
+                        // 2.  
+
+                        // 3.
+
+                        // 4.
+
+                        // 5.
+
+                        // 6.
 
                         // F2L Case 2
+                        // 1.  
+
+                        // 2.  
+
+                        // 3.
+
+                        // 4.
 
                         // F2L Case 3
+                        // 1.  
 
+                        // 2.  
+
+                        // 3.
+
+                        // 4.
 
                         // Page 6
                         // Incorrectly Connected Pieces
+                        // 1.  
+
+                        // 2.  
+
+                        // 3.
+
+                        // 4.
+
+                        // 5.
+
+                        // 6.
 
                         // Corner in Place, Edge in U Face
+                        // 1.  
+
+                        // 2.  
+
+                        // 3.
+
+                        // 4.
+
+                        // 5.
+
+                        // 6.
 
                         // Edge in Place, Corner in U face
+                        // 1.  
+
+                        // 2.  
+
+                        // 3.
+
+                        // 4.
+
+                        // 5.
+
+                        // 6.
 
                         // Edge and Corner in Place
+                        // 1.  
+
+                        // 2.  
+
+                        // 3.
+
+                        // 4.
+
+                        // 5.
+
+                        // 6.
 
                     }
 
@@ -548,15 +735,58 @@ namespace RubiksCube
                         // Page 7
                         // Algorithms for slot in back-left position
                         // Basic Inserts
+                        // 1.  
+
+                        // 2.  
+
+                        // 3.
+
+                        // 4.
 
                         // F2L Case 1
+                        // 1.  
+
+                        // 2.  
+
+                        // 3.
+
+                        // 4.
+
+                        // 5.
+
+                        // 6.
 
                         // F2L Case 2
+                        // 1.  
+
+                        // 2.  
+
+                        // 3.
+
+                        // 4.
 
                         // F2L Case 3
+                        // 1.  
+
+                        // 2.  
+
+                        // 3.
+
+                        // 4.
 
                         // Page 8
                         // Incorrectly Connected Pieces
+                        // 1.  
+
+                        // 2.  
+
+                        // 3.
+
+                        // 4.
+
+                        // 5.
+
+                        // 6.
 
                     }
 
@@ -565,10 +795,43 @@ namespace RubiksCube
                     {
                         // Page 8
                         // Corner in Place, Edge in U Face
+                        // 1.  
+
+                        // 2.  
+
+                        // 3.
+
+                        // 4.
+
+                        // 5.
+
+                        // 6.
 
                         // Edge in Place, Corner in U face
+                        // 1.  
+
+                        // 2.  
+
+                        // 3.
+
+                        // 4.
+
+                        // 5.
+
+                        // 6.
 
                         // Edge and Corner in Place
+                        // 1.  
+
+                        // 2.  
+
+                        // 3.
+
+                        // 4.
+
+                        // 5.
+
+                        // 6.
 
                     }
                 }
