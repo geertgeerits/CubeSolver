@@ -3,7 +3,7 @@
  * Author ......: Geert Geerits - E-mail: geertgeerits@gmail.com
  * Copyright ...: (C) 1981-2025
  * Version .....: 2.0.34
- * Date ........: 2025-01-10 (YYYY-MM-DD)
+ * Date ........: 2025-01-11(YYYY-MM-DD)
  * Language ....: Microsoft Visual Studio 2022: .NET MAUI 9 - C# 13.0
  * Description .: Solving the Rubik's Cube
  * Note ........: This program is based on the program 'SolCube' I wrote in 1981 in MS Basic-80 for a Commodore PET 2001
@@ -55,15 +55,15 @@ namespace RubiksCube
             }
 #if WINDOWS
             //// Set the margins for the controls in the title bar for Windows if using the Shell
-            //imgbtnAbout.Margin = new Thickness(20, 0, 0, 0);
-            //lblTitlePage.Margin = new Thickness(20, 10, 0, 0);
+            imgbtnAbout.Margin = new Thickness(20, 0, 0, 0);
+            lblTitlePage.Margin = new Thickness(16, 10, 0, 0);
 
             //// !!!BUG!!! in Windows: Set the width for the 2e colomn of the grid because 'GridUnitType.Star' does not work in Windows if using the 'NavigationPage.TitleView'
-            grdTitleView.ColumnDefinitions[1].Width = new GridLength(675);
+            //grdTitleView.ColumnDefinitions[1].Width = new GridLength(675);
 
             //// Set the margins for the controls in the title bar for Windows if using the 'NavigationPage.TitleView'
-            imgbtnAbout.HorizontalOptions = LayoutOptions.Center;
-            lblTitlePage.Margin = new Thickness(16, 10, 0, 0);
+            //imgbtnAbout.HorizontalOptions = LayoutOptions.Center;
+            //lblTitlePage.Margin = new Thickness(16, 10, 0, 0);
 #endif
 #if IOS
             // !!!BUG!!!? in iOS - Set the margin for the label 'lblExplainTurnCube' because Padding does not work in iOS

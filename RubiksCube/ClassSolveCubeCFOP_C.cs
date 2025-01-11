@@ -439,19 +439,71 @@ namespace RubiksCube
                         continue;
                     }
 
-
                     // Page 3
                     // Algorithms for slot in back - right position
                     // Piece 4 = 3, 5, 6, 7, 8 and piece 13 = 12, 15, 16
                     if (aPieces[4] == aPieces[3] && aPieces[4] == aPieces[5] && aPieces[4] == aPieces[6] && aPieces[4] == aPieces[7] && aPieces[4] == aPieces[8] && aPieces[13] == aPieces[12] && aPieces[13] == aPieces[15] && aPieces[13] == aPieces[16])
                     {
                         // Basic Inserts
+                        // 1.  y U (R U' R') --- y' U (L U' L') 
+                        if (aPieces[49] == aPieces[11] && aPieces[13] == aPieces[37] && aPieces[13] == aPieces[38])
+                        {
+                            await MakeTurnAsync("y U R U' R'");
+                            continue;
+                        }
+
+                        // 2.  (R' U' R)
+                        if (aPieces[49] == aPieces[11] && aPieces[13] == aPieces[1] && aPieces[13] == aPieces[38] && aPieces[22] == aPieces[43])
+                        {
+                            await MakeTurnAsync("R' U' R");
+                            continue;
+                        }
+
+                        // 3.  U' (R' U R)
+                        if (aPieces[49] == aPieces[18] && aPieces[13] == aPieces[10] && aPieces[13] == aPieces[11] && aPieces[22] == aPieces[38] && aPieces[22] == aPieces[41])
+                        {
+                            await MakeTurnAsync("U' R' U R");
+                            continue;
+                        }
+
+                        // 4.  y (R U R') --- y' (L U L') 
+                        if (aPieces[49] == aPieces[18] && aPieces[13] == aPieces[11] && aPieces[13] == aPieces[39] && aPieces[31] == aPieces[38])
+                        {
+                            await MakeTurnAsync("y R U R'");
+                            continue;
+                        }
+
 
                         // F2L Case 1
+                        // 1.  U (R' U' R U') (R' U' R)
+
+                        // 2.  R U2' R2' U' (R2 U' R')
+
+                        // 3.  U (R' U R U') (R' U' R)
+
+                        // 4.  U (R' U R U') y (R U R')
+
+                        // 5.  U (R' U2 R) U' y (R U R')
+
+                        // 6.  y U' (R U' R' U) (R U R')
 
                         // F2L Case 2
+                        // 1.  y (U' R U R') U2 (R U' R') --- U r' (U R U' R') U' r
+
+                        // 2.  y U' (R U2' R') U2 (R U' R')
+
+                        // 3.  (U R' U' R) U2' (R' U R)
+
+                        // 4.  U (R' U2 R) U2' (R' U R)
 
                         // F2L Case 3
+                        // 1.  y U (R U2' R') U (R U' R')
+
+                        // 2.  y U2 (R U R' U) (R U' R')
+
+                        // 3.  U' (R' U2 R) U' (R' U R)
+
+                        // 4.  U2 (R' U' R) U' (R' U R) --- R' F' U2 F R --- Note: The second algorithm is fewer moves, but less intuitive and less finger-friendly.
 
 
                         // Page 4
@@ -465,8 +517,8 @@ namespace RubiksCube
 
                     }
 
-                    // Piece 4 = 3, 5, 6, 7, 8 and piece 13 = 12, 14, 15, 16, 17
-                    if (aPieces[4] == aPieces[3] && aPieces[4] == aPieces[5] && aPieces[4] == aPieces[6] && aPieces[4] == aPieces[7] && aPieces[4] == aPieces[8] && aPieces[13] == aPieces[12] && aPieces[13] == aPieces[14] && aPieces[13] == aPieces[15] && aPieces[13] == aPieces[16] && aPieces[13] == aPieces[17])
+                    // Piece 4 = 5, 7, 8 and piece 13 = 12, 14, 15, 16, 17
+                    if (aPieces[4] == aPieces[5] && aPieces[4] == aPieces[7] && aPieces[4] == aPieces[8] && aPieces[13] == aPieces[12] && aPieces[13] == aPieces[14] && aPieces[13] == aPieces[15] && aPieces[13] == aPieces[16] && aPieces[13] == aPieces[17])
                     {
                         // Page 5
                         // Algorithms for slot in front-left position
@@ -490,8 +542,8 @@ namespace RubiksCube
 
                     }
 
-                    // Piece 4 = 5, 7, 8 and piece 13 = 12, 14, 15, 16, 17
-                    if (aPieces[4] == aPieces[5] && aPieces[4] == aPieces[7] && aPieces[4] == aPieces[8] && aPieces[13] == aPieces[12] && aPieces[13] == aPieces[14] && aPieces[13] == aPieces[15] && aPieces[13] == aPieces[16] && aPieces[13] == aPieces[17])
+                    // Piece 4 = 3, 5, 6, 7, 8 and piece 13 = 12, 14, 15, 16, 17
+                    if (aPieces[4] == aPieces[3] && aPieces[4] == aPieces[5] && aPieces[4] == aPieces[6] && aPieces[4] == aPieces[7] && aPieces[4] == aPieces[8] && aPieces[13] == aPieces[12] && aPieces[13] == aPieces[14] && aPieces[13] == aPieces[15] && aPieces[13] == aPieces[16] && aPieces[13] == aPieces[17])
                     {
                         // Page 7
                         // Algorithms for slot in back-left position
@@ -507,7 +559,6 @@ namespace RubiksCube
                         // Incorrectly Connected Pieces
 
                     }
-
 
                     // Piece 4 = 3, 6, 7 and piece 13 = 14, 16, 17
                     if (aPieces[4] == aPieces[3] && aPieces[4] == aPieces[6] && aPieces[4] == aPieces[7] && aPieces[13] == aPieces[14] && aPieces[13] == aPieces[16] && aPieces[13] == aPieces[17])
