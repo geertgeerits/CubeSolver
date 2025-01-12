@@ -750,17 +750,32 @@ namespace RubiksCube
                         // Algorithms for slot in front-left position
                         // Basic Inserts
                         // 1.  y' U (R U' R') --- y U(L U' L')
-                        if (aPieces[4] == aPieces[0] && aPieces[4] == aPieces[1] && aPieces[31] == aPieces[42] && aPieces[31] == aPieces[43])
+                        if (aPieces[49] == aPieces[29] && aPieces[4] == aPieces[0] && aPieces[4] == aPieces[1] && aPieces[31] == aPieces[42] && aPieces[31] == aPieces[43])
                         {
                             await MakeTurnAsync("y' U R U' R'");
                             continue;
                         }
 
                         // 2.  (L' U' L)
+                        if (aPieces[49] == aPieces[29] && aPieces[4] == aPieces[0] && aPieces[4] == aPieces[37] && aPieces[31] == aPieces[42])
+                        {
+                            await MakeTurnAsync("L' U' L");
+                            continue;
+                        }
 
                         // 3.  U' (L' U L)
+                        if (aPieces[49] == aPieces[0] && aPieces[4] == aPieces[39] && aPieces[4] == aPieces[42])
+                        {
+                            await MakeTurnAsync("U' L' U L");
+                            continue;
+                        }
 
                         // 4.  y' (R U R') --- y (L U L')
+                        if (aPieces[49] == aPieces[0] && aPieces[4] == aPieces[10] && aPieces[4] == aPieces[42] && aPieces[31] == aPieces[41])
+                        {
+                            await MakeTurnAsync("y' R U R'");
+                            continue;
+                        }
 
                         // F2L Case 1
                         // 1.  U (L' U' L U') (L' U' L)
