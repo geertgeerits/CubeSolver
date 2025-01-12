@@ -139,7 +139,7 @@ namespace RubiksCube
                 // Piece 4 = 3, 6, 7 and piece 13 = 14, 16, 17
                 if (aPieces[4] == aPieces[3] && aPieces[4] == aPieces[6] && aPieces[4] == aPieces[7] && aPieces[13] == aPieces[14] && aPieces[13] == aPieces[16] && aPieces[13] == aPieces[17])
                 {
-                    // Page 1
+                    // Page 1. F2L Algorithms
                     // Basic Inserts
                     // 1.  U (R U' R')
                     if (aPieces[49] == aPieces[2] && aPieces[4] == aPieces[41] && aPieces[4] == aPieces[44] && aPieces[13] == aPieces[9] && aPieces[13] == aPieces[10])
@@ -271,7 +271,7 @@ namespace RubiksCube
                     }
 
 
-                    // Page 2
+                    // Page 2. F2L Algorithms
                     // Incorrectly Connected Pieces
                     // 1.  y' (R' U R) U2' y (R U R') --- (R U R') U2 (R U' R' U) (R U' R') 
                     if (aPieces[49] == aPieces[2] && aPieces[4] == aPieces[43] && aPieces[4] == aPieces[44] && aPieces[13] == aPieces[1] && aPieces[13] == aPieces[9])
@@ -439,7 +439,7 @@ namespace RubiksCube
                         continue;
                     }
 
-                    // Page 3
+                    // Page 3. Algorithms for slot in back-right position
                     // Algorithms for slot in back - right position
                     // Piece 4 = 3, 5, 6, 7, 8 and piece 13 = 12, 15, 16
                     if (aPieces[4] == aPieces[3] && aPieces[4] == aPieces[5] && aPieces[4] == aPieces[6] && aPieces[4] == aPieces[7] && aPieces[4] == aPieces[8] && aPieces[13] == aPieces[12] && aPieces[13] == aPieces[15] && aPieces[13] == aPieces[16])
@@ -574,7 +574,7 @@ namespace RubiksCube
                             continue;
                         }
 
-                        // Page 4
+                        // Page 4. Algorithms for slot in back-right position
                         // Incorrectly Connected Pieces
                         // 1.  (R' U R) U2' y (R U R') --- (R2' F R F' R) U2' (R' U R)
                         if (aPieces[49] == aPieces[11] && aPieces[13] == aPieces[38] && aPieces[13] == aPieces[41] && aPieces[22] == aPieces[10])
@@ -663,7 +663,7 @@ namespace RubiksCube
 
                         // Edge in Place, Corner in U face
                         // 1.  (R' U R' F) (R F' R) --- (R' U R U') y (R U' R')
-                        if (aPieces[49] == aPieces[38] && aPieces[13] == aPieces[17] && aPieces[22] == aPieces[11] && aPieces[22] == aPieces[14])
+                        if (aPieces[49] == aPieces[38] && aPieces[22] == aPieces[11] && aPieces[22] == aPieces[14])
                         {
                             await MakeTurnAsync("R' U R' F R F' R");
                             continue;
@@ -746,206 +746,211 @@ namespace RubiksCube
                     // Piece 4 = 5, 7, 8 and piece 13 = 12, 14, 15, 16, 17
                     if (aPieces[4] == aPieces[5] && aPieces[4] == aPieces[7] && aPieces[4] == aPieces[8] && aPieces[13] == aPieces[12] && aPieces[13] == aPieces[14] && aPieces[13] == aPieces[15] && aPieces[13] == aPieces[16] && aPieces[13] == aPieces[17])
                     {
-                        // Page 5
+                        // Page 5. Algorithms for slot in front-left position
                         // Algorithms for slot in front-left position
                         // Basic Inserts
-                        // 1.  
+                        // 1.  y' U (R U' R') --- y U(L U' L')
+                        if (aPieces[4] == aPieces[0] && aPieces[4] == aPieces[1] && aPieces[31] == aPieces[42] && aPieces[31] == aPieces[43])
+                        {
+                            await MakeTurnAsync("y' U R U' R'");
+                            continue;
+                        }
 
-                        // 2.  
+                        // 2.  (L' U' L)
 
-                        // 3.
+                        // 3.  U' (L' U L)
 
-                        // 4.
+                        // 4.  y' (R U R') --- y (L U L')
 
                         // F2L Case 1
-                        // 1.  
+                        // 1.  U (L' U' L U') (L' U' L)
 
-                        // 2.  
+                        // 2.  L U2' L2' U' (L2 U' L')
 
-                        // 3.
+                        // 3.  U (L' U L U') (L' U' L)
 
-                        // 4.
+                        // 4.  U (L' U L U') y' (R U R')
 
-                        // 5.
+                        // 5.  U (L' U2 L) U' y' (R U R')
 
-                        // 6.
+                        // 6.  y' U' (R U' R' U) (R U R')
 
                         // F2L Case 2
-                        // 1.  
+                        // 1.  y' (U' R U R') U2 (R U' R') --- (L U L') y'(U R U' R') --- Note: the second algorithm should only be used when the back-left slot is empty
 
-                        // 2.  
+                        // 2.  y' U' (R U2' R') U2 (R U' R')
 
-                        // 3.
+                        // 3.  (U L' U' L) U2' (L' U L)
 
-                        // 4.
+                        // 4.  U (L' U2 L) U2' (L' U L)
 
                         // F2L Case 3
-                        // 1.  
+                        // 1.  y' U (R U2' R') U (R U' R')
 
-                        // 2.  
+                        // 2.  F R U2' R' F'
 
-                        // 3.
+                        // 3.  U' (L' U2 L) U' (L' U L)
 
-                        // 4.
+                        // 4.  U2 (L' U' L) U' (L' U L)
 
-                        // Page 6
+                        // Page 6. Algorithms for slot in front-left position
                         // Incorrectly Connected Pieces
-                        // 1.  
+                        // 1.  (L' U L) U2' y' (R U R')
 
-                        // 2.  
+                        // 2.  y' (R U2 R') U' (R U R')
 
-                        // 3.
+                        // 3.  y' U (R U' R' U') (R U' R' U R U' R') --- y' (R U R' U2') (R U R' U') (R U R')
 
-                        // 4.
+                        // 4.  y' (R U' R' U2) y' (R' U' R) --- (U' R U' R') U'(L' U' L) --- Note – the second algorithm should only be used when the front-right slot is empty
 
-                        // 5.
+                        // 5.  (L' U2 L) U (L' U' L)
 
-                        // 6.
+                        // 6.  U' (L' U L U) (L' U L U') (L' U L) --- y' F (U R U' R') F'(R U' R')
 
                         // Corner in Place, Edge in U Face
-                        // 1.  
+                        // 1.  (U' L' U L) d (R U' R')
 
-                        // 2.  
+                        // 2.  y' (R U' R' U) (R U' R')
 
-                        // 3.
+                        // 3.  (L' U' L U) (L' U' L)
 
-                        // 4.
+                        // 4.  y' U (R U' R') U' (F' U F) --- y' U (R U' R') (F R' F' R)
 
-                        // 5.
+                        // 5.  (L' U L U') (L' U L)
 
-                        // 6.
+                        // 6.  y' (R U R' U') (R U R') --- (r U' r' F) (r U' r' F)
 
                         // Edge in Place, Corner in U face
-                        // 1.  
+                        // 1.  (L' U L U') y' (R U' R')
 
-                        // 2.  
+                        // 2.  (U' L' U' L) U2 (L' U' L)
 
-                        // 3.
+                        // 3.  y' (U' R U R') d (R' U' R)
 
-                        // 4.
+                        // 4.  (U' L' U L) (U' L' U L) (U' L' U L)
 
-                        // 5.
+                        // 5.  U (L' U L) U2' (L' U L)
 
-                        // 6.
+                        // 6.  U (L' U' L) y' U' (R U R')
 
                         // Edge and Corner in Place
-                        // 1.  
+                        // 1.  Solved Pair
 
-                        // 2.  
+                        // 2.  (L' U L U') (L' U2 L U') (L' U L)
 
-                        // 3.
+                        // 3.  (L' U L) F R U2' R' F'
 
-                        // 4.
+                        // 4.  (L' U L U') y' (R U2' R' U2 R U' R')
 
-                        // 5.
+                        // 5.  (L' U' L U) (L' U2' L) U (L' U' L) --- (L' U L U) (L' U' L U2') (L' U L)
 
-                        // 6.
+                        // 6.  (L' U L U) (L' U L U') y (L U L')
 
                     }
 
                     // Piece 4 = 3, 5, 6, 7, 8 and piece 13 = 12, 14, 15, 16, 17
                     if (aPieces[4] == aPieces[3] && aPieces[4] == aPieces[5] && aPieces[4] == aPieces[6] && aPieces[4] == aPieces[7] && aPieces[4] == aPieces[8] && aPieces[13] == aPieces[12] && aPieces[13] == aPieces[14] && aPieces[13] == aPieces[15] && aPieces[13] == aPieces[16] && aPieces[13] == aPieces[17])
                     {
-                        // Page 7
+                        // Page 7. Algorithms for slot in back-left position
                         // Algorithms for slot in back-left position
                         // Basic Inserts
-                        // 1.  
+                        // 1.  U (L U' L')
 
-                        // 2.  
+                        // 2.  y (R' U' R)
 
-                        // 3.
+                        // 3.  y U' (R' U R) --- y' U'(L' U L)
 
-                        // 4.
+                        // 4.  (L U L')
 
                         // F2L Case 1
-                        // 1.  
+                        // 1.  y U (R' U' R U') (R' U' R)
 
-                        // 2.  
+                        // 2.  y R U2' R2' U' (R2 U' R')
 
-                        // 3.
+                        // 3.  y U (R' U R U') (R' U' R)
 
-                        // 4.
+                        // 4.  U' (L U L' U) (L U L')
 
-                        // 5.
+                        // 5.  L' U2 L2 U (L2' U L)
 
-                        // 6.
+                        // 6.  U' (L U' L' U) (L U L')
 
                         // F2L Case 2
-                        // 1.  
+                        // 1.  (U' L U L') U2 (L U' L')
 
-                        // 2.  
+                        // 2.  U' (L U2 L') U2 (L U' L')
 
-                        // 3.
+                        // 3.  y (U R' U' R) U2' (R' U R)
 
-                        // 4.
+                        // 4.  y U (R' U2' R) U2' (R' U R)
 
                         // F2L Case 3
-                        // 1.  
+                        // 1.  U (L U2' L') U (L U' L')
 
-                        // 2.  
+                        // 2.  y' F R U2' R' F'
 
-                        // 3.
+                        // 3.  y U' (R' U2 R) U' (R' U R)
 
-                        // 4.
+                        // 4.  y U2 (R' U' R) U' (R' U R) --- y R' F' U2 F R --- Note: The second algorithm is fewer moves, but less intuitive and less finger-friendly
 
-                        // Page 8
+                        // Page 8. Algorithms for slot in back-left position
                         // Incorrectly Connected Pieces
-                        // 1.  
+                        // 1.  y (R' U R) U2' y (R U R') --- U' (L' U L U') (L U' L') --- Note: the second algorithm should only be used when the front-left slot is empty
 
-                        // 2.  
+                        // 2.  (L U2 L') U' (L U L')
 
-                        // 3.
+                        // 3.  U (L U' L' U') (L U' L' U) (L U' L')
 
-                        // 4.
+                        // 4.  (L U' L' U2) y (R' U' R)
 
-                        // 5.
+                        // 5.  y (R' U2' R) U (R' U' R)
 
-                        // 6.
+                        // 6.  y U' (R' U R U) (R' U R U') (R' U R)
 
                     }
 
                     // Piece 4 = 3, 6, 7 and piece 13 = 14, 16, 17
                     if (aPieces[4] == aPieces[3] && aPieces[4] == aPieces[6] && aPieces[4] == aPieces[7] && aPieces[13] == aPieces[14] && aPieces[13] == aPieces[16] && aPieces[13] == aPieces[17])
                     {
-                        // Page 8
+                        // Page 8. Algorithms for slot in back-left position
                         // Corner in Place, Edge in U Face
-                        // 1.  
+                        // 1.  [y2]  y' (U' L' U L) d (R U' R')
 
-                        // 2.  
+                        // 2.  [y2]  (L U' L' U) (L U' L')
 
-                        // 3.
+                        // 3.  [y2]  y (R' U' R U) (R' U' R)
 
-                        // 4.
+                        // 4.  [y2]  U (L U' L') d' (R' U R)
 
-                        // 5.
+                        // 5.  [y2]  y (R' U R U') (R' U R)
 
-                        // 6.
+                        // 6.  [y2]  (L U L' U') (L U L')
 
                         // Edge in Place, Corner in U face
-                        // 1.  
+                        // 1.  [y2]  y (R' U R' F) (R F' R)
 
-                        // 2.  
+                        // 2.  [y2]  (U' L U' L') U2 (L U' L')
 
-                        // 3.
+                        // 3.  [y2]  (U2' L U L') d' (R' U R)
 
-                        // 4.
+                        // 4.  [y2]  (U L U' L') (U L U' L') (U L U' L')
 
-                        // 5.
+                        // 5.  [y2]  U (L U L') U2 (L U L')
 
-                        // 6.
+                        // 6.  [y2]  y U2' (R' U R) d (L U L')
 
                         // Edge and Corner in Place
-                        // 1.  
+                        // 1.  [y2]  Solved Pair
 
-                        // 2.  
+                        // 2.  [y2]  (L U L' U') (L U2 L' U') (L U L')
 
-                        // 3.
+                        // 3.  [y2]  y (R' U R) U2' y (R U R' U R U' R')
 
-                        // 4.
+                        // 4.  [y2]  y (R' U R) d' (R U2' R' U2 R U' R')
 
-                        // 5.
+                        // 5.  [y2]  (L U' L' U) (L U2' L') U (L U' L')
 
-                        // 6.
+                        // 6.  [y2]  (L U' L') d' (U' R' U' R U') (R' U R)
 
                     }
                 }
