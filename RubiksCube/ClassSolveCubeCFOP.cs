@@ -1243,7 +1243,7 @@ namespace RubiksCube
 
                     // 6. case: Corner in bottom, edge in middle
                     // 6.1   (R U' R' d R' U2 R) (U R' U2 R)
-                    if (aPieces[4] == aPieces[8] && aPieces[4] == aPieces[12] && aPieces[13] == aPieces[5] && aPieces[13] == aPieces[15])
+                    if (aPieces[49] == aPieces[47] && aPieces[4] == aPieces[8] && aPieces[4] == aPieces[12] && aPieces[13] == aPieces[5] && aPieces[13] == aPieces[15])
                     {
                         await MakeTurnAsync("R U' R' d R' U2 R U R' U2 R");
                         continue;
@@ -1255,6 +1255,27 @@ namespace RubiksCube
                     if (aPieces[49] == aPieces[15] && aPieces[4] == aPieces[5] && aPieces[13] == aPieces[8] && aPieces[13] == aPieces[12])
                     {
                         await MakeTurnAsync("R U' R' U R U2 R' U R U' R'");
+                        continue;
+                    }
+
+                    // 6.4   (R U' R' U' R U R') (U' R U2 R')
+                    if (aPieces[49] == aPieces[8] && aPieces[4] == aPieces[5] && aPieces[4] == aPieces[15] && aPieces[13] == aPieces[12])
+                    {
+                        await MakeTurnAsync("R U' R' U' R U R' U' R U2 R'");
+                        continue;
+                    }
+
+                    // 6.5   (R U R' U' R U' R') (U d R' U' R)
+                    if (aPieces[49] == aPieces[15] && aPieces[4] == aPieces[12] && aPieces[13] == aPieces[5] && aPieces[13] == aPieces[8])
+                    {
+                        await MakeTurnAsync("R U R' U' R U' R' U d R' U' R");
+                        continue;
+                    }
+
+                    // 6.6   (R U' R' d R' U' R) (U' R' U' R)
+                    if (aPieces[49] == aPieces[8] && aPieces[4] == aPieces[12] && aPieces[4] == aPieces[15] && aPieces[13] == aPieces[8])
+                    {
+                        await MakeTurnAsync("R U' R' d R' U' R U' R' U' R");
                         continue;
                     }
 
