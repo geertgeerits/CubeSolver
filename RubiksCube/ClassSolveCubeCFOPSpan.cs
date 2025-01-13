@@ -9,7 +9,7 @@ namespace RubiksCube
         private const int nLoopTimesMax = 200;
 
         /// <summary>
-        /// Solve the cube
+        /// Solve the cube using the CFOP method
         /// </summary>
         /// <returns></returns>
         public static async Task<bool> SolveTheCubeCFOPAsync()
@@ -66,7 +66,9 @@ namespace RubiksCube
         /// <returns></returns>
         private static Task<bool> SolveFirstTwoLayers()
         {
-            // Create a span for the arrays
+            //ClassProgramLogging.LogExecutedLine();
+
+            // Create a span for the array aPieces
             ReadOnlySpan<string> aPiecesSpan = aPieces;
 
             string cT;
@@ -161,43 +163,58 @@ namespace RubiksCube
 
                 // https://kubuspuzzel.nl/3x3-kubus-oplossen/f2l/
                 // Split
-                // Situation 1
-                if (aPiecesSpan[49] == aPiecesSpan[44] && aPiecesSpan[4] == aPiecesSpan[3] && aPiecesSpan[4] == aPiecesSpan[6] && aPiecesSpan[4] == aPiecesSpan[7] && aPiecesSpan[4] == aPiecesSpan[9] && aPiecesSpan[4] == aPiecesSpan[19])
+                // Piece 4 = 3, 6, 7 and piece 13 = 14, 16, 17
+                if (aPiecesSpan[4] == aPiecesSpan[3] && aPiecesSpan[4] == aPiecesSpan[6] && aPiecesSpan[4] == aPiecesSpan[7] && aPiecesSpan[13] == aPiecesSpan[14] && aPiecesSpan[13] == aPiecesSpan[16] && aPiecesSpan[13] == aPiecesSpan[17])
                 {
-                    if (aPiecesSpan[13] == aPiecesSpan[2] && aPiecesSpan[13] == aPiecesSpan[14] && aPiecesSpan[13] == aPiecesSpan[16] && aPiecesSpan[13] == aPiecesSpan[17] && aPiecesSpan[13] == aPiecesSpan[37])
+                    // Situation 1
+                    if (aPiecesSpan[49] == aPiecesSpan[44] && aPiecesSpan[4] == aPiecesSpan[9] && aPiecesSpan[4] == aPiecesSpan[19] && aPiecesSpan[13] == aPiecesSpan[2] && aPiecesSpan[13] == aPiecesSpan[37])
                     {
                         _ = MakeTurnAsync("U2 F' U' F");
                         continue;
                     }
-                }
 
-                // Situation 2
-                if (aPiecesSpan[49] == aPiecesSpan[2] && aPiecesSpan[4] == aPiecesSpan[3] && aPiecesSpan[4] == aPiecesSpan[6] && aPiecesSpan[4] == aPiecesSpan[7] && aPiecesSpan[4] == aPiecesSpan[37] && aPiecesSpan[4] == aPiecesSpan[44])
-                {
-                    if (aPiecesSpan[13] == aPiecesSpan[9] && aPiecesSpan[13] == aPiecesSpan[14] && aPiecesSpan[13] == aPiecesSpan[16] && aPiecesSpan[13] == aPiecesSpan[17] && aPiecesSpan[13] == aPiecesSpan[19])
+                    // Situation 2
+                    if (aPiecesSpan[49] == aPiecesSpan[2] && aPiecesSpan[4] == aPiecesSpan[37] && aPiecesSpan[4] == aPiecesSpan[44] && aPiecesSpan[13] == aPiecesSpan[9] && aPiecesSpan[13] == aPiecesSpan[19])
                     {
                         _ = MakeTurnAsync("U' R U R'");
                         continue;
                     }
-                }
 
-                // Situation 3.1
-                if (aPiecesSpan[49] == aPiecesSpan[2] && aPiecesSpan[4] == aPiecesSpan[3] && aPiecesSpan[4] == aPiecesSpan[6] && aPiecesSpan[4] == aPiecesSpan[7] && aPiecesSpan[4] == aPiecesSpan[28] && aPiecesSpan[4] == aPiecesSpan[44])
-                {
-                    if (aPiecesSpan[13] == aPiecesSpan[9] && aPiecesSpan[13] == aPiecesSpan[14] && aPiecesSpan[13] == aPiecesSpan[16] && aPiecesSpan[13] == aPiecesSpan[17] && aPiecesSpan[13] == aPiecesSpan[39])
+                    // Situation 3.1
+                    if (aPiecesSpan[49] == aPiecesSpan[2] && aPiecesSpan[4] == aPiecesSpan[28] && aPiecesSpan[4] == aPiecesSpan[44] && aPiecesSpan[13] == aPiecesSpan[9] && aPiecesSpan[13] == aPiecesSpan[39])
                     {
                         _ = MakeTurnAsync("F' U F");
                         continue;
                     }
-                }
 
-                // Situation 3.2
-                if (aPiecesSpan[49] == aPiecesSpan[2] && aPiecesSpan[4] == aPiecesSpan[3] && aPiecesSpan[4] == aPiecesSpan[6] && aPiecesSpan[4] == aPiecesSpan[7] && aPiecesSpan[4] == aPiecesSpan[19] && aPiecesSpan[4] == aPiecesSpan[44])
-                {
-                    if (aPiecesSpan[13] == aPiecesSpan[9] && aPiecesSpan[13] == aPiecesSpan[14] && aPiecesSpan[13] == aPiecesSpan[16] && aPiecesSpan[13] == aPiecesSpan[17] && aPiecesSpan[13] == aPiecesSpan[37])
+                    // Situation 3.2
+                    if (aPiecesSpan[49] == aPiecesSpan[2] && aPiecesSpan[4] == aPiecesSpan[19] && aPiecesSpan[4] == aPiecesSpan[44] && aPiecesSpan[13] == aPiecesSpan[9] && aPiecesSpan[13] == aPiecesSpan[37])
                     {
                         _ = MakeTurnAsync("U' R U");
                         continue;
+                    }
+                }
+
+                // Insert
+                // Piece 4 = 7 and piece 13 = 14, 16, 17
+                if (aPiecesSpan[4] == aPiecesSpan[7] && aPiecesSpan[13] == aPiecesSpan[14] && aPiecesSpan[13] == aPiecesSpan[16] && aPiecesSpan[13] == aPiecesSpan[17])
+                {
+                    if (aPiecesSpan[49] == aPiecesSpan[2] && aPiecesSpan[4] == aPiecesSpan[3] && aPiecesSpan[4] == aPiecesSpan[6] && aPiecesSpan[4] == aPiecesSpan[41] && aPiecesSpan[4] == aPiecesSpan[44])
+                    {
+                        if (aPiecesSpan[13] == aPiecesSpan[9] && aPiecesSpan[13] == aPiecesSpan[10])
+                        {
+                            _ = MakeTurnAsync("U R U' R'");
+                            continue;
+                        }
+                    }
+
+                    if (aPiecesSpan[49] == aPiecesSpan[0] && aPiecesSpan[4] == aPiecesSpan[5] && aPiecesSpan[4] == aPiecesSpan[8] && aPiecesSpan[4] == aPiecesSpan[39] && aPiecesSpan[4] == aPiecesSpan[42])
+                    {
+                        if (aPiecesSpan[13] == aPiecesSpan[12] && aPiecesSpan[13] == aPiecesSpan[15])
+                        {
+                            _ = MakeTurnAsync("U' L' U L");
+                            continue;
+                        }
                     }
                 }
 
@@ -205,88 +222,72 @@ namespace RubiksCube
 
                 // https://www.youtube.com/watch?v=Hx9ZbPdX8zM
                 // Part 1. Converting cases. Convert any F2L case into one of five using a 3-step process
-                if (aPiecesSpan[49] == aPiecesSpan[15] && aPiecesSpan[4] == aPiecesSpan[7] && aPiecesSpan[4] == aPiecesSpan[14] && aPiecesSpan[4] == aPiecesSpan[47])
+                // Piece 4 = 7 and piece 13 = 16
+                if (aPiecesSpan[4] == aPiecesSpan[7] && aPiecesSpan[13] == aPiecesSpan[16])
                 {
-                    if (aPiecesSpan[13] == aPiecesSpan[8] && aPiecesSpan[13] == aPiecesSpan[16] && aPiecesSpan[13] == aPiecesSpan[21])
+                    if (aPiecesSpan[49] == aPiecesSpan[15] && aPiecesSpan[4] == aPiecesSpan[14] && aPiecesSpan[4] == aPiecesSpan[47] && aPiecesSpan[13] == aPiecesSpan[8] && aPiecesSpan[13] == aPiecesSpan[21])
                     {
                         _ = MakeTurnAsync("R U R' y R U' R'");
                         continue;
                     }
-                }
 
-                if (aPiecesSpan[49] == aPiecesSpan[44] && aPiecesSpan[4] == aPiecesSpan[1] && aPiecesSpan[4] == aPiecesSpan[2] && aPiecesSpan[4] == aPiecesSpan[7])
-                {
-                    if (aPiecesSpan[31] == aPiecesSpan[9] && aPiecesSpan[31] == aPiecesSpan[34] && aPiecesSpan[31] == aPiecesSpan[43])
+                    if (aPiecesSpan[49] == aPiecesSpan[44] && aPiecesSpan[4] == aPiecesSpan[1] && aPiecesSpan[4] == aPiecesSpan[2] && aPiecesSpan[31] == aPiecesSpan[9] && aPiecesSpan[31] == aPiecesSpan[34] && aPiecesSpan[31] == aPiecesSpan[43])
                     {
                         _ = MakeTurnAsync("R' U R");
                         continue;
                     }
-                }
 
-                if (aPiecesSpan[49] == aPiecesSpan[44] && aPiecesSpan[4] == aPiecesSpan[7] && aPiecesSpan[4] == aPiecesSpan[9] && aPiecesSpan[4] == aPiecesSpan[41])
-                {
-                    if (aPiecesSpan[13] == aPiecesSpan[2] && aPiecesSpan[13] == aPiecesSpan[10] && aPiecesSpan[13] == aPiecesSpan[16])
+                    if (aPiecesSpan[49] == aPiecesSpan[44] && aPiecesSpan[4] == aPiecesSpan[9] && aPiecesSpan[4] == aPiecesSpan[41] && aPiecesSpan[13] == aPiecesSpan[2] && aPiecesSpan[13] == aPiecesSpan[10])
                     {
                         _ = MakeTurnAsync("U' R U' R'");
                         continue;
                     }
-                }
 
-                // Part 2. Five fundamental cases
-                // Case 1. Matching
-                if (aPiecesSpan[49] == aPiecesSpan[9] && aPiecesSpan[4] == aPiecesSpan[2] && aPiecesSpan[4] == aPiecesSpan[7] && aPiecesSpan[4] == aPiecesSpan[19])
-                {
-                    if (aPiecesSpan[13] == aPiecesSpan[16] && aPiecesSpan[13] == aPiecesSpan[37] && aPiecesSpan[13] == aPiecesSpan[44])
+                    // Part 2. Five fundamental cases
+                    // Case 1. Matching
+                    if (aPiecesSpan[49] == aPiecesSpan[9] && aPiecesSpan[4] == aPiecesSpan[2] && aPiecesSpan[4] == aPiecesSpan[19] && aPiecesSpan[13] == aPiecesSpan[37] && aPiecesSpan[13] == aPiecesSpan[44])
                     {
                         _ = MakeTurnAsync("R' U2 R y U' L' U L");
                         continue;
                     }
-                }
 
-                // Case 2. Non-matching
-                if (aPiecesSpan[49] == aPiecesSpan[9] && aPiecesSpan[4] == aPiecesSpan[2] && aPiecesSpan[4] == aPiecesSpan[7] && aPiecesSpan[4] == aPiecesSpan[37])
-                {
-                    if (aPiecesSpan[13] == aPiecesSpan[16] && aPiecesSpan[13] == aPiecesSpan[19] && aPiecesSpan[13] == aPiecesSpan[44])
+                    // Case 2. Non-matching  
+                    if (aPiecesSpan[49] == aPiecesSpan[9] && aPiecesSpan[4] == aPiecesSpan[2] && aPiecesSpan[4] == aPiecesSpan[37] && aPiecesSpan[13] == aPiecesSpan[19] && aPiecesSpan[13] == aPiecesSpan[44])
                     {
                         _ = MakeTurnAsync("R U R'");
                         continue;
                     }
-                }
 
-                // Case 3. White on top
-                if (aPiecesSpan[49] == aPiecesSpan[44] && aPiecesSpan[4] == aPiecesSpan[7] && aPiecesSpan[4] == aPiecesSpan[9] && aPiecesSpan[4] == aPiecesSpan[19])
-                {
-                    if (aPiecesSpan[13] == aPiecesSpan[2] && aPiecesSpan[13] == aPiecesSpan[16] && aPiecesSpan[13] == aPiecesSpan[37])
+                    // Case 3. White on top - edge at the left
+                    //if (aPiecesSpan[49] == aPiecesSpan[44] && aPiecesSpan[4] == aPiecesSpan[9] && aPiecesSpan[4] == aPiecesSpan[28] && aPiecesSpan[13] == aPiecesSpan[2] && aPiecesSpan[13] == aPiecesSpan[39])
+                    //{
+                    //    _ = MakeTurnAsync("U' F' U' R y U' L' U L"); 
+                    //    continue;
+                    //}
+
+                    // Case 3. White on top - edge at the back
+                    if (aPiecesSpan[49] == aPiecesSpan[44] && aPiecesSpan[4] == aPiecesSpan[9] && aPiecesSpan[4] == aPiecesSpan[19] && aPiecesSpan[13] == aPiecesSpan[2] && aPiecesSpan[13] == aPiecesSpan[37])
                     {
                         _ = MakeTurnAsync("U2 F' U' R y U' L' U L");
                         continue;
                     }
-                }
 
-                // Case 4. Mirrored matching
-                if (aPiecesSpan[49] == aPiecesSpan[2] && aPiecesSpan[4] == aPiecesSpan[7] && aPiecesSpan[4] == aPiecesSpan[39] && aPiecesSpan[4] == aPiecesSpan[44])
-                {
-                    if (aPiecesSpan[13] == aPiecesSpan[9] && aPiecesSpan[13] == aPiecesSpan[16] && aPiecesSpan[13] == aPiecesSpan[28])
+                    // Case 4. Mirrored matching
+                    if (aPiecesSpan[49] == aPiecesSpan[2] && aPiecesSpan[4] == aPiecesSpan[39] && aPiecesSpan[4] == aPiecesSpan[44] && aPiecesSpan[13] == aPiecesSpan[9] && aPiecesSpan[13] == aPiecesSpan[28])
                     {
                         _ = MakeTurnAsync("U' R U2 R' U2 R U' R'");
                         continue;
                     }
-                }
 
-                // Case 5. Mirrored non-matching
-                if (aPiecesSpan[49] == aPiecesSpan[2] && aPiecesSpan[4] == aPiecesSpan[7] && aPiecesSpan[4] == aPiecesSpan[28] && aPiecesSpan[4] == aPiecesSpan[44])
-                {
-                    if (aPiecesSpan[13] == aPiecesSpan[9] && aPiecesSpan[13] == aPiecesSpan[16] && aPiecesSpan[13] == aPiecesSpan[39])
+                    // Case 5. Mirrored non-matching
+                    if (aPiecesSpan[49] == aPiecesSpan[2] && aPiecesSpan[4] == aPiecesSpan[28] && aPiecesSpan[4] == aPiecesSpan[44] && aPiecesSpan[13] == aPiecesSpan[9] && aPiecesSpan[13] == aPiecesSpan[39])
                     {
                         _ = MakeTurnAsync("y L' U' L");
                         continue;
                     }
-                }
 
-                // Part 3. Solving the last pair
-                if (aPiecesSpan[49] == aPiecesSpan[9] && aPiecesSpan[4] == aPiecesSpan[2] && aPiecesSpan[4] == aPiecesSpan[3] && aPiecesSpan[4] == aPiecesSpan[6] && aPiecesSpan[4] == aPiecesSpan[7] && aPiecesSpan[4] == aPiecesSpan[43])
-                {
-                    if (aPiecesSpan[13] == aPiecesSpan[1] && aPiecesSpan[13] == aPiecesSpan[14] && aPiecesSpan[13] == aPiecesSpan[16] && aPiecesSpan[13] == aPiecesSpan[17] && aPiecesSpan[13] == aPiecesSpan[44])
+                    // Part 3. Solving the last pair
+                    if (aPiecesSpan[49] == aPiecesSpan[9] && aPiecesSpan[4] == aPiecesSpan[2] && aPiecesSpan[4] == aPiecesSpan[3] && aPiecesSpan[4] == aPiecesSpan[6] && aPiecesSpan[4] == aPiecesSpan[43] && aPiecesSpan[13] == aPiecesSpan[1] && aPiecesSpan[13] == aPiecesSpan[14] && aPiecesSpan[13] == aPiecesSpan[17] && aPiecesSpan[13] == aPiecesSpan[44])
                     {
                         _ = MakeTurnAsync("y' U R' U2 R y U' R U R'");
                         continue;
@@ -296,417 +297,297 @@ namespace RubiksCube
                 //--------------------------------------------------------------------------------------------------------------
 
                 // https://solvethecube.com/algorithms
-
-                // 1. Basic cases
-                // 1.1   R U R'
-                if (aPiecesSpan[49] == aPiecesSpan[9] && aPiecesSpan[4] == aPiecesSpan[2] && aPiecesSpan[4] == aPiecesSpan[37])
+                // Piece 4 = 7 and piece 13 = 16
+                if (aPiecesSpan[4] == aPiecesSpan[7] && aPiecesSpan[13] == aPiecesSpan[16])
                 {
-                    if (aPiecesSpan[13] == aPiecesSpan[19] && aPiecesSpan[13] == aPiecesSpan[44])
+                    // 1. Basic cases
+                    // 1.1   R U R'
+                    if (aPiecesSpan[49] == aPiecesSpan[9] && aPiecesSpan[4] == aPiecesSpan[2] && aPiecesSpan[4] == aPiecesSpan[37] && aPiecesSpan[13] == aPiecesSpan[19] && aPiecesSpan[13] == aPiecesSpan[44])
                     {
                         _ = MakeTurnAsync("R U R'");
                         continue;
                     }
-                }
 
-                // 1.2   F' U' F
-                if (aPiecesSpan[49] == aPiecesSpan[2] && aPiecesSpan[4] == aPiecesSpan[28] && aPiecesSpan[4] == aPiecesSpan[44])
-                {
-                    if (aPiecesSpan[13] == aPiecesSpan[9] && aPiecesSpan[13] == aPiecesSpan[39])
+                    // 1.2   F' U' F
+                    if (aPiecesSpan[49] == aPiecesSpan[2] && aPiecesSpan[4] == aPiecesSpan[28] && aPiecesSpan[4] == aPiecesSpan[44] && aPiecesSpan[13] == aPiecesSpan[9] && aPiecesSpan[13] == aPiecesSpan[39])
                     {
                         _ = MakeTurnAsync("F' U' F");
                         continue;
                     }
-                }
 
-                // 1.3   U R U' R'
-                if (aPiecesSpan[49] == aPiecesSpan[2] && aPiecesSpan[4] == aPiecesSpan[41] && aPiecesSpan[4] == aPiecesSpan[44])
-                {
-                    if (aPiecesSpan[13] == aPiecesSpan[9] && aPiecesSpan[13] == aPiecesSpan[10])
+                    // 1.3   U R U' R'
+                    if (aPiecesSpan[49] == aPiecesSpan[2] && aPiecesSpan[4] == aPiecesSpan[41] && aPiecesSpan[4] == aPiecesSpan[44] && aPiecesSpan[13] == aPiecesSpan[9] && aPiecesSpan[13] == aPiecesSpan[10])
                     {
                         _ = MakeTurnAsync("U R U' R'");
                         continue;
                     }
-                }
 
-                // 1.4   U' F' U F
-                if (aPiecesSpan[49] == aPiecesSpan[9] && aPiecesSpan[4] == aPiecesSpan[1] && aPiecesSpan[4] == aPiecesSpan[2])
-                {
-                    if (aPiecesSpan[13] == aPiecesSpan[43] && aPiecesSpan[13] == aPiecesSpan[44])
+                    // 1.4   U' F' U F
+                    if (aPiecesSpan[49] == aPiecesSpan[9] && aPiecesSpan[4] == aPiecesSpan[1] && aPiecesSpan[4] == aPiecesSpan[2] && aPiecesSpan[13] == aPiecesSpan[43] && aPiecesSpan[13] == aPiecesSpan[44])
                     {
                         _ = MakeTurnAsync("U' F' U F");
                         continue;
                     }
-                }
 
-                // 2. Corner and edge in top
-                // 2.1   (U' R U') (R' U R) U R'
-                if (aPiecesSpan[49] == aPiecesSpan[9] && aPiecesSpan[4] == aPiecesSpan[2] && aPiecesSpan[4] == aPiecesSpan[41])
-                {
-                    if (aPiecesSpan[13] == aPiecesSpan[10] && aPiecesSpan[13] == aPiecesSpan[44])
+                    // 2. Corner and edge in top
+                    // 2.1   (U' R U') (R' U R) U R'
+                    if (aPiecesSpan[49] == aPiecesSpan[9] && aPiecesSpan[4] == aPiecesSpan[2] && aPiecesSpan[4] == aPiecesSpan[41] && aPiecesSpan[13] == aPiecesSpan[10] && aPiecesSpan[13] == aPiecesSpan[44])
                     {
                         _ = MakeTurnAsync("U' R U' R' U R U R'");
                         continue;
                     }
-                }
 
-                // 2.2   (U F' U) (F U' F') U' F
-                if (aPiecesSpan[49] == aPiecesSpan[2] && aPiecesSpan[4] == aPiecesSpan[1] && aPiecesSpan[4] == aPiecesSpan[44])
-                {
-                    if (aPiecesSpan[13] == aPiecesSpan[9] && aPiecesSpan[13] == aPiecesSpan[43])
+                    // 2.2   (U F' U) (F U' F') U' F
+                    if (aPiecesSpan[49] == aPiecesSpan[2] && aPiecesSpan[4] == aPiecesSpan[1] && aPiecesSpan[4] == aPiecesSpan[44] && aPiecesSpan[13] == aPiecesSpan[9] && aPiecesSpan[13] == aPiecesSpan[43])
                     {
                         _ = MakeTurnAsync("U F' U F U' F' U' F");
                         continue;
                     }
-                }
 
-                // 2.3   (U' R U) (R' U R) U R'
-                if (aPiecesSpan[49] == aPiecesSpan[9] && aPiecesSpan[4] == aPiecesSpan[2] && aPiecesSpan[4] == aPiecesSpan[39])
-                {
-                    if (aPiecesSpan[13] == aPiecesSpan[28] && aPiecesSpan[13] == aPiecesSpan[44])
+                    // 2.3   (U' R U) (R' U R) U R'
+                    if (aPiecesSpan[49] == aPiecesSpan[9] && aPiecesSpan[4] == aPiecesSpan[2] && aPiecesSpan[4] == aPiecesSpan[39] && aPiecesSpan[13] == aPiecesSpan[28] && aPiecesSpan[13] == aPiecesSpan[44])
                     {
                         _ = MakeTurnAsync("U' R U R' U R U R'");
                         continue;
                     }
-                }
 
-                // 2.4   (U F' U') (F U' F') U' F
-                if (aPiecesSpan[49] == aPiecesSpan[2] && aPiecesSpan[4] == aPiecesSpan[19] && aPiecesSpan[4] == aPiecesSpan[44])
-                {
-                    if (aPiecesSpan[13] == aPiecesSpan[9] && aPiecesSpan[13] == aPiecesSpan[37])
+                    // 2.4   (U F' U') (F U' F') U' F
+                    if (aPiecesSpan[49] == aPiecesSpan[2] && aPiecesSpan[4] == aPiecesSpan[19] && aPiecesSpan[4] == aPiecesSpan[44] && aPiecesSpan[13] == aPiecesSpan[9] && aPiecesSpan[13] == aPiecesSpan[37])
                     {
                         _ = MakeTurnAsync("U F' U' F U' F' U' F");
                         continue;
                     }
-                }
 
-                // 2.5   d (R' U2 R) d' (R U R')
-                if (aPiecesSpan[49] == aPiecesSpan[9] && aPiecesSpan[4] == aPiecesSpan[2] && aPiecesSpan[4] == aPiecesSpan[43])
-                {
-                    if (aPiecesSpan[13] == aPiecesSpan[1] && aPiecesSpan[13] == aPiecesSpan[44])
+                    // 2.5   d (R' U2 R) d' (R U R')
+                    if (aPiecesSpan[49] == aPiecesSpan[9] && aPiecesSpan[4] == aPiecesSpan[2] && aPiecesSpan[4] == aPiecesSpan[43] && aPiecesSpan[13] == aPiecesSpan[1] && aPiecesSpan[13] == aPiecesSpan[44])
                     {
                         _ = MakeTurnAsync("d R' U2 R d' R U R'");
                         continue;
                     }
-                }
 
-                // 2.6   U' (R U2 R') d (R' U' R)
-                if (aPiecesSpan[49] == aPiecesSpan[2] && aPiecesSpan[4] == aPiecesSpan[10] && aPiecesSpan[4] == aPiecesSpan[44])
-                {
-                    if (aPiecesSpan[13] == aPiecesSpan[9] && aPiecesSpan[13] == aPiecesSpan[41])
+                    // 2.6   U' (R U2 R') d (R' U' R)
+                    if (aPiecesSpan[49] == aPiecesSpan[2] && aPiecesSpan[4] == aPiecesSpan[10] && aPiecesSpan[4] == aPiecesSpan[44] && aPiecesSpan[13] == aPiecesSpan[9] && aPiecesSpan[13] == aPiecesSpan[41])
                     {
                         _ = MakeTurnAsync("U' R U2 R' d R' U' R");
                         continue;
                     }
-                }
 
-                // 2.7   (R U' R' U) d (R' U' R)
-                if (aPiecesSpan[49] == aPiecesSpan[9] && aPiecesSpan[4] == aPiecesSpan[2] && aPiecesSpan[4] == aPiecesSpan[10])
-                {
-                    if (aPiecesSpan[13] == aPiecesSpan[41] && aPiecesSpan[13] == aPiecesSpan[44])
+                    // 2.7   (R U' R' U) d (R' U' R)
+                    if (aPiecesSpan[49] == aPiecesSpan[9] && aPiecesSpan[4] == aPiecesSpan[2] && aPiecesSpan[4] == aPiecesSpan[10] && aPiecesSpan[13] == aPiecesSpan[41] && aPiecesSpan[13] == aPiecesSpan[44])
                     {
                         _ = MakeTurnAsync("R U' R' U d R' U' R");
                         continue;
                     }
-                }
 
-                // 2.8   (F' U F U') d' (F U F')
-                if (aPiecesSpan[49] == aPiecesSpan[2] && aPiecesSpan[4] == aPiecesSpan[43] && aPiecesSpan[4] == aPiecesSpan[44])
-                {
-                    if (aPiecesSpan[13] == aPiecesSpan[1] && aPiecesSpan[13] == aPiecesSpan[9])
+                    // 2.8   (F' U F U') d' (F U F')
+                    if (aPiecesSpan[49] == aPiecesSpan[2] && aPiecesSpan[4] == aPiecesSpan[43] && aPiecesSpan[4] == aPiecesSpan[44] && aPiecesSpan[13] == aPiecesSpan[1] && aPiecesSpan[13] == aPiecesSpan[9])
                     {
                         _ = MakeTurnAsync("F' U F U' d' F U F'");
                         continue;
                     }
-                }
 
-                // 2.9   (U F' U2 F) (U F' U2 F)
-                if (aPiecesSpan[49] == aPiecesSpan[9] && aPiecesSpan[4] == aPiecesSpan[2] && aPiecesSpan[4] == aPiecesSpan[19])
-                {
-                    if (aPiecesSpan[13] == aPiecesSpan[37] && aPiecesSpan[13] == aPiecesSpan[44])
+                    // 2.9   (U F' U2 F) (U F' U2 F)
+                    if (aPiecesSpan[49] == aPiecesSpan[9] && aPiecesSpan[4] == aPiecesSpan[2] && aPiecesSpan[4] == aPiecesSpan[19] && aPiecesSpan[13] == aPiecesSpan[37] && aPiecesSpan[13] == aPiecesSpan[44])
                     {
                         _ = MakeTurnAsync("U F' U2 F U F' U2 F");
                         continue;
                     }
-                }
 
-                // 2.10   (U' R U2 R') (U' R U2 R')
-                if (aPiecesSpan[49] == aPiecesSpan[2] && aPiecesSpan[4] == aPiecesSpan[39] && aPiecesSpan[4] == aPiecesSpan[44])
-                {
-                    if (aPiecesSpan[13] == aPiecesSpan[9] && aPiecesSpan[13] == aPiecesSpan[28])
+                    // 2.10   (U' R U2 R') (U' R U2 R')
+                    if (aPiecesSpan[49] == aPiecesSpan[2] && aPiecesSpan[4] == aPiecesSpan[39] && aPiecesSpan[4] == aPiecesSpan[44] && aPiecesSpan[13] == aPiecesSpan[9] && aPiecesSpan[13] == aPiecesSpan[28])
                     {
                         _ = MakeTurnAsync("U' R U2 R' U' R U2 R'");
                         continue;
                     }
-                }
 
-                // 2.11   (U F' U' F) (U F' U2 F)
-                if (aPiecesSpan[49] == aPiecesSpan[9] && aPiecesSpan[4] == aPiecesSpan[2] && aPiecesSpan[4] == aPiecesSpan[28])
-                {
-                    if (aPiecesSpan[13] == aPiecesSpan[39] && aPiecesSpan[13] == aPiecesSpan[44])
+                    // 2.11   (U F' U' F) (U F' U2 F)
+                    if (aPiecesSpan[49] == aPiecesSpan[9] && aPiecesSpan[4] == aPiecesSpan[2] && aPiecesSpan[4] == aPiecesSpan[28] && aPiecesSpan[13] == aPiecesSpan[39] && aPiecesSpan[13] == aPiecesSpan[44])
                     {
                         _ = MakeTurnAsync("U F' U' F U F' U2 F");
                         continue;
                     }
-                }
 
-                // 2.12   (U' R U R') (U' R U2 R')
-                if (aPiecesSpan[49] == aPiecesSpan[2] && aPiecesSpan[4] == aPiecesSpan[37] && aPiecesSpan[4] == aPiecesSpan[44])
-                {
-                    if (aPiecesSpan[13] == aPiecesSpan[9] && aPiecesSpan[13] == aPiecesSpan[19])
+                    // 2.12   (U' R U R') (U' R U2 R')
+                    if (aPiecesSpan[49] == aPiecesSpan[2] && aPiecesSpan[4] == aPiecesSpan[37] && aPiecesSpan[4] == aPiecesSpan[44] && aPiecesSpan[13] == aPiecesSpan[9] && aPiecesSpan[13] == aPiecesSpan[19])
                     {
                         _ = MakeTurnAsync("U' R U R' U' R U2 R'");
                         continue;
                     }
-                }
 
-                // 3. Corner pointing up, edge in top
-                // 3.1   (R U2 R' U') (R U R')
-                if (aPiecesSpan[49] == aPiecesSpan[44] && aPiecesSpan[4] == aPiecesSpan[9] && aPiecesSpan[4] == aPiecesSpan[41])
-                {
-                    if (aPiecesSpan[13] == aPiecesSpan[2] && aPiecesSpan[13] == aPiecesSpan[10])
+                    // 3. Corner pointing up, edge in top
+                    // 3.1   (R U2 R' U') (R U R')
+                    if (aPiecesSpan[49] == aPiecesSpan[44] && aPiecesSpan[4] == aPiecesSpan[9] && aPiecesSpan[4] == aPiecesSpan[41] && aPiecesSpan[13] == aPiecesSpan[2] && aPiecesSpan[13] == aPiecesSpan[10])
                     {
                         _ = MakeTurnAsync("R U2 R' U' R U R'");
                         continue;
                     }
-                }
 
-                // 3.2   (F' U2 F U) (F' U' F)
-                if (aPiecesSpan[49] == aPiecesSpan[44] && aPiecesSpan[4] == aPiecesSpan[1] && aPiecesSpan[4] == aPiecesSpan[9])
-                {
-                    if (aPiecesSpan[13] == aPiecesSpan[2] && aPiecesSpan[13] == aPiecesSpan[43])
+                    // 3.2   (F' U2 F U) (F' U' F)
+                    if (aPiecesSpan[49] == aPiecesSpan[44] && aPiecesSpan[4] == aPiecesSpan[1] && aPiecesSpan[4] == aPiecesSpan[9] && aPiecesSpan[13] == aPiecesSpan[2] && aPiecesSpan[13] == aPiecesSpan[43])
                     {
                         _ = MakeTurnAsync("F' U2 F U F' U' F");
                         continue;
                     }
-                }
 
-                // 3.3   (U R U2 R') (U R U' R')
-                if (aPiecesSpan[49] == aPiecesSpan[44] && aPiecesSpan[4] == aPiecesSpan[9] && aPiecesSpan[4] == aPiecesSpan[37])
-                {
-                    if (aPiecesSpan[13] == aPiecesSpan[2] && aPiecesSpan[13] == aPiecesSpan[19])
+                    // 3.3   (U R U2 R') (U R U' R')
+                    if (aPiecesSpan[49] == aPiecesSpan[44] && aPiecesSpan[4] == aPiecesSpan[9] && aPiecesSpan[4] == aPiecesSpan[37] && aPiecesSpan[13] == aPiecesSpan[2] && aPiecesSpan[13] == aPiecesSpan[19])
                     {
                         _ = MakeTurnAsync("U R U2 R' U R U' R'");
                         continue;
                     }
-                }
 
-                // 3.4   (U' F' U2 F) (U' F' U F)
-                if (aPiecesSpan[49] == aPiecesSpan[44] && aPiecesSpan[4] == aPiecesSpan[9] && aPiecesSpan[4] == aPiecesSpan[28])
-                {
-                    if (aPiecesSpan[13] == aPiecesSpan[2] && aPiecesSpan[13] == aPiecesSpan[39])
+                    // 3.4   (U' F' U2 F) (U' F' U F)
+                    if (aPiecesSpan[49] == aPiecesSpan[44] && aPiecesSpan[4] == aPiecesSpan[9] && aPiecesSpan[4] == aPiecesSpan[28] && aPiecesSpan[13] == aPiecesSpan[2] && aPiecesSpan[13] == aPiecesSpan[39])
                     {
                         _ = MakeTurnAsync("U' F' U2 F U' F' U F");
                         continue;
                     }
-                }
 
-                // 3.5   U2 (R U R' U) (R U' R')
-                if (aPiecesSpan[49] == aPiecesSpan[44] && aPiecesSpan[4] == aPiecesSpan[9] && aPiecesSpan[4] == aPiecesSpan[39])
-                {
-                    if (aPiecesSpan[13] == aPiecesSpan[2] && aPiecesSpan[13] == aPiecesSpan[28])
+                    // 3.5   U2 (R U R' U) (R U' R')
+                    if (aPiecesSpan[49] == aPiecesSpan[44] && aPiecesSpan[4] == aPiecesSpan[9] && aPiecesSpan[4] == aPiecesSpan[39] && aPiecesSpan[13] == aPiecesSpan[2] && aPiecesSpan[13] == aPiecesSpan[28])
                     {
                         _ = MakeTurnAsync("U2 R U R' U R U' R'");
                         continue;
                     }
-                }
 
-                // 3.6   U2 (F' U' F U') (F' U F)
-                if (aPiecesSpan[49] == aPiecesSpan[44] && aPiecesSpan[4] == aPiecesSpan[9] && aPiecesSpan[4] == aPiecesSpan[19])
-                {
-                    if (aPiecesSpan[13] == aPiecesSpan[2] && aPiecesSpan[13] == aPiecesSpan[37])
+                    // 3.6   U2 (F' U' F U') (F' U F)
+                    if (aPiecesSpan[49] == aPiecesSpan[44] && aPiecesSpan[4] == aPiecesSpan[9] && aPiecesSpan[4] == aPiecesSpan[19] && aPiecesSpan[13] == aPiecesSpan[2] && aPiecesSpan[13] == aPiecesSpan[37])
                     {
                         _ = MakeTurnAsync("U2 F' U' F U' F' U F");
                         continue;
                     }
-                }
 
-                // 3.7   (R U R' U') U' (R U R' U') (R U R')
-                if (aPiecesSpan[49] == aPiecesSpan[44] && aPiecesSpan[4] == aPiecesSpan[9] && aPiecesSpan[4] == aPiecesSpan[43])
-                {
-                    if (aPiecesSpan[13] == aPiecesSpan[1] && aPiecesSpan[13] == aPiecesSpan[2])
+                    // 3.7   (R U R' U') U' (R U R' U') (R U R')
+                    if (aPiecesSpan[49] == aPiecesSpan[44] && aPiecesSpan[4] == aPiecesSpan[9] && aPiecesSpan[4] == aPiecesSpan[43] && aPiecesSpan[13] == aPiecesSpan[1] && aPiecesSpan[13] == aPiecesSpan[2])
                     {
                         _ = MakeTurnAsync("R U R' U' U' R U R' U' R U R'");
                         continue;
                     }
-                }
 
-                // 3.8   y' (R' U' R U) U (R' U' R U) (R' U' R)
-                if (aPiecesSpan[49] == aPiecesSpan[44] && aPiecesSpan[4] == aPiecesSpan[9] && aPiecesSpan[4] == aPiecesSpan[10])
-                {
-                    if (aPiecesSpan[13] == aPiecesSpan[2] && aPiecesSpan[13] == aPiecesSpan[41])
+                    // 3.8   y' (R' U' R U) U (R' U' R U) (R' U' R)
+                    if (aPiecesSpan[49] == aPiecesSpan[44] && aPiecesSpan[4] == aPiecesSpan[9] && aPiecesSpan[4] == aPiecesSpan[10] && aPiecesSpan[13] == aPiecesSpan[2] && aPiecesSpan[13] == aPiecesSpan[41])
                     {
                         _ = MakeTurnAsync("y' R' U' R U U R' U' R U R' U' R");
                         continue;
                     }
-                }
 
-                // 4. Corner in top, edge in middle
-                // 4.1   (U F' U F) (U F' U2 F)
-                if (aPiecesSpan[49] == aPiecesSpan[9] && aPiecesSpan[4] == aPiecesSpan[2] && aPiecesSpan[4] == aPiecesSpan[5])
-                {
-                    if (aPiecesSpan[13] == aPiecesSpan[12] && aPiecesSpan[13] == aPiecesSpan[44])
+                    // 4. Corner in top, edge in middle
+                    // 4.1   (U F' U F) (U F' U2 F)
+                    if (aPiecesSpan[49] == aPiecesSpan[9] && aPiecesSpan[4] == aPiecesSpan[2] && aPiecesSpan[4] == aPiecesSpan[5] && aPiecesSpan[13] == aPiecesSpan[12] && aPiecesSpan[13] == aPiecesSpan[44])
                     {
                         _ = MakeTurnAsync("U F' U F U F' U2 F");
                         continue;
                     }
-                }
 
-                // 4.2   (U' R U' R') (U' R U2 R')
-                if (aPiecesSpan[49] == aPiecesSpan[2] && aPiecesSpan[4] == aPiecesSpan[5] && aPiecesSpan[4] == aPiecesSpan[44])
-                {
-                    if (aPiecesSpan[13] == aPiecesSpan[9] && aPiecesSpan[13] == aPiecesSpan[12])
+                    // 4.2   (U' R U' R') (U' R U2 R')
+                    if (aPiecesSpan[49] == aPiecesSpan[2] && aPiecesSpan[4] == aPiecesSpan[5] && aPiecesSpan[4] == aPiecesSpan[44] && aPiecesSpan[13] == aPiecesSpan[9] && aPiecesSpan[13] == aPiecesSpan[12])
                     {
                         _ = MakeTurnAsync("U' R U' R' U' R U2 R'");
                         continue;
                     }
-                }
 
-                // 4.3   (U F' U' F) (d' F U F')
-                if (aPiecesSpan[49] == aPiecesSpan[9] && aPiecesSpan[4] == aPiecesSpan[2] && aPiecesSpan[4] == aPiecesSpan[12])
-                {
-                    if (aPiecesSpan[13] == aPiecesSpan[5] && aPiecesSpan[13] == aPiecesSpan[44])
+                    // 4.3   (U F' U' F) (d' F U F')
+                    if (aPiecesSpan[49] == aPiecesSpan[9] && aPiecesSpan[4] == aPiecesSpan[2] && aPiecesSpan[4] == aPiecesSpan[12] && aPiecesSpan[13] == aPiecesSpan[5] && aPiecesSpan[13] == aPiecesSpan[44])
                     {
                         _ = MakeTurnAsync("U F' U' F d' F U F'");
                         continue;
                     }
-                }
 
-                // 4.4   (U' R U R') (d R' U' R)
-                if (aPiecesSpan[49] == aPiecesSpan[2] && aPiecesSpan[4] == aPiecesSpan[12] && aPiecesSpan[4] == aPiecesSpan[44])
-                {
-                    if (aPiecesSpan[13] == aPiecesSpan[5] && aPiecesSpan[13] == aPiecesSpan[9])
+                    // 4.4   (U' R U R') (d R' U' R)
+                    if (aPiecesSpan[49] == aPiecesSpan[2] && aPiecesSpan[4] == aPiecesSpan[12] && aPiecesSpan[4] == aPiecesSpan[44] && aPiecesSpan[13] == aPiecesSpan[5] && aPiecesSpan[13] == aPiecesSpan[9])
                     {
                         _ = MakeTurnAsync("U' R U R' d R' U' R");
                         continue;
                     }
-                }
 
-                // 4.5   (R U' R') (d R' U R)
-                if (aPiecesSpan[49] == aPiecesSpan[44] && aPiecesSpan[4] == aPiecesSpan[9] && aPiecesSpan[4] == aPiecesSpan[12])
-                {
-                    if (aPiecesSpan[13] == aPiecesSpan[2] && aPiecesSpan[13] == aPiecesSpan[5])
+                    // 4.5   (R U' R') (d R' U R)
+                    if (aPiecesSpan[49] == aPiecesSpan[44] && aPiecesSpan[4] == aPiecesSpan[9] && aPiecesSpan[4] == aPiecesSpan[12] && aPiecesSpan[13] == aPiecesSpan[2] && aPiecesSpan[13] == aPiecesSpan[5])
                     {
                         _ = MakeTurnAsync("R U' R' d R' U R");
                         continue;
                     }
-                }
 
-                // 4.6   (R U R' U') (R U R' U') (R U R')
-                if (aPiecesSpan[49] == aPiecesSpan[44] && aPiecesSpan[4] == aPiecesSpan[5] && aPiecesSpan[4] == aPiecesSpan[9])
-                {
-                    if (aPiecesSpan[13] == aPiecesSpan[2] && aPiecesSpan[13] == aPiecesSpan[12])
+                    // 4.6   (R U R' U') (R U R' U') (R U R')
+                    if (aPiecesSpan[49] == aPiecesSpan[44] && aPiecesSpan[4] == aPiecesSpan[5] && aPiecesSpan[4] == aPiecesSpan[9] && aPiecesSpan[13] == aPiecesSpan[2] && aPiecesSpan[13] == aPiecesSpan[12])
                     {
                         _ = MakeTurnAsync("R U R' U' R U R' U' R U R'");
                         continue;
                     }
-                }
 
-                // 5. Corner in bottom, edge in top
-                // 5.1   (U R U' R') (U' F' U F)
-                if (aPiecesSpan[49] == aPiecesSpan[47] && aPiecesSpan[4] == aPiecesSpan[1] && aPiecesSpan[4] == aPiecesSpan[8])
-                {
-                    if (aPiecesSpan[13] == aPiecesSpan[15] && aPiecesSpan[13] == aPiecesSpan[43])
+                    // 5. Corner in bottom, edge in top
+                    // 5.1   (U R U' R') (U' F' U F)
+                    if (aPiecesSpan[49] == aPiecesSpan[47] && aPiecesSpan[4] == aPiecesSpan[1] && aPiecesSpan[4] == aPiecesSpan[8] && aPiecesSpan[13] == aPiecesSpan[15] && aPiecesSpan[13] == aPiecesSpan[43])
                     {
                         _ = MakeTurnAsync("U R U' R' U' F' U F");
                         continue;
                     }
-                }
 
-                // 5.2   (U' F' U F) (U R U' R')
-                if (aPiecesSpan[49] == aPiecesSpan[47] && aPiecesSpan[4] == aPiecesSpan[8] && aPiecesSpan[4] == aPiecesSpan[41])
-                {
-                    if (aPiecesSpan[13] == aPiecesSpan[10] && aPiecesSpan[13] == aPiecesSpan[15])
+                    // 5.2   (U' F' U F) (U R U' R')
+                    if (aPiecesSpan[49] == aPiecesSpan[47] && aPiecesSpan[4] == aPiecesSpan[8] && aPiecesSpan[4] == aPiecesSpan[41] && aPiecesSpan[13] == aPiecesSpan[10] && aPiecesSpan[13] == aPiecesSpan[15])
                     {
                         _ = MakeTurnAsync("U' F' U F U R U' R'");
                         continue;
                     }
-                }
 
-                // 5.3   (F' U F) (U' F' U F)
-                if (aPiecesSpan[49] == aPiecesSpan[15] && aPiecesSpan[4] == aPiecesSpan[1] && aPiecesSpan[4] == aPiecesSpan[47])
-                {
-                    if (aPiecesSpan[13] == aPiecesSpan[8] && aPiecesSpan[13] == aPiecesSpan[43])
+                    // 5.3   (F' U F) (U' F' U F)
+                    if (aPiecesSpan[49] == aPiecesSpan[15] && aPiecesSpan[4] == aPiecesSpan[1] && aPiecesSpan[4] == aPiecesSpan[47] && aPiecesSpan[13] == aPiecesSpan[8] && aPiecesSpan[13] == aPiecesSpan[43])
                     {
                         _ = MakeTurnAsync("F' U F U' F' U F");
                         continue;
                     }
-                }
 
-                // 5.4   (R U' R') (U R U' R')
-                if (aPiecesSpan[49] == aPiecesSpan[8] && aPiecesSpan[4] == aPiecesSpan[15] && aPiecesSpan[4] == aPiecesSpan[41])
-                {
-                    if (aPiecesSpan[13] == aPiecesSpan[10] && aPiecesSpan[13] == aPiecesSpan[47])
+                    // 5.4   (R U' R') (U R U' R')
+                    if (aPiecesSpan[49] == aPiecesSpan[8] && aPiecesSpan[4] == aPiecesSpan[15] && aPiecesSpan[4] == aPiecesSpan[41] && aPiecesSpan[13] == aPiecesSpan[10] && aPiecesSpan[13] == aPiecesSpan[47])
                     {
                         _ = MakeTurnAsync("R U' R' U R U' R'");
                         continue;
                     }
-                }
 
-                // 5.5   (R U R') (U' R U R')
-                if (aPiecesSpan[49] == aPiecesSpan[15] && aPiecesSpan[4] == aPiecesSpan[41] && aPiecesSpan[4] == aPiecesSpan[47])
-                {
-                    if (aPiecesSpan[13] == aPiecesSpan[8] && aPiecesSpan[13] == aPiecesSpan[10])
+                    // 5.5   (R U R') (U' R U R')
+                    if (aPiecesSpan[49] == aPiecesSpan[15] && aPiecesSpan[4] == aPiecesSpan[41] && aPiecesSpan[4] == aPiecesSpan[47] && aPiecesSpan[13] == aPiecesSpan[8] && aPiecesSpan[13] == aPiecesSpan[10])
                     {
                         _ = MakeTurnAsync("R U R' U' R U R'");
                         continue;
                     }
-                }
 
-                // 5.6   (F' U' F) (U F' U' F)
-                if (aPiecesSpan[49] == aPiecesSpan[8] && aPiecesSpan[4] == aPiecesSpan[1] && aPiecesSpan[4] == aPiecesSpan[15])
-                {
-                    if (aPiecesSpan[13] == aPiecesSpan[43] && aPiecesSpan[13] == aPiecesSpan[47])
+                    // 5.6   (F' U' F) (U F' U' F)
+                    if (aPiecesSpan[49] == aPiecesSpan[8] && aPiecesSpan[4] == aPiecesSpan[1] && aPiecesSpan[4] == aPiecesSpan[15] && aPiecesSpan[13] == aPiecesSpan[43] && aPiecesSpan[13] == aPiecesSpan[47])
                     {
                         _ = MakeTurnAsync("F' U' F U F' U' F");
                         continue;
                     }
-                }
 
-                // 6. Corner in bottom, edge in middle
-                // 6.1   (R U' R' U) R U2 R' (U R U' R')
-                if (aPiecesSpan[49] == aPiecesSpan[15] && aPiecesSpan[4] == aPiecesSpan[5] && aPiecesSpan[4] == aPiecesSpan[47])
-                {
-                    if (aPiecesSpan[13] == aPiecesSpan[8] && aPiecesSpan[13] == aPiecesSpan[12])
+                    // 6. Corner in bottom, edge in middle
+                    // 6.1   (R U' R' U) R U2 R' (U R U' R')
+                    if (aPiecesSpan[49] == aPiecesSpan[15] && aPiecesSpan[4] == aPiecesSpan[5] && aPiecesSpan[4] == aPiecesSpan[47] && aPiecesSpan[13] == aPiecesSpan[8] && aPiecesSpan[13] == aPiecesSpan[12])
                     {
                         _ = MakeTurnAsync("R U' R' U R U2 R' U R U' R'");
                         continue;
                     }
-                }
 
-                // 6.2   (R U' R' U') (R U R' U') (R U2 R')
-                if (aPiecesSpan[49] == aPiecesSpan[8] && aPiecesSpan[4] == aPiecesSpan[5] && aPiecesSpan[4] == aPiecesSpan[15])
-                {
-                    if (aPiecesSpan[13] == aPiecesSpan[12] && aPiecesSpan[13] == aPiecesSpan[47])
+                    // 6.2   (R U' R' U') (R U R' U') (R U2 R')
+                    if (aPiecesSpan[49] == aPiecesSpan[8] && aPiecesSpan[4] == aPiecesSpan[5] && aPiecesSpan[4] == aPiecesSpan[15] && aPiecesSpan[13] == aPiecesSpan[12] && aPiecesSpan[13] == aPiecesSpan[47])
                     {
                         _ = MakeTurnAsync("R U' R' U' R U R' U' R U2 R'");
                         continue;
                     }
-                }
 
-                // 6.3   (R U R' U') (R U' R') U d (R' U' R)
-                if (aPiecesSpan[49] == aPiecesSpan[15] && aPiecesSpan[4] == aPiecesSpan[12] && aPiecesSpan[4] == aPiecesSpan[47])
-                {
-                    if (aPiecesSpan[13] == aPiecesSpan[5] && aPiecesSpan[13] == aPiecesSpan[8])
+                    // 6.3   (R U R' U') (R U' R') U d (R' U' R)
+                    if (aPiecesSpan[49] == aPiecesSpan[15] && aPiecesSpan[4] == aPiecesSpan[12] && aPiecesSpan[4] == aPiecesSpan[47] && aPiecesSpan[13] == aPiecesSpan[5] && aPiecesSpan[13] == aPiecesSpan[8])
                     {
                         _ = MakeTurnAsync("R U R' U' R U' R' U d R' U' R");
                         continue;
                     }
-                }
 
-                // 6.4   (R U' R') d (R' U' R U') (R' U' R)
-                if (aPiecesSpan[49] == aPiecesSpan[8] && aPiecesSpan[4] == aPiecesSpan[12] && aPiecesSpan[4] == aPiecesSpan[15])
-                {
-                    if (aPiecesSpan[13] == aPiecesSpan[5] && aPiecesSpan[13] == aPiecesSpan[47])
+                    // 6.4   (R U' R') d (R' U' R U') (R' U' R)
+                    if (aPiecesSpan[49] == aPiecesSpan[8] && aPiecesSpan[4] == aPiecesSpan[12] && aPiecesSpan[4] == aPiecesSpan[15] && aPiecesSpan[13] == aPiecesSpan[5] && aPiecesSpan[13] == aPiecesSpan[47])
                     {
                         _ = MakeTurnAsync("R U' R' d R' U' R U' R' U' R");
                         continue;
                     }
-                }
 
-                // 6.5   (R U' R' d R' U2 R) (U R' U2 R)
-                if (aPiecesSpan[49] == aPiecesSpan[47] && aPiecesSpan[4] == aPiecesSpan[8] && aPiecesSpan[4] == aPiecesSpan[12])
-                {
-                    if (aPiecesSpan[13] == aPiecesSpan[5] && aPiecesSpan[13] == aPiecesSpan[15])
+                    // 6.5   (R U' R' d R' U2 R) (U R' U2 R)
+                    if (aPiecesSpan[49] == aPiecesSpan[47] && aPiecesSpan[4] == aPiecesSpan[8] && aPiecesSpan[4] == aPiecesSpan[12] && aPiecesSpan[13] == aPiecesSpan[5] && aPiecesSpan[13] == aPiecesSpan[15])
                     {
                         _ = MakeTurnAsync("R U' R' d R' U2 R U R' U2 R");
                         continue;
@@ -716,387 +597,277 @@ namespace RubiksCube
                 //--------------------------------------------------------------------------------------------------------------
 
                 // https://www.cubelelo.com/blogs/cubing/f2l-method-explained-solve-rubiks-cube-under-30-seconds
-                // Case 1: Basic cases
-                // 1 Case
-                if (aPiecesSpan[49] == aPiecesSpan[9] && aPiecesSpan[4] == aPiecesSpan[2] && aPiecesSpan[4] == aPiecesSpan[37])
+                // Piece 4 = 3, 6, 7 and piece 13 = 14, 16, 17
+                if (aPiecesSpan[4] == aPiecesSpan[3] && aPiecesSpan[4] == aPiecesSpan[6] && aPiecesSpan[4] == aPiecesSpan[7] && aPiecesSpan[13] == aPiecesSpan[14] && aPiecesSpan[13] == aPiecesSpan[16] && aPiecesSpan[13] == aPiecesSpan[17])
                 {
-                    if (aPiecesSpan[13] == aPiecesSpan[19] && aPiecesSpan[13] == aPiecesSpan[44])
+                    // Case 1: Basic cases
+                    // 1 Case
+                    if (aPiecesSpan[49] == aPiecesSpan[9] && aPiecesSpan[4] == aPiecesSpan[2] && aPiecesSpan[4] == aPiecesSpan[37] && aPiecesSpan[13] == aPiecesSpan[19] && aPiecesSpan[13] == aPiecesSpan[44])
                     {
                         _ = MakeTurnAsync("R U R'");
                         continue;
                     }
-                }
 
-                // 1 Case mirror
-                if (aPiecesSpan[49] == aPiecesSpan[2] && aPiecesSpan[4] == aPiecesSpan[28] && aPiecesSpan[4] == aPiecesSpan[44])
-                {
-                    if (aPiecesSpan[13] == aPiecesSpan[9] && aPiecesSpan[13] == aPiecesSpan[39])
+                    // 1 Case mirror
+                    if (aPiecesSpan[49] == aPiecesSpan[2] && aPiecesSpan[4] == aPiecesSpan[28] && aPiecesSpan[4] == aPiecesSpan[44] && aPiecesSpan[13] == aPiecesSpan[9] && aPiecesSpan[13] == aPiecesSpan[39])
                     {
                         _ = MakeTurnAsync("F' U' F");
                         continue;
                     }
-                }
 
-                // 2 Case
-                if (aPiecesSpan[49] == aPiecesSpan[2] && aPiecesSpan[4] == aPiecesSpan[41] && aPiecesSpan[4] == aPiecesSpan[44])
-                {
-                    if (aPiecesSpan[13] == aPiecesSpan[9] && aPiecesSpan[13] == aPiecesSpan[10])
+                    // 2 Case
+                    if (aPiecesSpan[49] == aPiecesSpan[2] && aPiecesSpan[4] == aPiecesSpan[41] && aPiecesSpan[4] == aPiecesSpan[44] && aPiecesSpan[13] == aPiecesSpan[9] && aPiecesSpan[13] == aPiecesSpan[10])
                     {
                         _ = MakeTurnAsync("U R U' R'");
                         continue;
                     }
-                }
 
-                // 2 Case mirror
-                if (aPiecesSpan[49] == aPiecesSpan[9] && aPiecesSpan[4] == aPiecesSpan[1] && aPiecesSpan[4] == aPiecesSpan[2])
-                {
-                    if (aPiecesSpan[13] == aPiecesSpan[43] && aPiecesSpan[13] == aPiecesSpan[44])
+                    // 2 Case mirror
+                    if (aPiecesSpan[49] == aPiecesSpan[9] && aPiecesSpan[4] == aPiecesSpan[1] && aPiecesSpan[4] == aPiecesSpan[2] && aPiecesSpan[13] == aPiecesSpan[43] && aPiecesSpan[13] == aPiecesSpan[44])
                     {
                         _ = MakeTurnAsync("U' F' U F");
                         continue;
                     }
-                }
 
-                // Case 2: Corner and the Edge in Top Layer
-                // Type 1 Cases
-                // 1 Case
-                if (aPiecesSpan[49] == aPiecesSpan[9] && aPiecesSpan[4] == aPiecesSpan[2] && aPiecesSpan[4] == aPiecesSpan[41])
-                {
-                    if (aPiecesSpan[13] == aPiecesSpan[10] && aPiecesSpan[13] == aPiecesSpan[44])
+                    // Case 2: Corner and the Edge in Top Layer
+                    // Type 1 Cases
+                    // 1 Case
+                    if (aPiecesSpan[49] == aPiecesSpan[9] && aPiecesSpan[4] == aPiecesSpan[2] && aPiecesSpan[4] == aPiecesSpan[41] && aPiecesSpan[13] == aPiecesSpan[10] && aPiecesSpan[13] == aPiecesSpan[44])
                     {
                         _ = MakeTurnAsync("U' R U' R' U");
                         continue;
                     }
-                }
 
-                // 1 Case mirror
-                if (aPiecesSpan[49] == aPiecesSpan[2] && aPiecesSpan[4] == aPiecesSpan[1] && aPiecesSpan[4] == aPiecesSpan[44])
-                {
-                    if (aPiecesSpan[13] == aPiecesSpan[9] && aPiecesSpan[13] == aPiecesSpan[43])
+                    // 1 Case mirror
+                    if (aPiecesSpan[49] == aPiecesSpan[2] && aPiecesSpan[4] == aPiecesSpan[1] && aPiecesSpan[4] == aPiecesSpan[44] && aPiecesSpan[13] == aPiecesSpan[9] && aPiecesSpan[13] == aPiecesSpan[43])
                     {
                         _ = MakeTurnAsync("U F' U F U'");
                         continue;
                     }
-                }
 
-                // 2 Case
-                if (aPiecesSpan[49] == aPiecesSpan[9] && aPiecesSpan[4] == aPiecesSpan[2] && aPiecesSpan[4] == aPiecesSpan[39])
-                {
-                    if (aPiecesSpan[13] == aPiecesSpan[28] && aPiecesSpan[13] == aPiecesSpan[39])
+                    // 2 Case
+                    if (aPiecesSpan[49] == aPiecesSpan[9] && aPiecesSpan[4] == aPiecesSpan[2] && aPiecesSpan[4] == aPiecesSpan[39] && aPiecesSpan[13] == aPiecesSpan[28] && aPiecesSpan[13] == aPiecesSpan[39])
                     {
                         _ = MakeTurnAsync("U' R U R' U");
                         continue;
                     }
-                }
 
-                // 2 Case mirror
-                if (aPiecesSpan[49] == aPiecesSpan[2] && aPiecesSpan[4] == aPiecesSpan[19] && aPiecesSpan[4] == aPiecesSpan[44])
-                {
-                    if (aPiecesSpan[13] == aPiecesSpan[9] && aPiecesSpan[13] == aPiecesSpan[37])
+                    // 2 Case mirror
+                    if (aPiecesSpan[49] == aPiecesSpan[2] && aPiecesSpan[4] == aPiecesSpan[19] && aPiecesSpan[4] == aPiecesSpan[44] && aPiecesSpan[13] == aPiecesSpan[9] && aPiecesSpan[13] == aPiecesSpan[37])
                     {
                         _ = MakeTurnAsync("U F' U' F U'");
                         continue;
                     }
-                }
 
-                // 3 Case
-                if (aPiecesSpan[49] == aPiecesSpan[9] && aPiecesSpan[4] == aPiecesSpan[2] && aPiecesSpan[4] == aPiecesSpan[43])
-                {
-                    if (aPiecesSpan[13] == aPiecesSpan[1] && aPiecesSpan[13] == aPiecesSpan[44])
+                    // 3 Case
+                    if (aPiecesSpan[49] == aPiecesSpan[9] && aPiecesSpan[4] == aPiecesSpan[2] && aPiecesSpan[4] == aPiecesSpan[43] && aPiecesSpan[13] == aPiecesSpan[1] && aPiecesSpan[13] == aPiecesSpan[44])
                     {
                         _ = MakeTurnAsync("U F' U2 F U'");
                         continue;
                     }
-                }
 
-                // 3 Case mirror
-                if (aPiecesSpan[49] == aPiecesSpan[2] && aPiecesSpan[4] == aPiecesSpan[10] && aPiecesSpan[4] == aPiecesSpan[44])
-                {
-                    if (aPiecesSpan[13] == aPiecesSpan[9] && aPiecesSpan[13] == aPiecesSpan[41])
+                    // 3 Case mirror
+                    if (aPiecesSpan[49] == aPiecesSpan[2] && aPiecesSpan[4] == aPiecesSpan[10] && aPiecesSpan[4] == aPiecesSpan[44] && aPiecesSpan[13] == aPiecesSpan[9] && aPiecesSpan[13] == aPiecesSpan[41])
                     {
                         _ = MakeTurnAsync("U' R U2 R' U");
                         continue;
                     }
-                }
 
-                // 4 Case
-                if (aPiecesSpan[49] == aPiecesSpan[9] && aPiecesSpan[4] == aPiecesSpan[2] && aPiecesSpan[4] == aPiecesSpan[19])
-                {
-                    if (aPiecesSpan[13] == aPiecesSpan[37] && aPiecesSpan[13] == aPiecesSpan[44])
+                    // 4 Case
+                    if (aPiecesSpan[49] == aPiecesSpan[9] && aPiecesSpan[4] == aPiecesSpan[2] && aPiecesSpan[4] == aPiecesSpan[19] && aPiecesSpan[13] == aPiecesSpan[37] && aPiecesSpan[13] == aPiecesSpan[44])
                     {
                         _ = MakeTurnAsync("U F' U2 F U'");
                         continue;
                     }
-                }
 
-                // 4 Case mirror
-                if (aPiecesSpan[49] == aPiecesSpan[2] && aPiecesSpan[4] == aPiecesSpan[39] && aPiecesSpan[4] == aPiecesSpan[44])
-                {
-                    if (aPiecesSpan[13] == aPiecesSpan[9] && aPiecesSpan[13] == aPiecesSpan[28])
+                    // 4 Case mirror
+                    if (aPiecesSpan[49] == aPiecesSpan[2] && aPiecesSpan[4] == aPiecesSpan[39] && aPiecesSpan[4] == aPiecesSpan[44] && aPiecesSpan[13] == aPiecesSpan[9] && aPiecesSpan[13] == aPiecesSpan[28])
                     {
                         _ = MakeTurnAsync("U' R U2 R' U");
                         continue;
                     }
-                }
 
-                // 5 Case
-                if (aPiecesSpan[49] == aPiecesSpan[9] && aPiecesSpan[4] == aPiecesSpan[2] && aPiecesSpan[4] == aPiecesSpan[28])
-                {
-                    if (aPiecesSpan[13] == aPiecesSpan[39] && aPiecesSpan[13] == aPiecesSpan[44])
+                    // 5 Case
+                    if (aPiecesSpan[49] == aPiecesSpan[9] && aPiecesSpan[4] == aPiecesSpan[2] && aPiecesSpan[4] == aPiecesSpan[28] && aPiecesSpan[13] == aPiecesSpan[39] && aPiecesSpan[13] == aPiecesSpan[44])
                     {
                         _ = MakeTurnAsync("U F' U' F U'");
                         continue;
                     }
-                }
 
-                // 5 Case mirror (!!! no picture of cube !!!)
-                if (aPiecesSpan[49] == aPiecesSpan[2] && aPiecesSpan[4] == aPiecesSpan[37] && aPiecesSpan[4] == aPiecesSpan[44])
-                {
-                    if (aPiecesSpan[13] == aPiecesSpan[9] && aPiecesSpan[13] == aPiecesSpan[19])
+                    // 5 Case mirror (!!! no picture of cube !!!)
+                    if (aPiecesSpan[49] == aPiecesSpan[2] && aPiecesSpan[4] == aPiecesSpan[37] && aPiecesSpan[4] == aPiecesSpan[44] && aPiecesSpan[13] == aPiecesSpan[9] && aPiecesSpan[13] == aPiecesSpan[19])
                     {
                         _ = MakeTurnAsync("U' R U R' U");
                         continue;
                     }
-                }
 
-                // Type 2 Cases
-                // 1 Case
-                if (aPiecesSpan[49] == aPiecesSpan[9] && aPiecesSpan[4] == aPiecesSpan[2] && aPiecesSpan[4] == aPiecesSpan[10])
-                {
-                    if (aPiecesSpan[13] == aPiecesSpan[41] && aPiecesSpan[13] == aPiecesSpan[44])
+                    // Type 2 Cases
+                    // 1 Case
+                    if (aPiecesSpan[49] == aPiecesSpan[9] && aPiecesSpan[4] == aPiecesSpan[2] && aPiecesSpan[4] == aPiecesSpan[10] && aPiecesSpan[13] == aPiecesSpan[41] && aPiecesSpan[13] == aPiecesSpan[44])
                     {
                         _ = MakeTurnAsync("R U' R'");
                         continue;
                     }
-                }
 
-                // 1 Case mirror
-                if (aPiecesSpan[49] == aPiecesSpan[2] && aPiecesSpan[4] == aPiecesSpan[43] && aPiecesSpan[4] == aPiecesSpan[44])
-                {
-                    if (aPiecesSpan[13] == aPiecesSpan[1] && aPiecesSpan[13] == aPiecesSpan[9])
+                    // 1 Case mirror
+                    if (aPiecesSpan[49] == aPiecesSpan[2] && aPiecesSpan[4] == aPiecesSpan[43] && aPiecesSpan[4] == aPiecesSpan[44] && aPiecesSpan[13] == aPiecesSpan[1] && aPiecesSpan[13] == aPiecesSpan[9])
                     {
                         _ = MakeTurnAsync("F' U F");
                         continue;
                     }
-                }
 
-                // 2 Case (!!! no picture of cube !!!)
-                if (aPiecesSpan[49] == aPiecesSpan[44] && aPiecesSpan[4] == aPiecesSpan[9] && aPiecesSpan[4] == aPiecesSpan[41])
-                {
-                    if (aPiecesSpan[13] == aPiecesSpan[2] && aPiecesSpan[13] == aPiecesSpan[10])
+                    // 2 Case (!!! no picture of cube !!!)
+                    if (aPiecesSpan[49] == aPiecesSpan[44] && aPiecesSpan[4] == aPiecesSpan[9] && aPiecesSpan[4] == aPiecesSpan[41] && aPiecesSpan[13] == aPiecesSpan[2] && aPiecesSpan[13] == aPiecesSpan[10])
                     {
                         _ = MakeTurnAsync("R U2 R'");
                         continue;
                     }
-                }
 
-                // 2 Case mirror
-                if (aPiecesSpan[49] == aPiecesSpan[44] && aPiecesSpan[4] == aPiecesSpan[1] && aPiecesSpan[4] == aPiecesSpan[9])
-                {
-                    if (aPiecesSpan[13] == aPiecesSpan[2] && aPiecesSpan[13] == aPiecesSpan[43])
+                    // 2 Case mirror
+                    if (aPiecesSpan[49] == aPiecesSpan[44] && aPiecesSpan[4] == aPiecesSpan[1] && aPiecesSpan[4] == aPiecesSpan[9] && aPiecesSpan[13] == aPiecesSpan[2] && aPiecesSpan[13] == aPiecesSpan[43])
                     {
                         _ = MakeTurnAsync("F' U2 F");
                         continue;
                     }
-                }
 
-                // 3 Case
-                if (aPiecesSpan[49] == aPiecesSpan[44] && aPiecesSpan[4] == aPiecesSpan[9] && aPiecesSpan[4] == aPiecesSpan[37])
-                {
-                    if (aPiecesSpan[13] == aPiecesSpan[2] && aPiecesSpan[13] == aPiecesSpan[19])
+                    // 3 Case
+                    if (aPiecesSpan[49] == aPiecesSpan[44] && aPiecesSpan[4] == aPiecesSpan[9] && aPiecesSpan[4] == aPiecesSpan[37] && aPiecesSpan[13] == aPiecesSpan[2] && aPiecesSpan[13] == aPiecesSpan[19])
                     {
                         _ = MakeTurnAsync("U R U2 R'");
                         continue;
                     }
-                }
 
-                // 3 Case mirror
-                if (aPiecesSpan[49] == aPiecesSpan[44] && aPiecesSpan[4] == aPiecesSpan[9] && aPiecesSpan[4] == aPiecesSpan[28])
-                {
-                    if (aPiecesSpan[13] == aPiecesSpan[2] && aPiecesSpan[13] == aPiecesSpan[39])
+                    // 3 Case mirror
+                    if (aPiecesSpan[49] == aPiecesSpan[44] && aPiecesSpan[4] == aPiecesSpan[9] && aPiecesSpan[4] == aPiecesSpan[28] && aPiecesSpan[13] == aPiecesSpan[2] && aPiecesSpan[13] == aPiecesSpan[39])
                     {
                         _ = MakeTurnAsync("U' F' U2 F");
                         continue;
                     }
-                }
 
-                // 4 Case
-                if (aPiecesSpan[49] == aPiecesSpan[44] && aPiecesSpan[4] == aPiecesSpan[9] && aPiecesSpan[4] == aPiecesSpan[39])
-                {
-                    if (aPiecesSpan[13] == aPiecesSpan[2] && aPiecesSpan[13] == aPiecesSpan[28])
+                    // 4 Case
+                    if (aPiecesSpan[49] == aPiecesSpan[44] && aPiecesSpan[4] == aPiecesSpan[9] && aPiecesSpan[4] == aPiecesSpan[39] && aPiecesSpan[13] == aPiecesSpan[2] && aPiecesSpan[13] == aPiecesSpan[28])
                     {
                         _ = MakeTurnAsync("U2 R U R'");
                         continue;
                     }
-                }
 
-                // 4 Case mirror
-                if (aPiecesSpan[49] == aPiecesSpan[44] && aPiecesSpan[4] == aPiecesSpan[9] && aPiecesSpan[4] == aPiecesSpan[19])
-                {
-                    if (aPiecesSpan[13] == aPiecesSpan[2] && aPiecesSpan[13] == aPiecesSpan[37])
+                    // 4 Case mirror
+                    if (aPiecesSpan[49] == aPiecesSpan[44] && aPiecesSpan[4] == aPiecesSpan[9] && aPiecesSpan[4] == aPiecesSpan[19] && aPiecesSpan[13] == aPiecesSpan[2] && aPiecesSpan[13] == aPiecesSpan[37])
                     {
                         _ = MakeTurnAsync("U2 F' U' F");
                         continue;
                     }
-                }
 
-                // Case 3: Corner on Bottom, Edge on Top
-                // 1 Case
-                if (aPiecesSpan[49] == aPiecesSpan[47] && aPiecesSpan[4] == aPiecesSpan[1] && aPiecesSpan[4] == aPiecesSpan[8])
-                {
-                    if (aPiecesSpan[13] == aPiecesSpan[15] && aPiecesSpan[13] == aPiecesSpan[43])
+                    // Case 3: Corner on Bottom, Edge on Top
+                    // 1 Case
+                    if (aPiecesSpan[49] == aPiecesSpan[47] && aPiecesSpan[4] == aPiecesSpan[1] && aPiecesSpan[4] == aPiecesSpan[8] && aPiecesSpan[13] == aPiecesSpan[15] && aPiecesSpan[13] == aPiecesSpan[43])
                     {
                         _ = MakeTurnAsync("U R U' R'");
                         continue;
                     }
-                }
 
-                // 1 Case mirror
-                if (aPiecesSpan[49] == aPiecesSpan[47] && aPiecesSpan[4] == aPiecesSpan[8] && aPiecesSpan[4] == aPiecesSpan[41])
-                {
-                    if (aPiecesSpan[13] == aPiecesSpan[10] && aPiecesSpan[13] == aPiecesSpan[15])
+                    // 1 Case mirror
+                    if (aPiecesSpan[49] == aPiecesSpan[47] && aPiecesSpan[4] == aPiecesSpan[8] && aPiecesSpan[4] == aPiecesSpan[41] && aPiecesSpan[13] == aPiecesSpan[10] && aPiecesSpan[13] == aPiecesSpan[15])
                     {
                         _ = MakeTurnAsync("U' F' U F");
                         continue;
                     }
-                }
 
-                // 2 Case
-                if (aPiecesSpan[49] == aPiecesSpan[47] && aPiecesSpan[4] == aPiecesSpan[8] && aPiecesSpan[4] == aPiecesSpan[41])
-                {
-                    if (aPiecesSpan[13] == aPiecesSpan[10] && aPiecesSpan[13] == aPiecesSpan[15])
+                    // 2 Case
+                    if (aPiecesSpan[49] == aPiecesSpan[47] && aPiecesSpan[4] == aPiecesSpan[8] && aPiecesSpan[4] == aPiecesSpan[41] && aPiecesSpan[13] == aPiecesSpan[10] && aPiecesSpan[13] == aPiecesSpan[15])
                     {
                         _ = MakeTurnAsync("F' U F");
                         continue;
                     }
-                }
 
-                // 2 Case mirror
-                if (aPiecesSpan[49] == aPiecesSpan[8] && aPiecesSpan[4] == aPiecesSpan[15] && aPiecesSpan[4] == aPiecesSpan[41])
-                {
-                    if (aPiecesSpan[13] == aPiecesSpan[10] && aPiecesSpan[13] == aPiecesSpan[47])
+                    // 2 Case mirror
+                    if (aPiecesSpan[49] == aPiecesSpan[8] && aPiecesSpan[4] == aPiecesSpan[15] && aPiecesSpan[4] == aPiecesSpan[41] && aPiecesSpan[13] == aPiecesSpan[10] && aPiecesSpan[13] == aPiecesSpan[47])
                     {
                         _ = MakeTurnAsync("R U' R'");
                         continue;
                     }
-                }
 
-                // 3 Case
-                if (aPiecesSpan[49] == aPiecesSpan[15] && aPiecesSpan[4] == aPiecesSpan[41] && aPiecesSpan[4] == aPiecesSpan[47])
-                {
-                    if (aPiecesSpan[13] == aPiecesSpan[8] && aPiecesSpan[13] == aPiecesSpan[10])
+                    // 3 Case
+                    if (aPiecesSpan[49] == aPiecesSpan[15] && aPiecesSpan[4] == aPiecesSpan[41] && aPiecesSpan[4] == aPiecesSpan[47] && aPiecesSpan[13] == aPiecesSpan[8] && aPiecesSpan[13] == aPiecesSpan[10])
                     {
                         _ = MakeTurnAsync("R U R'");
                         continue;
                     }
-                }
 
-                // 3 Case mirror
-                if (aPiecesSpan[49] == aPiecesSpan[8] && aPiecesSpan[4] == aPiecesSpan[1] && aPiecesSpan[4] == aPiecesSpan[15])
-                {
-                    if (aPiecesSpan[13] == aPiecesSpan[43] && aPiecesSpan[13] == aPiecesSpan[47])
+                    // 3 Case mirror
+                    if (aPiecesSpan[49] == aPiecesSpan[8] && aPiecesSpan[4] == aPiecesSpan[1] && aPiecesSpan[4] == aPiecesSpan[15] && aPiecesSpan[13] == aPiecesSpan[43] && aPiecesSpan[13] == aPiecesSpan[47])
                     {
                         _ = MakeTurnAsync("F' U' F");
                         continue;
                     }
-                }
 
-                // Case 4: Corner on Top, Edge in Middle
-                // 1 Case
-                if (aPiecesSpan[49] == aPiecesSpan[9] && aPiecesSpan[4] == aPiecesSpan[2] && aPiecesSpan[4] == aPiecesSpan[5])
-                {
-                    if (aPiecesSpan[13] == aPiecesSpan[12] && aPiecesSpan[13] == aPiecesSpan[44])
+                    // Case 4: Corner on Top, Edge in Middle
+                    // 1 Case
+                    if (aPiecesSpan[49] == aPiecesSpan[9] && aPiecesSpan[4] == aPiecesSpan[2] && aPiecesSpan[4] == aPiecesSpan[5] && aPiecesSpan[13] == aPiecesSpan[12] && aPiecesSpan[13] == aPiecesSpan[44])
                     {
                         _ = MakeTurnAsync("U F' U F");
                         continue;
                     }
-                }
 
-                // 1 Case mirror
-                if (aPiecesSpan[49] == aPiecesSpan[2] && aPiecesSpan[4] == aPiecesSpan[5] && aPiecesSpan[4] == aPiecesSpan[44])
-                {
-                    if (aPiecesSpan[13] == aPiecesSpan[9] && aPiecesSpan[13] == aPiecesSpan[12])
+                    // 1 Case mirror
+                    if (aPiecesSpan[49] == aPiecesSpan[2] && aPiecesSpan[4] == aPiecesSpan[5] && aPiecesSpan[4] == aPiecesSpan[44] && aPiecesSpan[13] == aPiecesSpan[9] && aPiecesSpan[13] == aPiecesSpan[12])
                     {
                         _ = MakeTurnAsync("U' R U' R'");
                         continue;
                     }
-                }
 
-                // 2 Case
-                if (aPiecesSpan[49] == aPiecesSpan[2] && aPiecesSpan[4] == aPiecesSpan[5] && aPiecesSpan[4] == aPiecesSpan[44])
-                {
-                    if (aPiecesSpan[13] == aPiecesSpan[9] && aPiecesSpan[13] == aPiecesSpan[12])
+                    // 2 Case
+                    if (aPiecesSpan[49] == aPiecesSpan[2] && aPiecesSpan[4] == aPiecesSpan[5] && aPiecesSpan[4] == aPiecesSpan[44] && aPiecesSpan[13] == aPiecesSpan[9] && aPiecesSpan[13] == aPiecesSpan[12])
                     {
                         _ = MakeTurnAsync("U F' U' F");
                         continue;
                     }
-                }
 
-                // 2 Case mirror
-                if (aPiecesSpan[49] == aPiecesSpan[2] && aPiecesSpan[4] == aPiecesSpan[12] && aPiecesSpan[4] == aPiecesSpan[44])
-                {
-                    if (aPiecesSpan[13] == aPiecesSpan[5] && aPiecesSpan[13] == aPiecesSpan[9])
+                    // 2 Case mirror
+                    if (aPiecesSpan[49] == aPiecesSpan[2] && aPiecesSpan[4] == aPiecesSpan[12] && aPiecesSpan[4] == aPiecesSpan[44] && aPiecesSpan[13] == aPiecesSpan[5] && aPiecesSpan[13] == aPiecesSpan[9])
                     {
                         _ = MakeTurnAsync("U' R U R'");
                         continue;
                     }
-                }
 
-                // 3 Case
-                if (aPiecesSpan[49] == aPiecesSpan[44] && aPiecesSpan[4] == aPiecesSpan[9] && aPiecesSpan[4] == aPiecesSpan[12])
-                {
-                    if (aPiecesSpan[13] == aPiecesSpan[2] && aPiecesSpan[13] == aPiecesSpan[5])
+                    // 3 Case
+                    if (aPiecesSpan[49] == aPiecesSpan[44] && aPiecesSpan[4] == aPiecesSpan[9] && aPiecesSpan[4] == aPiecesSpan[12] && aPiecesSpan[13] == aPiecesSpan[2] && aPiecesSpan[13] == aPiecesSpan[5])
                     {
                         _ = MakeTurnAsync("R U2 R'");
                         continue;
                     }
-                }
 
-                // 4 Case
-                if (aPiecesSpan[49] == aPiecesSpan[44] && aPiecesSpan[4] == aPiecesSpan[5] && aPiecesSpan[4] == aPiecesSpan[9])
-                {
-                    if (aPiecesSpan[13] == aPiecesSpan[2] && aPiecesSpan[13] == aPiecesSpan[12])
+                    // 4 Case
+                    if (aPiecesSpan[49] == aPiecesSpan[44] && aPiecesSpan[4] == aPiecesSpan[5] && aPiecesSpan[4] == aPiecesSpan[9] && aPiecesSpan[13] == aPiecesSpan[2] && aPiecesSpan[13] == aPiecesSpan[12])
                     {
                         _ = MakeTurnAsync("R U R' U' R U R'");
                         continue;
                     }
-                }
 
-                // Case 5: Corner on Bottom, Edge in Middle
-                // 1 Special Case
-                if (aPiecesSpan[49] == aPiecesSpan[15] && aPiecesSpan[4] == aPiecesSpan[5] && aPiecesSpan[4] == aPiecesSpan[47])
-                {
-                    if (aPiecesSpan[13] == aPiecesSpan[8] && aPiecesSpan[13] == aPiecesSpan[12])
+                    // Case 5: Corner on Bottom, Edge in Middle
+                    // 1 Special Case
+                    if (aPiecesSpan[49] == aPiecesSpan[15] && aPiecesSpan[4] == aPiecesSpan[5] && aPiecesSpan[4] == aPiecesSpan[47] && aPiecesSpan[13] == aPiecesSpan[8] && aPiecesSpan[13] == aPiecesSpan[12])
                     {
                         _ = MakeTurnAsync("R U2 R U R' U R U2 R2");
                         continue;
                     }
-                }
 
-                // 1 Special Case mirror
-                if (aPiecesSpan[49] == aPiecesSpan[8] && aPiecesSpan[4] == aPiecesSpan[5] && aPiecesSpan[4] == aPiecesSpan[15])
-                {
-                    if (aPiecesSpan[13] == aPiecesSpan[12] && aPiecesSpan[13] == aPiecesSpan[47])
+                    // 1 Special Case mirror
+                    if (aPiecesSpan[49] == aPiecesSpan[8] && aPiecesSpan[4] == aPiecesSpan[5] && aPiecesSpan[4] == aPiecesSpan[15] && aPiecesSpan[13] == aPiecesSpan[12] && aPiecesSpan[13] == aPiecesSpan[47])
                     {
                         _ = MakeTurnAsync("R2 U2 R' U' R U' R' U2 R'");
                         continue;
                     }
-                }
 
-                // 2 Special Case
-                if (aPiecesSpan[49] == aPiecesSpan[15] && aPiecesSpan[4] == aPiecesSpan[12] && aPiecesSpan[4] == aPiecesSpan[47])
-                {
-                    if (aPiecesSpan[13] == aPiecesSpan[5] && aPiecesSpan[13] == aPiecesSpan[8])
+                    // 2 Special Case
+                    if (aPiecesSpan[49] == aPiecesSpan[15] && aPiecesSpan[4] == aPiecesSpan[12] && aPiecesSpan[4] == aPiecesSpan[47] && aPiecesSpan[13] == aPiecesSpan[5] && aPiecesSpan[13] == aPiecesSpan[8])
                     {
                         _ = MakeTurnAsync("R U' R' F' L' U2 L F");
                         continue;
                     }
-                }
 
-                // 2 Special Case mirror
-                if (aPiecesSpan[49] == aPiecesSpan[8] && aPiecesSpan[4] == aPiecesSpan[12] && aPiecesSpan[4] == aPiecesSpan[15])
-                {
-                    if (aPiecesSpan[13] == aPiecesSpan[5] && aPiecesSpan[13] == aPiecesSpan[47])
+                    // 2 Special Case mirror
+                    if (aPiecesSpan[49] == aPiecesSpan[8] && aPiecesSpan[4] == aPiecesSpan[12] && aPiecesSpan[4] == aPiecesSpan[15] && aPiecesSpan[13] == aPiecesSpan[5] && aPiecesSpan[13] == aPiecesSpan[47])
                     {
                         _ = MakeTurnAsync("R U' R U y' L U' L' B2");
                         continue;
@@ -1108,142 +879,103 @@ namespace RubiksCube
                 // Edge in the wrong slot
                 // Case: The edge is in the wrong slot, but the corner is still in the top
                 // 1
-                //if (aPiecesSpan[49] == aPiecesSpan[9] && aPiecesSpan[4] == aPiecesSpan[12] && aPiecesSpan[4] == aPiecesSpan[44])
+                //if (aPiecesSpan[49] == aPiecesSpan[9] && aPiecesSpan[4] == aPiecesSpan[12] && aPiecesSpan[4] == aPiecesSpan[44] && aPiecesSpan[31] == aPiecesSpan[2] && aPiecesSpan[31] == aPiecesSpan[5])
                 //{
-                //    if (aPiecesSpan[31] == aPiecesSpan[2] && aPiecesSpan[31] == aPiecesSpan[5])
-                //    {
-                //        _ = MakeTurnAsync("U F' U F U'");
-                //        continue;
-                //    }
+                //    _ = MakeTurnAsync("U F' U F U'");
+                //    continue;
                 //}
 
                 // 2 (!!! same picture as the previous one !!!)
-                //if (aPiecesSpan[49] == aPiecesSpan[9] && aPiecesSpan[4] == aPiecesSpan[12] && aPiecesSpan[4] == aPiecesSpan[44])
+                //if (aPiecesSpan[49] == aPiecesSpan[9] && aPiecesSpan[4] == aPiecesSpan[12] && aPiecesSpan[4] == aPiecesSpan[44] && aPiecesSpan[31] == aPiecesSpan[2] && aPiecesSpan[31] == aPiecesSpan[5])
                 //{
-                //    if (aPiecesSpan[31] == aPiecesSpan[2] && aPiecesSpan[31] == aPiecesSpan[5])
-                //    {
-                //        _ = MakeTurnAsync("U' R U R' U");
-                //        continue;
-                //    }
+                //    _ = MakeTurnAsync("U' R U R' U");
+                //    continue;
                 //}
 
                 // Corner in the wrong slot.
                 // Case: The corner is in the wrong slot, but the edge is still in the top.
                 // 1 (!!! same picture as the previous two !!!)
-                //if (aPiecesSpan[49] == aPiecesSpan[9] && aPiecesSpan[4] == aPiecesSpan[12] && aPiecesSpan[4] == aPiecesSpan[44])
+                //if (aPiecesSpan[49] == aPiecesSpan[9] && aPiecesSpan[4] == aPiecesSpan[12] && aPiecesSpan[4] == aPiecesSpan[44] && aPiecesSpan[31] == aPiecesSpan[2] && aPiecesSpan[31] == aPiecesSpan[5])
                 //{
-                //    if (aPiecesSpan[31] == aPiecesSpan[2] && aPiecesSpan[31] == aPiecesSpan[5])
-                //    {
-                //        _ = MakeTurnAsync("R U' R'");
-                //        continue;
-                //    }
+                //    _ = MakeTurnAsync("R U' R'");
+                //    continue;
                 //}
 
                 // 2
-                if (aPiecesSpan[49] == aPiecesSpan[15] && aPiecesSpan[13] == aPiecesSpan[41] && aPiecesSpan[13] == aPiecesSpan[47])
+                if (aPiecesSpan[49] == aPiecesSpan[15] && aPiecesSpan[13] == aPiecesSpan[41] && aPiecesSpan[13] == aPiecesSpan[47] && aPiecesSpan[22] == aPiecesSpan[8] && aPiecesSpan[22] == aPiecesSpan[10])
                 {
-                    if (aPiecesSpan[22] == aPiecesSpan[8] && aPiecesSpan[22] == aPiecesSpan[10])
-                    {
-                        _ = MakeTurnAsync("R U R' U'");
-                        continue;
-                    }
+                    _ = MakeTurnAsync("R U R' U'");
+                    continue;
                 }
 
                 // 2. Stuck pieces
                 // At times you would find that the corner and the edge pieces are not on top, but instead are stuck in random incorrect slots.
                 // To set it up, use the algorithm stated below.
-                if (aPiecesSpan[49] == aPiecesSpan[2] && aPiecesSpan[4] == aPiecesSpan[32] && aPiecesSpan[4] == aPiecesSpan[44])
+                if (aPiecesSpan[49] == aPiecesSpan[2] && aPiecesSpan[4] == aPiecesSpan[32] && aPiecesSpan[4] == aPiecesSpan[44] && aPiecesSpan[13] == aPiecesSpan[3] && aPiecesSpan[13] == aPiecesSpan[9])
                 {
-                    if (aPiecesSpan[13] == aPiecesSpan[3] && aPiecesSpan[13] == aPiecesSpan[9])
-                    {
-                        _ = MakeTurnAsync("U R' D' F D R");
-                        // Now, in the next step, use the algorithm.
-                        _ = MakeTurnAsync("R' U' R' U R");
-                        continue;
-                    }
+                    _ = MakeTurnAsync("U R' D' F D R");
+                    // Now, in the next step, use the algorithm.
+                    _ = MakeTurnAsync("R' U' R' U R");
+                    continue;
                 }
 
                 // 3. Special shortcuts
                 // At times when the F2L pieces are stuck in other slots, there are a few shortcuts that you can use.
                 // We have mentioned a few below. However, you could find yourself in many other situations.
                 // 1 Case
-                if (aPiecesSpan[49] == aPiecesSpan[8] && aPiecesSpan[13] == aPiecesSpan[15] && aPiecesSpan[13] == aPiecesSpan[41])
+                if (aPiecesSpan[49] == aPiecesSpan[8] && aPiecesSpan[13] == aPiecesSpan[15] && aPiecesSpan[13] == aPiecesSpan[41] && aPiecesSpan[22] == aPiecesSpan[10] && aPiecesSpan[22] == aPiecesSpan[47])
                 {
-                    if (aPiecesSpan[22] == aPiecesSpan[10] && aPiecesSpan[22] == aPiecesSpan[47])
-                    {
-                        _ = MakeTurnAsync("y L' R U' L R'");
-                        continue;
-                    }
+                    _ = MakeTurnAsync("y L' R U' L R'");
+                    continue;
                 }
 
                 // 1 Case mirror (!!! same picture as the previous one !!!)
-                //if (aPiecesSpan[49] == aPiecesSpan[8] && aPiecesSpan[13] == aPiecesSpan[15] && aPiecesSpan[13] == aPiecesSpan[41])
+                //if (aPiecesSpan[49] == aPiecesSpan[8] && aPiecesSpan[13] == aPiecesSpan[15] && aPiecesSpan[13] == aPiecesSpan[41] && aPiecesSpan[22] == aPiecesSpan[10] && aPiecesSpan[22] == aPiecesSpan[47])
                 //{
-                //    if (aPiecesSpan[22] == aPiecesSpan[10] && aPiecesSpan[22] == aPiecesSpan[47])
-                //    {
-                //        _ = MakeTurnAsync("L' R U L R'");
-                //        continue;
-                //    }
+                //    _ = MakeTurnAsync("L' R U L R'");
+                //    continue;
                 //}
 
                 // 2 Case
-                if (aPiecesSpan[49] == aPiecesSpan[15] && aPiecesSpan[13] == aPiecesSpan[1] && aPiecesSpan[13] == aPiecesSpan[47])
+                if (aPiecesSpan[49] == aPiecesSpan[15] && aPiecesSpan[13] == aPiecesSpan[1] && aPiecesSpan[13] == aPiecesSpan[47] && aPiecesSpan[22] == aPiecesSpan[8] && aPiecesSpan[22] == aPiecesSpan[43])
                 {
-                    if (aPiecesSpan[22] == aPiecesSpan[8] && aPiecesSpan[22] == aPiecesSpan[43])
-                    {
-                        _ = MakeTurnAsync("R U2 R2 U R");
-                        continue;
-                    }
+                    _ = MakeTurnAsync("R U2 R2 U R");
+                    continue;
                 }
 
                 // 2 Case mirror
-                if (aPiecesSpan[49] == aPiecesSpan[8] && aPiecesSpan[4] == aPiecesSpan[10] && aPiecesSpan[4] == aPiecesSpan[47])
+                if (aPiecesSpan[49] == aPiecesSpan[8] && aPiecesSpan[4] == aPiecesSpan[10] && aPiecesSpan[4] == aPiecesSpan[47] && aPiecesSpan[31] == aPiecesSpan[15] && aPiecesSpan[31] == aPiecesSpan[41])
                 {
-                    if (aPiecesSpan[31] == aPiecesSpan[15] && aPiecesSpan[31] == aPiecesSpan[41])
-                    {
-                        _ = MakeTurnAsync("y' R' U2 R2 U' R'");
-                        continue;
-                    }
+                    _ = MakeTurnAsync("y' R' U2 R2 U' R'");
+                    continue;
                 }
 
                 // 3 Case
-                if (aPiecesSpan[49] == aPiecesSpan[9] && aPiecesSpan[4] == aPiecesSpan[2] && aPiecesSpan[4] == aPiecesSpan[21])
+                if (aPiecesSpan[49] == aPiecesSpan[9] && aPiecesSpan[4] == aPiecesSpan[2] && aPiecesSpan[4] == aPiecesSpan[21] && aPiecesSpan[13] == aPiecesSpan[14] && aPiecesSpan[13] == aPiecesSpan[44])
                 {
-                    if (aPiecesSpan[13] == aPiecesSpan[14] && aPiecesSpan[13] == aPiecesSpan[44])
-                    {
-                        _ = MakeTurnAsync("R' U' R2 U R'");
-                        continue;
-                    }
+                    _ = MakeTurnAsync("R' U' R2 U R'");
+                    continue;
                 }
 
                 // 3 Case mirror
-                if (aPiecesSpan[49] == aPiecesSpan[2] && aPiecesSpan[4] == aPiecesSpan[3] && aPiecesSpan[4] == aPiecesSpan[44])
+                if (aPiecesSpan[49] == aPiecesSpan[2] && aPiecesSpan[4] == aPiecesSpan[3] && aPiecesSpan[4] == aPiecesSpan[44] && aPiecesSpan[13] == aPiecesSpan[9] && aPiecesSpan[13] == aPiecesSpan[32])
                 {
-                    if (aPiecesSpan[13] == aPiecesSpan[9] && aPiecesSpan[13] == aPiecesSpan[32])
-                    {
-                        _ = MakeTurnAsync("y' R U R2 U' R");
-                        continue;
-                    }
+                    _ = MakeTurnAsync("y' R U R2 U' R");
+                    continue;
                 }
 
                 // 4 Case
-                if (aPiecesSpan[49] == aPiecesSpan[47] && aPiecesSpan[4] == aPiecesSpan[8] && aPiecesSpan[4] == aPiecesSpan[21])
+                if (aPiecesSpan[49] == aPiecesSpan[47] && aPiecesSpan[4] == aPiecesSpan[8] && aPiecesSpan[4] == aPiecesSpan[21] && aPiecesSpan[13] == aPiecesSpan[14] && aPiecesSpan[13] == aPiecesSpan[15])
                 {
-                    if (aPiecesSpan[13] == aPiecesSpan[14] && aPiecesSpan[13] == aPiecesSpan[15])
-                    {
-                        _ = MakeTurnAsync("R2 U' R2 U R2");
-                        continue;
-                    }
+                    _ = MakeTurnAsync("R2 U' R2 U R2");
+                    continue;
                 }
 
                 // 4 Case mirror
-                if (aPiecesSpan[49] == aPiecesSpan[47] && aPiecesSpan[4] == aPiecesSpan[3] && aPiecesSpan[4] == aPiecesSpan[8])
+                if (aPiecesSpan[49] == aPiecesSpan[47] && aPiecesSpan[4] == aPiecesSpan[3] && aPiecesSpan[4] == aPiecesSpan[8] && aPiecesSpan[13] == aPiecesSpan[15] && aPiecesSpan[13] == aPiecesSpan[32])
                 {
-                    if (aPiecesSpan[13] == aPiecesSpan[15] && aPiecesSpan[13] == aPiecesSpan[32])
-                    {
-                        _ = MakeTurnAsync("y' R2 U R2 U' R2");
-                        continue;
-                    }
+                    _ = MakeTurnAsync("y' R2 U R2 U' R2");
+                    continue;
                 }
 
                 //continue;
@@ -1251,817 +983,307 @@ namespace RubiksCube
                 //--------------------------------------------------------------------------------------------------------------
 
                 // https://ruwix.com/the-rubiks-cube/advanced-cfop-fridrich/first-two-layers-f2l/
-                // Step 2: First two layers - F2L
-                // 1. Easy cases.  These are the lucky cases which can be solved in 3-4 moves.
-                // 1.1   R U R'
-                if (aPiecesSpan[49] == aPiecesSpan[9] && aPiecesSpan[4] == aPiecesSpan[7] && aPiecesSpan[4] == aPiecesSpan[2] && aPiecesSpan[4] == aPiecesSpan[37])
+                // Piece 4 = 7 and piece 13 = 16
+                if (aPiecesSpan[4] == aPiecesSpan[7] && aPiecesSpan[13] == aPiecesSpan[16])
                 {
-                    if (aPiecesSpan[13] == aPiecesSpan[16] && aPiecesSpan[13] == aPiecesSpan[44])
+                    // Step 2: First two layers - F2L
+                    // 1. Easy cases.  These are the lucky cases which can be solved in 3-4 moves.
+                    // 1.1   R U R'
+                    if (aPiecesSpan[49] == aPiecesSpan[9] && aPiecesSpan[4] == aPiecesSpan[2] && aPiecesSpan[4] == aPiecesSpan[37] && aPiecesSpan[13] == aPiecesSpan[44])
                     {
                         _ = MakeTurnAsync("R U R'");
                         continue;
                     }
-                }
 
-                // 1.2   F' U' F
-                if (aPiecesSpan[49] == aPiecesSpan[2] && aPiecesSpan[4] == aPiecesSpan[7] && aPiecesSpan[4] == aPiecesSpan[44])
-                {
-                    if (aPiecesSpan[13] == aPiecesSpan[16] && aPiecesSpan[13] == aPiecesSpan[9] && aPiecesSpan[13] == aPiecesSpan[39])
+                    // 1.2   F' U' F
+                    if (aPiecesSpan[49] == aPiecesSpan[2] && aPiecesSpan[4] == aPiecesSpan[44] && aPiecesSpan[13] == aPiecesSpan[9] && aPiecesSpan[13] == aPiecesSpan[39])
                     {
                         _ = MakeTurnAsync("F' U' F");
                         continue;
                     }
-                }
 
-                // 1.3   U' F' U F
-                if (aPiecesSpan[49] == aPiecesSpan[9] && aPiecesSpan[4] == aPiecesSpan[1] && aPiecesSpan[4] == aPiecesSpan[2] && aPiecesSpan[4] == aPiecesSpan[7])
-                {
-                    if (aPiecesSpan[13] == aPiecesSpan[16] && aPiecesSpan[13] == aPiecesSpan[43] && aPiecesSpan[13] == aPiecesSpan[44])
+                    // 1.3   U' F' U F
+                    if (aPiecesSpan[49] == aPiecesSpan[9] && aPiecesSpan[4] == aPiecesSpan[1] && aPiecesSpan[4] == aPiecesSpan[2] && aPiecesSpan[13] == aPiecesSpan[43] && aPiecesSpan[13] == aPiecesSpan[44])
                     {
                         _ = MakeTurnAsync("U' F' U F");
                         continue;
                     }
-                }
 
-                // 1.4    U R U' R'
-                if (aPiecesSpan[49] == aPiecesSpan[2] && aPiecesSpan[4] == aPiecesSpan[7] && aPiecesSpan[4] == aPiecesSpan[41] && aPiecesSpan[4] == aPiecesSpan[44])
-                {
-                    if (aPiecesSpan[13] == aPiecesSpan[9] && aPiecesSpan[13] == aPiecesSpan[10] && aPiecesSpan[13] == aPiecesSpan[16])
+                    // 1.4    U R U' R'
+                    if (aPiecesSpan[49] == aPiecesSpan[2] && aPiecesSpan[4] == aPiecesSpan[41] && aPiecesSpan[4] == aPiecesSpan[44] && aPiecesSpan[13] == aPiecesSpan[9] && aPiecesSpan[13] == aPiecesSpan[10])
                     {
                         _ = MakeTurnAsync("U R U' R'");
                         continue;
                     }
-                }
 
-                // 2. Case: Corner in bottom, edge in top layer
-                // 2.1   (U R U' R') (U' F' U F)
-                if (aPiecesSpan[4] == aPiecesSpan[1] && aPiecesSpan[4] == aPiecesSpan[7] && aPiecesSpan[4] == aPiecesSpan[8])
-                {
-                    if (aPiecesSpan[13] == aPiecesSpan[15] && aPiecesSpan[13] == aPiecesSpan[16] && aPiecesSpan[13] == aPiecesSpan[43])
+                    // 2. Case: Corner in bottom, edge in top layer
+                    // 2.1   (U R U' R') (U' F' U F)
+                    if (aPiecesSpan[4] == aPiecesSpan[1] && aPiecesSpan[4] == aPiecesSpan[8] && aPiecesSpan[13] == aPiecesSpan[15] && aPiecesSpan[13] == aPiecesSpan[43])
                     {
                         _ = MakeTurnAsync("U R U' R' U' F' U F");
                         continue;
                     }
-                }
 
-                // 2.2   (U' F' U F) (U R U' R')
-                if (aPiecesSpan[4] == aPiecesSpan[7] && aPiecesSpan[4] == aPiecesSpan[8] && aPiecesSpan[4] == aPiecesSpan[41])
-                {
-                    if (aPiecesSpan[13] == aPiecesSpan[10] && aPiecesSpan[13] == aPiecesSpan[15] && aPiecesSpan[13] == aPiecesSpan[16])
+                    // 2.2   (U' F' U F) (U R U' R')
+                    if (aPiecesSpan[4] == aPiecesSpan[8] && aPiecesSpan[4] == aPiecesSpan[41] && aPiecesSpan[13] == aPiecesSpan[10] && aPiecesSpan[13] == aPiecesSpan[15])
                     {
                         _ = MakeTurnAsync("U' F' U F U R U' R'");
                         continue;
                     }
-                }
 
-                // 2.3   (F' U F) (U' F' U F)
-                if (aPiecesSpan[49] == aPiecesSpan[15] && aPiecesSpan[4] == aPiecesSpan[1] && aPiecesSpan[4] == aPiecesSpan[7])
-                {
-                    if (aPiecesSpan[13] == aPiecesSpan[8] && aPiecesSpan[13] == aPiecesSpan[16] && aPiecesSpan[13] == aPiecesSpan[43])
+                    // 2.3   (F' U F) (U' F' U F)
+                    if (aPiecesSpan[49] == aPiecesSpan[15] && aPiecesSpan[4] == aPiecesSpan[1] && aPiecesSpan[13] == aPiecesSpan[8] && aPiecesSpan[13] == aPiecesSpan[43])
                     {
                         _ = MakeTurnAsync("F' U F U' F' U F");
                         continue;
                     }
-                }
 
-                // 2.4   (R U R') (U' R U R')
-                if (aPiecesSpan[49] == aPiecesSpan[15] && aPiecesSpan[4] == aPiecesSpan[7] && aPiecesSpan[4] == aPiecesSpan[41])
-                {
-                    if (aPiecesSpan[13] == aPiecesSpan[8] && aPiecesSpan[13] == aPiecesSpan[10] && aPiecesSpan[13] == aPiecesSpan[16])
+                    // 2.4   (R U R') (U' R U R')
+                    if (aPiecesSpan[49] == aPiecesSpan[15] && aPiecesSpan[4] == aPiecesSpan[41] && aPiecesSpan[13] == aPiecesSpan[8] && aPiecesSpan[13] == aPiecesSpan[10])
                     {
                         _ = MakeTurnAsync("R U R' U' R U R'");
                         continue;
                     }
-                }
 
-                // 2.5   (R U' R') (U R U' R')
-                if (aPiecesSpan[49] == aPiecesSpan[8] && aPiecesSpan[4] == aPiecesSpan[7] && aPiecesSpan[4] == aPiecesSpan[15] && aPiecesSpan[4] == aPiecesSpan[41])
-                {
-                    if (aPiecesSpan[13] == aPiecesSpan[10] && aPiecesSpan[13] == aPiecesSpan[16])
+                    // 2.5   (R U' R') (U R U' R')
+                    if (aPiecesSpan[49] == aPiecesSpan[8] && aPiecesSpan[4] == aPiecesSpan[15] && aPiecesSpan[4] == aPiecesSpan[41] && aPiecesSpan[13] == aPiecesSpan[10])
                     {
                         _ = MakeTurnAsync("R U' R' U R U' R'");
                         continue;
                     }
-                }
 
-                // 2.6   (F' U' F) (U F' U' F)
-                if (aPiecesSpan[49] == aPiecesSpan[8] && aPiecesSpan[4] == aPiecesSpan[1] && aPiecesSpan[4] == aPiecesSpan[7] && aPiecesSpan[4] == aPiecesSpan[15])
-                {
-                    if (aPiecesSpan[13] == aPiecesSpan[16] && aPiecesSpan[13] == aPiecesSpan[43])
+                    // 2.6   (F' U' F) (U F' U' F)
+                    if (aPiecesSpan[49] == aPiecesSpan[8] && aPiecesSpan[4] == aPiecesSpan[1] && aPiecesSpan[4] == aPiecesSpan[15] && aPiecesSpan[13] == aPiecesSpan[43])
                     {
                         _ = MakeTurnAsync("F' U' F U F' U' F");
                         continue;
                     }
-                }
 
-                // 3. case: Corner in top, edge in middle
-                // 3.1   (R U R' U') (R U R' U') (R U R')
-                if (aPiecesSpan[49] == aPiecesSpan[44] && aPiecesSpan[4] == aPiecesSpan[5] && aPiecesSpan[4] == aPiecesSpan[7] && aPiecesSpan[4] == aPiecesSpan[9])
-                {
-                    if (aPiecesSpan[13] == aPiecesSpan[2] && aPiecesSpan[13] == aPiecesSpan[12] && aPiecesSpan[13] == aPiecesSpan[16])
+                    // 3. case: Corner in top, edge in middle
+                    // 3.1   (R U R' U') (R U R' U') (R U R')
+                    if (aPiecesSpan[49] == aPiecesSpan[44] && aPiecesSpan[4] == aPiecesSpan[5] && aPiecesSpan[4] == aPiecesSpan[9] && aPiecesSpan[13] == aPiecesSpan[2] && aPiecesSpan[13] == aPiecesSpan[12])
                     {
                         _ = MakeTurnAsync("R U R' U' R U R' U' R U R'");
                         continue;
                     }
-                }
 
-                // 3.2   (R U' R') (d R' U R)
-                if (aPiecesSpan[49] == aPiecesSpan[44] && aPiecesSpan[4] == aPiecesSpan[7] && aPiecesSpan[4] == aPiecesSpan[9] && aPiecesSpan[4] == aPiecesSpan[12])
-                {
-                    if (aPiecesSpan[13] == aPiecesSpan[2] && aPiecesSpan[13] == aPiecesSpan[5] && aPiecesSpan[13] == aPiecesSpan[16])
+                    // 3.2   (R U' R') (d R' U R)
+                    if (aPiecesSpan[49] == aPiecesSpan[44] && aPiecesSpan[4] == aPiecesSpan[9] && aPiecesSpan[4] == aPiecesSpan[12] && aPiecesSpan[13] == aPiecesSpan[2] && aPiecesSpan[13] == aPiecesSpan[5])
                     {
                         _ = MakeTurnAsync("R U' R' d R' U R");
                         continue;
                     }
-                }
 
-                // 3.3   (U F' U F) (U F' U2 F)
-                if (aPiecesSpan[49] == aPiecesSpan[9] && aPiecesSpan[4] == aPiecesSpan[2] && aPiecesSpan[4] == aPiecesSpan[5] && aPiecesSpan[4] == aPiecesSpan[7])
-                {
-                    if (aPiecesSpan[13] == aPiecesSpan[12] && aPiecesSpan[13] == aPiecesSpan[16] && aPiecesSpan[13] == aPiecesSpan[44])
+                    // 3.3   (U F' U F) (U F' U2 F)
+                    if (aPiecesSpan[49] == aPiecesSpan[9] && aPiecesSpan[4] == aPiecesSpan[2] && aPiecesSpan[4] == aPiecesSpan[5] && aPiecesSpan[13] == aPiecesSpan[12] && aPiecesSpan[13] == aPiecesSpan[44])
                     {
                         _ = MakeTurnAsync("U F' U F U F' U2 F");
                         continue;
                     }
-                }
 
-                // 3.4   (U F' U' F) (d' F U F')
-                if (aPiecesSpan[49] == aPiecesSpan[9] && aPiecesSpan[4] == aPiecesSpan[2] && aPiecesSpan[4] == aPiecesSpan[7] && aPiecesSpan[4] == aPiecesSpan[12])
-                {
-                    if (aPiecesSpan[13] == aPiecesSpan[5] && aPiecesSpan[13] == aPiecesSpan[16] && aPiecesSpan[13] == aPiecesSpan[44])
+                    // 3.4   (U F' U' F) (d' F U F')
+                    if (aPiecesSpan[49] == aPiecesSpan[9] && aPiecesSpan[4] == aPiecesSpan[2] && aPiecesSpan[4] == aPiecesSpan[12] && aPiecesSpan[13] == aPiecesSpan[5] && aPiecesSpan[13] == aPiecesSpan[44])
                     {
                         _ = MakeTurnAsync("U F' U' F d' F U F'");
                         continue;
                     }
-                }
 
-                // 3.5   (U' R U' R') (U' R U2 R')
-                if (aPiecesSpan[49] == aPiecesSpan[2] && aPiecesSpan[4] == aPiecesSpan[5] && aPiecesSpan[4] == aPiecesSpan[7] && aPiecesSpan[4] == aPiecesSpan[44])
-                {
-                    if (aPiecesSpan[13] == aPiecesSpan[9] && aPiecesSpan[13] == aPiecesSpan[12] && aPiecesSpan[13] == aPiecesSpan[16])
+                    // 3.5   (U' R U' R') (U' R U2 R')
+                    if (aPiecesSpan[49] == aPiecesSpan[2] && aPiecesSpan[4] == aPiecesSpan[5] && aPiecesSpan[4] == aPiecesSpan[44] && aPiecesSpan[13] == aPiecesSpan[9] && aPiecesSpan[13] == aPiecesSpan[12])
                     {
                         _ = MakeTurnAsync("U' R U' R' U' R U2 R'");
                         continue;
                     }
-                }
 
-                // 3.6   (U' R U R') (d R' U' R)
-                if (aPiecesSpan[49] == aPiecesSpan[2] && aPiecesSpan[4] == aPiecesSpan[7] && aPiecesSpan[4] == aPiecesSpan[12] && aPiecesSpan[4] == aPiecesSpan[44])
-                {
-                    if (aPiecesSpan[13] == aPiecesSpan[5] && aPiecesSpan[13] == aPiecesSpan[9] && aPiecesSpan[13] == aPiecesSpan[16])
+                    // 3.6   (U' R U R') (d R' U' R)
+                    if (aPiecesSpan[49] == aPiecesSpan[2] && aPiecesSpan[4] == aPiecesSpan[12] && aPiecesSpan[4] == aPiecesSpan[44] && aPiecesSpan[13] == aPiecesSpan[5] && aPiecesSpan[13] == aPiecesSpan[9])
                     {
                         _ = MakeTurnAsync("U' R U R' d R' U' R");
                         continue;
                     }
-                }
 
-                // 4. case: Corner pointing outwards, edge in top layer.  In this case we usually bring the cube to a basic case, reorienting the white corner in the first stage.
-                // 4.1   (R U' R' U) (d R' U' R)
-                if (aPiecesSpan[49] == aPiecesSpan[9] && aPiecesSpan[4] == aPiecesSpan[2] && aPiecesSpan[4] == aPiecesSpan[7] && aPiecesSpan[4] == aPiecesSpan[10])
-                {
-                    if (aPiecesSpan[13] == aPiecesSpan[16] && aPiecesSpan[13] == aPiecesSpan[41] && aPiecesSpan[13] == aPiecesSpan[44])
+                    // 4. case: Corner pointing outwards, edge in top layer.  In this case we usually bring the cube to a basic case, reorienting the white corner in the first stage.
+                    // 4.1   (R U' R' U) (d R' U' R)
+                    if (aPiecesSpan[49] == aPiecesSpan[9] && aPiecesSpan[4] == aPiecesSpan[2] && aPiecesSpan[4] == aPiecesSpan[10] && aPiecesSpan[13] == aPiecesSpan[41] && aPiecesSpan[13] == aPiecesSpan[44])
                     {
                         _ = MakeTurnAsync("R U' R' U d R' U' R");
                         continue;
                     }
-                }
 
-                // 4.2   (F' U F U') (d' F U F')
-                if (aPiecesSpan[49] == aPiecesSpan[2] && aPiecesSpan[4] == aPiecesSpan[7] && aPiecesSpan[4] == aPiecesSpan[43] && aPiecesSpan[4] == aPiecesSpan[44])
-                {
-                    if (aPiecesSpan[13] == aPiecesSpan[1] && aPiecesSpan[13] == aPiecesSpan[9] && aPiecesSpan[13] == aPiecesSpan[16])
+                    // 4.2   (F' U F U') (d' F U F')
+                    if (aPiecesSpan[49] == aPiecesSpan[2] && aPiecesSpan[4] == aPiecesSpan[43] && aPiecesSpan[4] == aPiecesSpan[44] && aPiecesSpan[13] == aPiecesSpan[1] && aPiecesSpan[13] == aPiecesSpan[9])
                     {
                         _ = MakeTurnAsync("F' U F U' d' F U F'");
                         continue;
                     }
-                }
 
-                // 4.3   (U F' U2 F) (U F' U2 F)
-                if (aPiecesSpan[49] == aPiecesSpan[9] && aPiecesSpan[4] == aPiecesSpan[2] && aPiecesSpan[4] == aPiecesSpan[7])
-                {
-                    if (aPiecesSpan[13] == aPiecesSpan[16] && aPiecesSpan[13] == aPiecesSpan[37] && aPiecesSpan[13] == aPiecesSpan[44])
+                    // 4.3   (U F' U2 F) (U F' U2 F)
+                    if (aPiecesSpan[49] == aPiecesSpan[9] && aPiecesSpan[4] == aPiecesSpan[2] && aPiecesSpan[13] == aPiecesSpan[37] && aPiecesSpan[13] == aPiecesSpan[44])
                     {
                         _ = MakeTurnAsync("U F' U2 F U F' U2 F");
                         continue;
                     }
-                }
 
-                // 4.4   (U' R U2 R') (U' R U2 R')
-                if (aPiecesSpan[49] == aPiecesSpan[2] && aPiecesSpan[4] == aPiecesSpan[7] && aPiecesSpan[4] == aPiecesSpan[39] && aPiecesSpan[4] == aPiecesSpan[44])
-                {
-                    if (aPiecesSpan[13] == aPiecesSpan[9] && aPiecesSpan[13] == aPiecesSpan[16])
+                    // 4.4   (U' R U2 R') (U' R U2 R')
+                    if (aPiecesSpan[49] == aPiecesSpan[2] && aPiecesSpan[4] == aPiecesSpan[39] && aPiecesSpan[4] == aPiecesSpan[44] && aPiecesSpan[13] == aPiecesSpan[9])
                     {
                         _ = MakeTurnAsync("U' R U2 R' U' R U2 R'");
                         continue;
                     }
-                }
 
-                // 4.5   (U F' U' F) (U F' U2 F)
-                if (aPiecesSpan[49] == aPiecesSpan[9] && aPiecesSpan[4] == aPiecesSpan[2] && aPiecesSpan[4] == aPiecesSpan[7])
-                {
-                    if (aPiecesSpan[13] == aPiecesSpan[16] && aPiecesSpan[13] == aPiecesSpan[39] && aPiecesSpan[13] == aPiecesSpan[44])
+                    // 4.5   (U F' U' F) (U F' U2 F)
+                    if (aPiecesSpan[49] == aPiecesSpan[9] && aPiecesSpan[4] == aPiecesSpan[2] && aPiecesSpan[13] == aPiecesSpan[39] && aPiecesSpan[13] == aPiecesSpan[44])
                     {
                         _ = MakeTurnAsync("U F' U' F U F' U2 F");
                         continue;
                     }
-                }
 
-                // 4.6   (U' R U R') (U' R U2 R')
-                if (aPiecesSpan[49] == aPiecesSpan[2] && aPiecesSpan[4] == aPiecesSpan[7] && aPiecesSpan[4] == aPiecesSpan[37] && aPiecesSpan[4] == aPiecesSpan[44])
-                {
-                    if (aPiecesSpan[13] == aPiecesSpan[9] && aPiecesSpan[13] == aPiecesSpan[16])
+                    // 4.6   (U' R U R') (U' R U2 R')
+                    if (aPiecesSpan[49] == aPiecesSpan[2] && aPiecesSpan[4] == aPiecesSpan[37] && aPiecesSpan[4] == aPiecesSpan[44] && aPiecesSpan[13] == aPiecesSpan[9])
                     {
                         _ = MakeTurnAsync("U' R U R' U' R U2 R'");
                         continue;
                     }
-                }
 
-                // 4.7   (U' R U' R' U) (R U R')
-                if (aPiecesSpan[49] == aPiecesSpan[9] && aPiecesSpan[4] == aPiecesSpan[2] && aPiecesSpan[4] == aPiecesSpan[7] && aPiecesSpan[4] == aPiecesSpan[41])
-                {
-                    if (aPiecesSpan[13] == aPiecesSpan[10] && aPiecesSpan[13] == aPiecesSpan[16] && aPiecesSpan[13] == aPiecesSpan[44])
+                    // 4.7   (U' R U' R' U) (R U R')
+                    if (aPiecesSpan[49] == aPiecesSpan[9] && aPiecesSpan[4] == aPiecesSpan[2] && aPiecesSpan[4] == aPiecesSpan[41] && aPiecesSpan[13] == aPiecesSpan[10] && aPiecesSpan[13] == aPiecesSpan[44])
                     {
                         _ = MakeTurnAsync("U' R U' R' U R U R'");
                         continue;
                     }
-                }
 
-                // 4.8   (U F' U F U') (F' U' F)
-                if (aPiecesSpan[49] == aPiecesSpan[2] && aPiecesSpan[4] == aPiecesSpan[1] && aPiecesSpan[4] == aPiecesSpan[7] && aPiecesSpan[4] == aPiecesSpan[44])
-                {
-                    if (aPiecesSpan[13] == aPiecesSpan[9] && aPiecesSpan[13] == aPiecesSpan[16] && aPiecesSpan[13] == aPiecesSpan[43])
+                    // 4.8   (U F' U F U') (F' U' F)
+                    if (aPiecesSpan[49] == aPiecesSpan[2] && aPiecesSpan[4] == aPiecesSpan[1] && aPiecesSpan[4] == aPiecesSpan[44] && aPiecesSpan[13] == aPiecesSpan[9] && aPiecesSpan[13] == aPiecesSpan[43])
                     {
                         _ = MakeTurnAsync("U F' U F U' F' U' F");
                         continue;
                     }
-                }
 
-                // 4.9   (U' R U R' U) (R U R')
-                if (aPiecesSpan[49] == aPiecesSpan[9] && aPiecesSpan[4] == aPiecesSpan[2] && aPiecesSpan[4] == aPiecesSpan[7] && aPiecesSpan[4] == aPiecesSpan[39])
-                {
-                    if (aPiecesSpan[13] == aPiecesSpan[16] && aPiecesSpan[13] == aPiecesSpan[44])
+                    // 4.9   (U' R U R' U) (R U R')
+                    if (aPiecesSpan[49] == aPiecesSpan[9] && aPiecesSpan[4] == aPiecesSpan[2] && aPiecesSpan[4] == aPiecesSpan[39] && aPiecesSpan[13] == aPiecesSpan[44])
                     {
                         _ = MakeTurnAsync("U' R U R' U R U R'");
                         continue;
                     }
-                }
 
-                // 4.10   (U F' U' F U') (F' U' F)
-                if (aPiecesSpan[49] == aPiecesSpan[2] && aPiecesSpan[4] == aPiecesSpan[7] && aPiecesSpan[4] == aPiecesSpan[44])
-                {
-                    if (aPiecesSpan[13] == aPiecesSpan[9] && aPiecesSpan[13] == aPiecesSpan[16] && aPiecesSpan[13] == aPiecesSpan[37])
+                    // 4.10   (U F' U' F U') (F' U' F)
+                    if (aPiecesSpan[49] == aPiecesSpan[2] && aPiecesSpan[4] == aPiecesSpan[44] && aPiecesSpan[13] == aPiecesSpan[9] && aPiecesSpan[13] == aPiecesSpan[37])
                     {
                         _ = MakeTurnAsync("U F' U' F U' F' U' F");
                         continue;
                     }
-                }
 
-                // 4.11   (U F' U2 F U') (R U R')
-                if (aPiecesSpan[49] == aPiecesSpan[9] && aPiecesSpan[4] == aPiecesSpan[2] && aPiecesSpan[4] == aPiecesSpan[7] && aPiecesSpan[4] == aPiecesSpan[43])
-                {
-                    if (aPiecesSpan[13] == aPiecesSpan[1] && aPiecesSpan[13] == aPiecesSpan[16] && aPiecesSpan[13] == aPiecesSpan[44])
+                    // 4.11   (U F' U2 F U') (R U R')
+                    if (aPiecesSpan[49] == aPiecesSpan[9] && aPiecesSpan[4] == aPiecesSpan[2] && aPiecesSpan[4] == aPiecesSpan[43] && aPiecesSpan[13] == aPiecesSpan[1] && aPiecesSpan[13] == aPiecesSpan[44])
                     {
                         _ = MakeTurnAsync("U F' U2 F U' R U R'");
                         continue;
                     }
-                }
 
-                // 4.12   (U' R U2 R' U) (F' U' F)
-                if (aPiecesSpan[49] == aPiecesSpan[2] && aPiecesSpan[4] == aPiecesSpan[7] && aPiecesSpan[4] == aPiecesSpan[10] && aPiecesSpan[4] == aPiecesSpan[44])
-                {
-                    if (aPiecesSpan[13] == aPiecesSpan[9] && aPiecesSpan[13] == aPiecesSpan[16] && aPiecesSpan[13] == aPiecesSpan[41])
+                    // 4.12   (U' R U2 R' U) (F' U' F)
+                    if (aPiecesSpan[49] == aPiecesSpan[2] && aPiecesSpan[4] == aPiecesSpan[10] && aPiecesSpan[4] == aPiecesSpan[44] && aPiecesSpan[13] == aPiecesSpan[9] && aPiecesSpan[13] == aPiecesSpan[41])
                     {
                         _ = MakeTurnAsync("U' R U2 R' U F' U' F");
                         continue;
                     }
-                }
 
-                // 5. case: Corner pointing upwards, edge in top layer
-                // 5.1   (R U R' U') U' (R U R' U') (R U R')
-                if (aPiecesSpan[49] == aPiecesSpan[44] && aPiecesSpan[4] == aPiecesSpan[7] && aPiecesSpan[4] == aPiecesSpan[9] && aPiecesSpan[4] == aPiecesSpan[43])
-                {
-                    if (aPiecesSpan[13] == aPiecesSpan[1] && aPiecesSpan[13] == aPiecesSpan[2] && aPiecesSpan[13] == aPiecesSpan[16])
+                    // 5. case: Corner pointing upwards, edge in top layer
+                    // 5.1   (R U R' U') U' (R U R' U') (R U R')
+                    if (aPiecesSpan[49] == aPiecesSpan[44] && aPiecesSpan[4] == aPiecesSpan[9] && aPiecesSpan[4] == aPiecesSpan[43] && aPiecesSpan[13] == aPiecesSpan[1] && aPiecesSpan[13] == aPiecesSpan[2])
                     {
                         _ = MakeTurnAsync("R U R' U' U' R U R' U' R U R'");
                         continue;
                     }
-                }
 
-                // 5.2   y' (R' U' R U) U (R' U' R U) (R' U' R)
-                if (aPiecesSpan[49] == aPiecesSpan[44] && aPiecesSpan[4] == aPiecesSpan[7] && aPiecesSpan[4] == aPiecesSpan[9] && aPiecesSpan[4] == aPiecesSpan[10])
-                {
-                    if (aPiecesSpan[13] == aPiecesSpan[2] && aPiecesSpan[13] == aPiecesSpan[16] && aPiecesSpan[13] == aPiecesSpan[41])
+                    // 5.2   y' (R' U' R U) U (R' U' R U) (R' U' R)
+                    if (aPiecesSpan[49] == aPiecesSpan[44] && aPiecesSpan[4] == aPiecesSpan[9] && aPiecesSpan[4] == aPiecesSpan[10] && aPiecesSpan[13] == aPiecesSpan[2] && aPiecesSpan[13] == aPiecesSpan[41])
                     {
                         _ = MakeTurnAsync("y' R' U' R U U R' U' R U R' U' R");
                         continue;
                     }
-                }
 
-                // 5.3   (U2 R U R') (U R U' R')
-                if (aPiecesSpan[49] == aPiecesSpan[44] && aPiecesSpan[4] == aPiecesSpan[7] && aPiecesSpan[4] == aPiecesSpan[9] && aPiecesSpan[4] == aPiecesSpan[39])
-                {
-                    if (aPiecesSpan[13] == aPiecesSpan[2] && aPiecesSpan[13] == aPiecesSpan[16])
+                    // 5.3   (U2 R U R') (U R U' R')
+                    if (aPiecesSpan[49] == aPiecesSpan[44] && aPiecesSpan[4] == aPiecesSpan[9] && aPiecesSpan[4] == aPiecesSpan[39] && aPiecesSpan[13] == aPiecesSpan[2])
                     {
                         _ = MakeTurnAsync("U2 R U R' U R U' R'");
                         continue;
                     }
-                }
 
-                // 5.4   (U2 F' U' F) (U' F' U F)
-                if (aPiecesSpan[49] == aPiecesSpan[44] && aPiecesSpan[4] == aPiecesSpan[7] && aPiecesSpan[4] == aPiecesSpan[9])
-                {
-                    if (aPiecesSpan[13] == aPiecesSpan[2] && aPiecesSpan[13] == aPiecesSpan[16] && aPiecesSpan[13] == aPiecesSpan[37])
+                    // 5.4   (U2 F' U' F) (U' F' U F)
+                    if (aPiecesSpan[49] == aPiecesSpan[44] && aPiecesSpan[4] == aPiecesSpan[9] && aPiecesSpan[13] == aPiecesSpan[2] && aPiecesSpan[13] == aPiecesSpan[37])
                     {
                         _ = MakeTurnAsync("U2 F' U' F U' F' U F");
                         continue;
                     }
-                }
 
-                // 5.5   (U R U2 R') (U R U' R')
-                if (aPiecesSpan[49] == aPiecesSpan[44] && aPiecesSpan[4] == aPiecesSpan[7] && aPiecesSpan[4] == aPiecesSpan[9] && aPiecesSpan[4] == aPiecesSpan[37])
-                {
-                    if (aPiecesSpan[13] == aPiecesSpan[2] && aPiecesSpan[13] == aPiecesSpan[16])
+                    // 5.5   (U R U2 R') (U R U' R')
+                    if (aPiecesSpan[49] == aPiecesSpan[44] && aPiecesSpan[4] == aPiecesSpan[9] && aPiecesSpan[4] == aPiecesSpan[37] && aPiecesSpan[13] == aPiecesSpan[2])
                     {
                         _ = MakeTurnAsync("U R U2 R' U R U' R'");
                         continue;
                     }
-                }
 
-                // 5.6   (U' F' U2 F) (U' F' U F)
-                if (aPiecesSpan[49] == aPiecesSpan[44] && aPiecesSpan[4] == aPiecesSpan[7] && aPiecesSpan[4] == aPiecesSpan[9])
-                {
-                    if (aPiecesSpan[13] == aPiecesSpan[2] && aPiecesSpan[13] == aPiecesSpan[16] && aPiecesSpan[13] == aPiecesSpan[39])
+                    // 5.6   (U' F' U2 F) (U' F' U F)
+                    if (aPiecesSpan[49] == aPiecesSpan[44] && aPiecesSpan[4] == aPiecesSpan[9] && aPiecesSpan[13] == aPiecesSpan[2] && aPiecesSpan[13] == aPiecesSpan[39])
                     {
                         _ = MakeTurnAsync("U' F' U2 F U' F' U F");
                         continue;
                     }
-                }
 
-                // 5.7   (R U2 R') (U' R U R')
-                if (aPiecesSpan[49] == aPiecesSpan[44] && aPiecesSpan[4] == aPiecesSpan[7] && aPiecesSpan[4] == aPiecesSpan[9] && aPiecesSpan[4] == aPiecesSpan[41])
-                {
-                    if (aPiecesSpan[13] == aPiecesSpan[2] && aPiecesSpan[13] == aPiecesSpan[10] && aPiecesSpan[13] == aPiecesSpan[16])
+                    // 5.7   (R U2 R') (U' R U R')
+                    if (aPiecesSpan[49] == aPiecesSpan[44] && aPiecesSpan[4] == aPiecesSpan[9] && aPiecesSpan[4] == aPiecesSpan[41] && aPiecesSpan[13] == aPiecesSpan[2] && aPiecesSpan[13] == aPiecesSpan[10])
                     {
                         _ = MakeTurnAsync("R U2 R' U' R U R'");
                         continue;
                     }
-                }
 
-                // 5.8   (F' U2 F) (U F' U' F)
-                if (aPiecesSpan[49] == aPiecesSpan[44] && aPiecesSpan[4] == aPiecesSpan[1] && aPiecesSpan[4] == aPiecesSpan[7] && aPiecesSpan[4] == aPiecesSpan[9])
-                {
-                    if (aPiecesSpan[13] == aPiecesSpan[2] && aPiecesSpan[13] == aPiecesSpan[16] && aPiecesSpan[13] == aPiecesSpan[43])
+                    // 5.8   (F' U2 F) (U F' U' F)
+                    if (aPiecesSpan[49] == aPiecesSpan[44] && aPiecesSpan[4] == aPiecesSpan[1] && aPiecesSpan[4] == aPiecesSpan[9] && aPiecesSpan[13] == aPiecesSpan[2] && aPiecesSpan[13] == aPiecesSpan[43])
                     {
                         _ = MakeTurnAsync("F' U2 F U F' U' F");
                         continue;
                     }
-                }
 
-                // 6. case: Corner in bottom, edge in middle
-                // 6.1   (R U' R' d R' U2 R) (U R' U2 R)
-                if (aPiecesSpan[4] == aPiecesSpan[7] && aPiecesSpan[4] == aPiecesSpan[8] && aPiecesSpan[4] == aPiecesSpan[12])
-                {
-                    if (aPiecesSpan[13] == aPiecesSpan[5] && aPiecesSpan[13] == aPiecesSpan[15] && aPiecesSpan[13] == aPiecesSpan[16])
+                    // 6. case: Corner in bottom, edge in middle
+                    // 6.1   (R U' R' d R' U2 R) (U R' U2 R)
+                    if (aPiecesSpan[49] == aPiecesSpan[47] && aPiecesSpan[4] == aPiecesSpan[8] && aPiecesSpan[4] == aPiecesSpan[12] && aPiecesSpan[13] == aPiecesSpan[5] && aPiecesSpan[13] == aPiecesSpan[15])
                     {
                         _ = MakeTurnAsync("R U' R' d R' U2 R U R' U2 R");
                         continue;
                     }
-                }
 
-                // 6.2   Does not exist
+                    // 6.2   Does not exist
 
-                // 6.3   (R U' R' U R U2 R') (U R U' R')
-                if (aPiecesSpan[49] == aPiecesSpan[15] && aPiecesSpan[4] == aPiecesSpan[5] && aPiecesSpan[4] == aPiecesSpan[7])
-                {
-                    if (aPiecesSpan[13] == aPiecesSpan[8] && aPiecesSpan[13] == aPiecesSpan[12] && aPiecesSpan[13] == aPiecesSpan[16])
+                    // 6.3   (R U' R' U R U2 R') (U R U' R')
+                    if (aPiecesSpan[49] == aPiecesSpan[15] && aPiecesSpan[4] == aPiecesSpan[5] && aPiecesSpan[13] == aPiecesSpan[8] && aPiecesSpan[13] == aPiecesSpan[12])
                     {
                         _ = MakeTurnAsync("R U' R' U R U2 R' U R U' R'");
                         continue;
                     }
-                }
 
-                //continue;
-
-                //--------------------------------------------------------------------------------------------------------------
-
-                // https://www.rubiksplace.com/speedcubing/F2L-algorithms/
-                // Corner on top, FL color facing side, edge colors match
-                // 1   U (R U' R') or  R' F R F'
-                if (aPiecesSpan[49] == aPiecesSpan[2] && aPiecesSpan[4] == aPiecesSpan[3] && aPiecesSpan[4] == aPiecesSpan[6] && aPiecesSpan[4] == aPiecesSpan[7] && aPiecesSpan[4] == aPiecesSpan[41] && aPiecesSpan[4] == aPiecesSpan[44])
-                {
-                    if (aPiecesSpan[13] == aPiecesSpan[9] && aPiecesSpan[13] == aPiecesSpan[10] && aPiecesSpan[13] == aPiecesSpan[14] && aPiecesSpan[13] == aPiecesSpan[16] && aPiecesSpan[13] == aPiecesSpan[17])
+                    // 6.4   (R U' R' U' R U R') (U' R U2 R')
+                    if (aPiecesSpan[49] == aPiecesSpan[8] && aPiecesSpan[4] == aPiecesSpan[5] && aPiecesSpan[4] == aPiecesSpan[15] && aPiecesSpan[13] == aPiecesSpan[12])
                     {
-                        _ = MakeTurnAsync("U R U' R'");
+                        _ = MakeTurnAsync("R U' R' U' R U R' U' R U2 R'");
                         continue;
                     }
-                }
 
-                // 2   y' U' (R' U R) or F R' F' R
-                if (aPiecesSpan[49] == aPiecesSpan[9] && aPiecesSpan[4] == aPiecesSpan[1] && aPiecesSpan[4] == aPiecesSpan[2] && aPiecesSpan[4] == aPiecesSpan[3] && aPiecesSpan[4] == aPiecesSpan[6] && aPiecesSpan[4] == aPiecesSpan[7])
-                {
-                    if (aPiecesSpan[13] == aPiecesSpan[14] && aPiecesSpan[13] == aPiecesSpan[16] && aPiecesSpan[13] == aPiecesSpan[17] && aPiecesSpan[13] == aPiecesSpan[43] && aPiecesSpan[13] == aPiecesSpan[44])
+                    // 6.5   (R U R' U' R U' R') (U d R' U' R)
+                    if (aPiecesSpan[49] == aPiecesSpan[15] && aPiecesSpan[4] == aPiecesSpan[12] && aPiecesSpan[13] == aPiecesSpan[5] && aPiecesSpan[13] == aPiecesSpan[8])
                     {
-                        _ = MakeTurnAsync("F R' F' R");
+                        _ = MakeTurnAsync("R U R' U' R U' R' U d R' U' R");
                         continue;
                     }
-                }
 
-                // 3   U' R U R' U2 (R U' R')
-                if (aPiecesSpan[49] == aPiecesSpan[2] && aPiecesSpan[4] == aPiecesSpan[3] && aPiecesSpan[4] == aPiecesSpan[6] && aPiecesSpan[4] == aPiecesSpan[7] && aPiecesSpan[4] == aPiecesSpan[37] && aPiecesSpan[4] == aPiecesSpan[44])
-                {
-                    if (aPiecesSpan[13] == aPiecesSpan[9] && aPiecesSpan[13] == aPiecesSpan[14] && aPiecesSpan[13] == aPiecesSpan[16] && aPiecesSpan[13] == aPiecesSpan[17])
-                    {
-                        _ = MakeTurnAsync("U' R U R' U2 R U' R'");
-                        continue;
-                    }
-                }
-
-                // 4   d R' U' R U2' (R' U R) or y' (U R' U' R) U2 (R' U R)
-                if (aPiecesSpan[49] == aPiecesSpan[9] && aPiecesSpan[4] == aPiecesSpan[2] && aPiecesSpan[4] == aPiecesSpan[3] && aPiecesSpan[4] == aPiecesSpan[6] && aPiecesSpan[4] == aPiecesSpan[7])
-                {
-                    if (aPiecesSpan[13] == aPiecesSpan[14] && aPiecesSpan[13] == aPiecesSpan[16] && aPiecesSpan[13] == aPiecesSpan[17] && aPiecesSpan[13] == aPiecesSpan[39] && aPiecesSpan[13] == aPiecesSpan[44])
-                    {
-                        _ = MakeTurnAsync("d R' U' R U2 R' U R");
-                        continue;
-                    }
-                }
-
-                // 5   U' R U2' R' U2 (R U' R')
-                if (aPiecesSpan[49] == aPiecesSpan[2] && aPiecesSpan[4] == aPiecesSpan[3] && aPiecesSpan[4] == aPiecesSpan[6] && aPiecesSpan[4] == aPiecesSpan[7] && aPiecesSpan[4] == aPiecesSpan[39] && aPiecesSpan[4] == aPiecesSpan[44])
-                {
-                    if (aPiecesSpan[13] == aPiecesSpan[9] && aPiecesSpan[13] == aPiecesSpan[14] && aPiecesSpan[13] == aPiecesSpan[16] && aPiecesSpan[13] == aPiecesSpan[17])
-                    {
-                        _ = MakeTurnAsync("U' R U2 R' U2 R U' R'");
-                        continue;
-                    }
-                }
-
-                // 6   d R' U2 R U2' (R' U R) or R' F R F'
-                if (aPiecesSpan[49] == aPiecesSpan[9] && aPiecesSpan[4] == aPiecesSpan[2] && aPiecesSpan[4] == aPiecesSpan[3] && aPiecesSpan[4] == aPiecesSpan[6] && aPiecesSpan[4] == aPiecesSpan[7])
-                {
-                    if (aPiecesSpan[13] == aPiecesSpan[14] && aPiecesSpan[13] == aPiecesSpan[16] && aPiecesSpan[13] == aPiecesSpan[17] && aPiecesSpan[13] == aPiecesSpan[37] && aPiecesSpan[13] == aPiecesSpan[44])
-                    {
-                        _ = MakeTurnAsync("R' F R F'");
-                        continue;
-                    }
-                }
-
-                // 7   y' R' U R U' d' (R U R') or y L' U L U2 y (R U R')
-                if (aPiecesSpan[49] == aPiecesSpan[2] && aPiecesSpan[4] == aPiecesSpan[3] && aPiecesSpan[4] == aPiecesSpan[6] && aPiecesSpan[4] == aPiecesSpan[7] && aPiecesSpan[4] == aPiecesSpan[43] && aPiecesSpan[4] == aPiecesSpan[44])
-                {
-                    if (aPiecesSpan[13] == aPiecesSpan[1] && aPiecesSpan[13] == aPiecesSpan[9] && aPiecesSpan[13] == aPiecesSpan[14] && aPiecesSpan[13] == aPiecesSpan[16] && aPiecesSpan[13] == aPiecesSpan[17])
-                    {
-                        _ = MakeTurnAsync("y L' U L U2 y R U R'");
-                        continue;
-                    }
-                }
-
-                // 8   R U' R' U d (R' U' R) or R U' R' U2 y' (R' U' R) or (R U' R') U2 (F' U' F)
-                if (aPiecesSpan[49] == aPiecesSpan[9] && aPiecesSpan[4] == aPiecesSpan[2] && aPiecesSpan[4] == aPiecesSpan[3] && aPiecesSpan[4] == aPiecesSpan[6] && aPiecesSpan[4] == aPiecesSpan[7] && aPiecesSpan[4] == aPiecesSpan[10])
-                {
-                    if (aPiecesSpan[13] == aPiecesSpan[14] && aPiecesSpan[13] == aPiecesSpan[16] && aPiecesSpan[13] == aPiecesSpan[17] && aPiecesSpan[13] == aPiecesSpan[41] && aPiecesSpan[13] == aPiecesSpan[44])
-                    {
-                        _ = MakeTurnAsync("R U' R' U2 F' U' F");
-                        continue;
-                    }
-                }
-
-                // Corner on top, FL color facing side, edge colors opposite
-                // 9   y' (R' U' R)
-                if (aPiecesSpan[49] == aPiecesSpan[2] && aPiecesSpan[4] == aPiecesSpan[3] && aPiecesSpan[4] == aPiecesSpan[6] && aPiecesSpan[4] == aPiecesSpan[7] && aPiecesSpan[4] == aPiecesSpan[44])
-                {
-                    if (aPiecesSpan[13] == aPiecesSpan[9] && aPiecesSpan[13] == aPiecesSpan[14] && aPiecesSpan[13] == aPiecesSpan[16] && aPiecesSpan[13] == aPiecesSpan[17] && aPiecesSpan[13] == aPiecesSpan[39])
-                    {
-                        _ = MakeTurnAsync("y' R' U' R");
-                        continue;
-                    }
-                }
-
-                // 10   (R U R')
-                if (aPiecesSpan[49] == aPiecesSpan[9] && aPiecesSpan[4] == aPiecesSpan[2] && aPiecesSpan[4] == aPiecesSpan[3] && aPiecesSpan[4] == aPiecesSpan[6] && aPiecesSpan[4] == aPiecesSpan[7] && aPiecesSpan[4] == aPiecesSpan[37])
-                {
-                    if (aPiecesSpan[13] == aPiecesSpan[14] && aPiecesSpan[13] == aPiecesSpan[16] && aPiecesSpan[13] == aPiecesSpan[17] && aPiecesSpan[13] == aPiecesSpan[44])
-                    {
-                        _ = MakeTurnAsync("R U R'");
-                        continue;
-                    }
-                }
-
-                // 11   d R' U' R U' (R' U' R) or U' R U' R' d R' U' R or U' R U' R' U y' R' U' R
-                if (aPiecesSpan[49] == aPiecesSpan[2] && aPiecesSpan[4] == aPiecesSpan[3] && aPiecesSpan[4] == aPiecesSpan[6] && aPiecesSpan[4] == aPiecesSpan[7] && aPiecesSpan[4] == aPiecesSpan[44])
-                {
-                    if (aPiecesSpan[13] == aPiecesSpan[9] && aPiecesSpan[13] == aPiecesSpan[14] && aPiecesSpan[13] == aPiecesSpan[16] && aPiecesSpan[13] == aPiecesSpan[17] && aPiecesSpan[13] == aPiecesSpan[37])
-                    {
-                        _ = MakeTurnAsync("d R' U' R U' R' U' R");
-                        continue;
-                    }
-                }
-
-                // 12   U' R U R' U (R U R')
-                if (aPiecesSpan[49] == aPiecesSpan[9] && aPiecesSpan[4] == aPiecesSpan[2] && aPiecesSpan[4] == aPiecesSpan[3] && aPiecesSpan[4] == aPiecesSpan[6] && aPiecesSpan[4] == aPiecesSpan[7] && aPiecesSpan[4] == aPiecesSpan[39])
-                {
-                    if (aPiecesSpan[13] == aPiecesSpan[14] && aPiecesSpan[13] == aPiecesSpan[16] && aPiecesSpan[13] == aPiecesSpan[17] && aPiecesSpan[13] == aPiecesSpan[44])
-                    {
-                        _ = MakeTurnAsync("U' R U R' U R U R'");
-                        continue;
-                    }
-                }
-
-                // 13   U' R U2' R' d (R' U' R)
-                if (aPiecesSpan[49] == aPiecesSpan[2] && aPiecesSpan[4] == aPiecesSpan[3] && aPiecesSpan[4] == aPiecesSpan[6] && aPiecesSpan[4] == aPiecesSpan[7] && aPiecesSpan[4] == aPiecesSpan[10] && aPiecesSpan[4] == aPiecesSpan[44])
-                {
-                    if (aPiecesSpan[13] == aPiecesSpan[9] && aPiecesSpan[13] == aPiecesSpan[14] && aPiecesSpan[13] == aPiecesSpan[16] && aPiecesSpan[13] == aPiecesSpan[17] && aPiecesSpan[13] == aPiecesSpan[41])
-                    {
-                        _ = MakeTurnAsync("U' R U2 R' d R' U' R");
-                        continue;
-                    }
-                }
-
-                // 14   R' U2 R2 U R2' U R or R U' R' U R U' R' U2 (R U' R') or d R' U2 R d' (R U R')	*Last R' U R can be avoided if back slot is empty.
-                if (aPiecesSpan[49] == aPiecesSpan[9] && aPiecesSpan[4] == aPiecesSpan[2] && aPiecesSpan[4] == aPiecesSpan[3] && aPiecesSpan[4] == aPiecesSpan[6] && aPiecesSpan[4] == aPiecesSpan[7] && aPiecesSpan[4] == aPiecesSpan[43])
-                {
-                    if (aPiecesSpan[13] == aPiecesSpan[1] && aPiecesSpan[13] == aPiecesSpan[14] && aPiecesSpan[13] == aPiecesSpan[16] && aPiecesSpan[13] == aPiecesSpan[17] && aPiecesSpan[13] == aPiecesSpan[44])
-                    {
-                        _ = MakeTurnAsync("R' U2 R2 U R2 U R");
-                        continue;
-                    }
-                }
-
-                // 15   d R' U R U' (R' U' R)
-                if (aPiecesSpan[49] == aPiecesSpan[2] && aPiecesSpan[4] == aPiecesSpan[1] && aPiecesSpan[4] == aPiecesSpan[3] && aPiecesSpan[4] == aPiecesSpan[6] && aPiecesSpan[4] == aPiecesSpan[7] && aPiecesSpan[4] == aPiecesSpan[44])
-                {
-                    if (aPiecesSpan[13] == aPiecesSpan[9] && aPiecesSpan[13] == aPiecesSpan[14] && aPiecesSpan[13] == aPiecesSpan[16] && aPiecesSpan[13] == aPiecesSpan[17] && aPiecesSpan[13] == aPiecesSpan[43])
-                    {
-                        _ = MakeTurnAsync("d R' U R U' R' U' R");
-                        continue;
-                    }
-                }
-
-                // 16   U' R U' R' U (R U R')
-                if (aPiecesSpan[49] == aPiecesSpan[9] && aPiecesSpan[4] == aPiecesSpan[2] && aPiecesSpan[4] == aPiecesSpan[3] && aPiecesSpan[4] == aPiecesSpan[6] && aPiecesSpan[4] == aPiecesSpan[7] && aPiecesSpan[4] == aPiecesSpan[41])
-                {
-                    if (aPiecesSpan[13] == aPiecesSpan[10] && aPiecesSpan[13] == aPiecesSpan[14] && aPiecesSpan[13] == aPiecesSpan[16] && aPiecesSpan[13] == aPiecesSpan[17] && aPiecesSpan[13] == aPiecesSpan[44])
-                    {
-                        _ = MakeTurnAsync("U' R U' R' U R U R'");
-                        continue;
-                    }
-                }
-
-                // Corner on top, FL color facing up
-                // 17   R U2' R' U' (R U R')
-                if (aPiecesSpan[49] == aPiecesSpan[44] && aPiecesSpan[4] == aPiecesSpan[3] && aPiecesSpan[4] == aPiecesSpan[6] && aPiecesSpan[4] == aPiecesSpan[7] && aPiecesSpan[4] == aPiecesSpan[9] && aPiecesSpan[4] == aPiecesSpan[41])
-                {
-                    if (aPiecesSpan[13] == aPiecesSpan[2] && aPiecesSpan[13] == aPiecesSpan[10] && aPiecesSpan[13] == aPiecesSpan[14] && aPiecesSpan[13] == aPiecesSpan[16] && aPiecesSpan[13] == aPiecesSpan[17])
-                    {
-                        _ = MakeTurnAsync("R U2 R' U' R U R'");
-                        continue;
-                    }
-                }
-
-                // 18   y' R' U2 R U (R' U' R) or y (L' U2 L) U (L' U' L)
-                if (aPiecesSpan[49] == aPiecesSpan[44] && aPiecesSpan[4] == aPiecesSpan[1] && aPiecesSpan[4] == aPiecesSpan[3] && aPiecesSpan[4] == aPiecesSpan[6] && aPiecesSpan[4] == aPiecesSpan[7] && aPiecesSpan[4] == aPiecesSpan[9])
-                {
-                    if (aPiecesSpan[13] == aPiecesSpan[2] && aPiecesSpan[13] == aPiecesSpan[14] && aPiecesSpan[13] == aPiecesSpan[16] && aPiecesSpan[13] == aPiecesSpan[17] && aPiecesSpan[13] == aPiecesSpan[43])
-                    {
-                        _ = MakeTurnAsync("y' R' U2 R U R' U' R");
-                        continue;
-                    }
-                }
-
-                // 19   U R U2 R' U (R U' R') or U R U2 R2 F R F'
-                if (aPiecesSpan[49] == aPiecesSpan[44] && aPiecesSpan[4] == aPiecesSpan[3] && aPiecesSpan[4] == aPiecesSpan[6] && aPiecesSpan[4] == aPiecesSpan[7] && aPiecesSpan[4] == aPiecesSpan[9] && aPiecesSpan[4] == aPiecesSpan[37])
-                {
-                    if (aPiecesSpan[13] == aPiecesSpan[2] && aPiecesSpan[13] == aPiecesSpan[14] && aPiecesSpan[13] == aPiecesSpan[16] && aPiecesSpan[13] == aPiecesSpan[17])
-                    {
-                        _ = MakeTurnAsync("U R U2 R2 F R F'");
-                        continue;
-                    }
-                }
-
-                // 20   y' U' R' U2 R U' (R' U R)
-                if (aPiecesSpan[49] == aPiecesSpan[44] && aPiecesSpan[4] == aPiecesSpan[3] && aPiecesSpan[4] == aPiecesSpan[6] && aPiecesSpan[4] == aPiecesSpan[7] && aPiecesSpan[4] == aPiecesSpan[9])
-                {
-                    if (aPiecesSpan[13] == aPiecesSpan[2] && aPiecesSpan[13] == aPiecesSpan[14] && aPiecesSpan[13] == aPiecesSpan[16] && aPiecesSpan[13] == aPiecesSpan[17] && aPiecesSpan[13] == aPiecesSpan[39])
-                    {
-                        _ = MakeTurnAsync("y' U' R' U2 R U' R' U R");
-                        continue;
-                    }
-                }
-
-                // 21   U2 R U R' U (R U' R') or (R U' R') U2' (R U R')
-                if (aPiecesSpan[49] == aPiecesSpan[44] && aPiecesSpan[4] == aPiecesSpan[3] && aPiecesSpan[4] == aPiecesSpan[6] && aPiecesSpan[4] == aPiecesSpan[7] && aPiecesSpan[4] == aPiecesSpan[9] && aPiecesSpan[4] == aPiecesSpan[39])
-                {
-                    if (aPiecesSpan[13] == aPiecesSpan[2] && aPiecesSpan[13] == aPiecesSpan[14] && aPiecesSpan[13] == aPiecesSpan[16] && aPiecesSpan[13] == aPiecesSpan[17])
-                    {
-                        _ = MakeTurnAsync("R U' R' U2 R U R'");
-                        continue;
-                    }
-                }
-
-                // 22   y' U2 R' U' R U' (R' U R) or y' R' U R U2 (R' U' R)
-                if (aPiecesSpan[49] == aPiecesSpan[44] && aPiecesSpan[4] == aPiecesSpan[3] && aPiecesSpan[4] == aPiecesSpan[6] && aPiecesSpan[4] == aPiecesSpan[7] && aPiecesSpan[4] == aPiecesSpan[9])
-                {
-                    if (aPiecesSpan[13] == aPiecesSpan[2] && aPiecesSpan[13] == aPiecesSpan[14] && aPiecesSpan[13] == aPiecesSpan[16] && aPiecesSpan[13] == aPiecesSpan[17] && aPiecesSpan[13] == aPiecesSpan[37])
-                    {
-                        _ = MakeTurnAsync("y' R' U R U2 R' U' R");
-                        continue;
-                    }
-                }
-
-                // 23   y' U R' U2 R y R U2 R' U R U' R' or U2 R2 U2 R' U' R U' R2 or R U R' U2' R U R' U'(R U R')
-                if (aPiecesSpan[49] == aPiecesSpan[44] && aPiecesSpan[4] == aPiecesSpan[3] && aPiecesSpan[4] == aPiecesSpan[6] && aPiecesSpan[4] == aPiecesSpan[7] && aPiecesSpan[4] == aPiecesSpan[9] && aPiecesSpan[4] == aPiecesSpan[43])
-                {
-                    if (aPiecesSpan[13] == aPiecesSpan[1] && aPiecesSpan[13] == aPiecesSpan[2] && aPiecesSpan[13] == aPiecesSpan[14] && aPiecesSpan[13] == aPiecesSpan[16] && aPiecesSpan[13] == aPiecesSpan[17])
-                    {
-                        _ = MakeTurnAsync("U2 R2 U2 R' U' R U' R2");
-                        continue;
-                    }
-                }
-
-                // 24   U' R U2' R' y' R' U2 R U' R' U R or R U R' d R' U R U' (R' U R) or y' U2 R2 U2 R U R' U R2
-                if (aPiecesSpan[49] == aPiecesSpan[44] && aPiecesSpan[4] == aPiecesSpan[3] && aPiecesSpan[4] == aPiecesSpan[6] && aPiecesSpan[4] == aPiecesSpan[7] && aPiecesSpan[4] == aPiecesSpan[9] && aPiecesSpan[4] == aPiecesSpan[10])
-                {
-                    if (aPiecesSpan[13] == aPiecesSpan[2] && aPiecesSpan[13] == aPiecesSpan[14] && aPiecesSpan[13] == aPiecesSpan[16] && aPiecesSpan[13] == aPiecesSpan[17] && aPiecesSpan[13] == aPiecesSpan[41])
-                    {
-                        _ = MakeTurnAsync("y' U2 R2 U2 R U R' U R2");
-                        continue;
-                    }
-                }
-
-                // Corner down, edge on top
-                // 25   U R U' R' d' (L' U L) or U R U' R' U' y (L' U L)
-                if (aPiecesSpan[49] == aPiecesSpan[47] && aPiecesSpan[4] == aPiecesSpan[1] && aPiecesSpan[4] == aPiecesSpan[3] && aPiecesSpan[4] == aPiecesSpan[6] && aPiecesSpan[4] == aPiecesSpan[7] && aPiecesSpan[4] == aPiecesSpan[8])
-                {
-                    if (aPiecesSpan[13] == aPiecesSpan[14] && aPiecesSpan[13] == aPiecesSpan[15] && aPiecesSpan[13] == aPiecesSpan[16] && aPiecesSpan[13] == aPiecesSpan[17] && aPiecesSpan[13] == aPiecesSpan[43])
-                    {
-                        _ = MakeTurnAsync("U R U' R' U' y L' U L");
-                        continue;
-                    }
-                }
-
-                // 26   y' U' R' U R r' U' R U M' or d' L' U L d(R U' R') or y U' (L' U L) y' U (R U' R')
-                if (aPiecesSpan[49] == aPiecesSpan[47] && aPiecesSpan[4] == aPiecesSpan[3] && aPiecesSpan[4] == aPiecesSpan[6] && aPiecesSpan[4] == aPiecesSpan[7] && aPiecesSpan[4] == aPiecesSpan[8] && aPiecesSpan[4] == aPiecesSpan[41])
-                {
-                    if (aPiecesSpan[13] == aPiecesSpan[10] && aPiecesSpan[13] == aPiecesSpan[14] && aPiecesSpan[13] == aPiecesSpan[15] && aPiecesSpan[13] == aPiecesSpan[16] && aPiecesSpan[13] == aPiecesSpan[17])
-                    {
-                        _ = MakeTurnAsync("y U' L' U L y' U R U' R'");
-                        continue;
-                    }
-                }
-
-                // 27   y' R' U' R U (R' U' R)
-                if (aPiecesSpan[49] == aPiecesSpan[8] && aPiecesSpan[4] == aPiecesSpan[1] && aPiecesSpan[4] == aPiecesSpan[3] && aPiecesSpan[4] == aPiecesSpan[6] && aPiecesSpan[4] == aPiecesSpan[7] && aPiecesSpan[4] == aPiecesSpan[15])
-                {
-                    if (aPiecesSpan[13] == aPiecesSpan[14] && aPiecesSpan[13] == aPiecesSpan[16] && aPiecesSpan[13] == aPiecesSpan[17] && aPiecesSpan[13] == aPiecesSpan[43])
-                    {
-                        _ = MakeTurnAsync("y' R' U' R U R' U' R");
-                        continue;
-                    }
-                }
-
-                // 28   R U R' U' (R U R')
-                if (aPiecesSpan[49] == aPiecesSpan[15] && aPiecesSpan[4] == aPiecesSpan[3] && aPiecesSpan[4] == aPiecesSpan[6] && aPiecesSpan[4] == aPiecesSpan[7] && aPiecesSpan[4] == aPiecesSpan[41])
-                {
-                    if (aPiecesSpan[13] == aPiecesSpan[8] && aPiecesSpan[13] == aPiecesSpan[10] && aPiecesSpan[13] == aPiecesSpan[14] && aPiecesSpan[13] == aPiecesSpan[16] && aPiecesSpan[13] == aPiecesSpan[17])
-                    {
-                        _ = MakeTurnAsync("R U R' U' R U R'");
-                        continue;
-                    }
-                }
-
-                // 29   R U' R' U (R U' R')
-                if (aPiecesSpan[49] == aPiecesSpan[8] && aPiecesSpan[4] == aPiecesSpan[3] && aPiecesSpan[4] == aPiecesSpan[6] && aPiecesSpan[4] == aPiecesSpan[7] && aPiecesSpan[4] == aPiecesSpan[15] && aPiecesSpan[4] == aPiecesSpan[41])
-                {
-                    if (aPiecesSpan[13] == aPiecesSpan[10] && aPiecesSpan[13] == aPiecesSpan[14] && aPiecesSpan[13] == aPiecesSpan[16] && aPiecesSpan[13] == aPiecesSpan[17])
-                    {
-                        _ = MakeTurnAsync("R U' R' U R U' R'");
-                        continue;
-                    }
-                }
-
-                // 30   y' R' U R U' (R' U R) or R U R' d (R' U2 R)
-                if (aPiecesSpan[49] == aPiecesSpan[15] && aPiecesSpan[4] == aPiecesSpan[1] && aPiecesSpan[4] == aPiecesSpan[3] && aPiecesSpan[4] == aPiecesSpan[6] && aPiecesSpan[4] == aPiecesSpan[7])
-                {
-                    if (aPiecesSpan[13] == aPiecesSpan[8] && aPiecesSpan[13] == aPiecesSpan[14] && aPiecesSpan[13] == aPiecesSpan[16] && aPiecesSpan[13] == aPiecesSpan[17] && aPiecesSpan[13] == aPiecesSpan[43])
-                    {
-                        _ = MakeTurnAsync("R U R' d R' U2 R");
-                        continue;
-                    }
-                }
-
-                // Edge down, corner on top
-                // 31   U' R U' R' U2 (R U' R') or d' L' U' R' U L U' R
-                if (aPiecesSpan[49] == aPiecesSpan[2] && aPiecesSpan[4] == aPiecesSpan[3] && aPiecesSpan[4] == aPiecesSpan[5] && aPiecesSpan[4] == aPiecesSpan[6] && aPiecesSpan[4] == aPiecesSpan[7] && aPiecesSpan[4] == aPiecesSpan[44])
-                {
-                    if (aPiecesSpan[13] == aPiecesSpan[9] && aPiecesSpan[13] == aPiecesSpan[12] && aPiecesSpan[13] == aPiecesSpan[14] && aPiecesSpan[13] == aPiecesSpan[16] && aPiecesSpan[13] == aPiecesSpan[17])
-                    {
-                        _ = MakeTurnAsync("U' R U' R' U2 R U' R'");
-                        continue;
-                    }
-                }
-
-                // 32   d R' U R U2 (R' U R) or U' (R U2' R') U (R U R') or U R U R' U2 (R U R')
-                if (aPiecesSpan[49] == aPiecesSpan[9] && aPiecesSpan[4] == aPiecesSpan[2] && aPiecesSpan[4] == aPiecesSpan[3] && aPiecesSpan[4] == aPiecesSpan[5] && aPiecesSpan[4] == aPiecesSpan[6] && aPiecesSpan[4] == aPiecesSpan[7])
-                {
-                    if (aPiecesSpan[13] == aPiecesSpan[12] && aPiecesSpan[13] == aPiecesSpan[14] && aPiecesSpan[13] == aPiecesSpan[16] && aPiecesSpan[13] == aPiecesSpan[17] && aPiecesSpan[13] == aPiecesSpan[44])
-                    {
-                        _ = MakeTurnAsync("U R U R' U2 R U R'");
-                        continue;
-                    }
-                }
-
-                // 33   U' R U R' d (R' U' R)
-                if (aPiecesSpan[49] == aPiecesSpan[2] && aPiecesSpan[4] == aPiecesSpan[3] && aPiecesSpan[4] == aPiecesSpan[6] && aPiecesSpan[4] == aPiecesSpan[7] && aPiecesSpan[4] == aPiecesSpan[12] && aPiecesSpan[4] == aPiecesSpan[44])
-                {
-                    if (aPiecesSpan[13] == aPiecesSpan[5] && aPiecesSpan[13] == aPiecesSpan[9] && aPiecesSpan[13] == aPiecesSpan[14] && aPiecesSpan[13] == aPiecesSpan[16] && aPiecesSpan[13] == aPiecesSpan[17])
-                    {
-                        _ = MakeTurnAsync("U' R U R' d R' U' R");
-                        continue;
-                    }
-                }
-
-                // 34   d R' U' R d' (R U R') or y U2 (L' U L) U y (L U L')
-                if (aPiecesSpan[49] == aPiecesSpan[9] && aPiecesSpan[4] == aPiecesSpan[2] && aPiecesSpan[4] == aPiecesSpan[3] && aPiecesSpan[4] == aPiecesSpan[6] && aPiecesSpan[4] == aPiecesSpan[7] && aPiecesSpan[4] == aPiecesSpan[12])
-                {
-                    if (aPiecesSpan[13] == aPiecesSpan[5] && aPiecesSpan[13] == aPiecesSpan[14] && aPiecesSpan[13] == aPiecesSpan[16] && aPiecesSpan[13] == aPiecesSpan[17] && aPiecesSpan[13] == aPiecesSpan[44])
-                    {
-                        _ = MakeTurnAsync("d R' U' R d' R U R'");
-                        continue;
-                    }
-                }
-
-                // 35   R U' R' d (R' U R)
-                if (aPiecesSpan[49] == aPiecesSpan[44] && aPiecesSpan[4] == aPiecesSpan[3] && aPiecesSpan[4] == aPiecesSpan[6] && aPiecesSpan[4] == aPiecesSpan[7] && aPiecesSpan[4] == aPiecesSpan[9] && aPiecesSpan[4] == aPiecesSpan[12])
-                {
-                    if (aPiecesSpan[13] == aPiecesSpan[2] && aPiecesSpan[13] == aPiecesSpan[5] && aPiecesSpan[13] == aPiecesSpan[14] && aPiecesSpan[13] == aPiecesSpan[16] && aPiecesSpan[13] == aPiecesSpan[17])
-                    {
-                        _ = MakeTurnAsync("R U' R' d R' U R");
-                        continue;
-                    }
-                }
-
-                // 36   [R U R' U'][R U R' U'](R U R') or U [R U' R' U][R U' R' U](R U' R')
-                if (aPiecesSpan[49] == aPiecesSpan[44] && aPiecesSpan[4] == aPiecesSpan[3] && aPiecesSpan[4] == aPiecesSpan[5] && aPiecesSpan[4] == aPiecesSpan[6] && aPiecesSpan[4] == aPiecesSpan[7] && aPiecesSpan[4] == aPiecesSpan[9])
-                {
-                    if (aPiecesSpan[13] == aPiecesSpan[2] && aPiecesSpan[13] == aPiecesSpan[12] && aPiecesSpan[13] == aPiecesSpan[14] && aPiecesSpan[13] == aPiecesSpan[16] && aPiecesSpan[13] == aPiecesSpan[17])
-                    {
-                        _ = MakeTurnAsync("R U R' U' R U R' U' R U R'");
-                        continue;
-                    }
-                }
-
-                // Corner down, edge down
-                // 37   R U' R' U' R U R' U2 (R U' R') or y' R' U' R U2 R' U R U' (R' U' R)
-                if (aPiecesSpan[49] == aPiecesSpan[8] && aPiecesSpan[4] == aPiecesSpan[3] && aPiecesSpan[4] == aPiecesSpan[5] && aPiecesSpan[4] == aPiecesSpan[6] && aPiecesSpan[4] == aPiecesSpan[7] && aPiecesSpan[4] == aPiecesSpan[15])
-                {
-                    if (aPiecesSpan[13] == aPiecesSpan[12] && aPiecesSpan[13] == aPiecesSpan[14] && aPiecesSpan[13] == aPiecesSpan[16] && aPiecesSpan[13] == aPiecesSpan[17] && aPiecesSpan[13] == aPiecesSpan[47])
-                    {
-                        _ = MakeTurnAsync("R U' R' U' R U R' U2 R U' R'");
-                        continue;
-                    }
-                }
-
-                // 38   R U R' U2 R U' R' U (R U R') or R U' R' U R U2' R' U (R U' R')
-                if (aPiecesSpan[49] == aPiecesSpan[15] && aPiecesSpan[4] == aPiecesSpan[3] && aPiecesSpan[4] == aPiecesSpan[5] && aPiecesSpan[4] == aPiecesSpan[6] && aPiecesSpan[4] == aPiecesSpan[7] && aPiecesSpan[4] == aPiecesSpan[47])
-                {
-                    if (aPiecesSpan[13] == aPiecesSpan[8] && aPiecesSpan[13] == aPiecesSpan[12] && aPiecesSpan[13] == aPiecesSpan[14] && aPiecesSpan[13] == aPiecesSpan[16] && aPiecesSpan[13] == aPiecesSpan[17])
-                    {
-                        _ = MakeTurnAsync("R U R' U2 R U' R' U R U R'");
-                        continue;
-                    }
-                }
-
-                // 39   R U' R' d R' U' R U' (R' U' R)
-                if (aPiecesSpan[49] == aPiecesSpan[8] && aPiecesSpan[4] == aPiecesSpan[3] && aPiecesSpan[4] == aPiecesSpan[6] && aPiecesSpan[4] == aPiecesSpan[7] && aPiecesSpan[4] == aPiecesSpan[12] && aPiecesSpan[4] == aPiecesSpan[15])
-                {
-                    if (aPiecesSpan[13] == aPiecesSpan[5] && aPiecesSpan[13] == aPiecesSpan[14] && aPiecesSpan[13] == aPiecesSpan[16] && aPiecesSpan[13] == aPiecesSpan[17] && aPiecesSpan[13] == aPiecesSpan[47])
+                    // 6.6   (R U' R' d R' U' R) (U' R' U' R)
+                    if (aPiecesSpan[49] == aPiecesSpan[8] && aPiecesSpan[4] == aPiecesSpan[12] && aPiecesSpan[4] == aPiecesSpan[15] && aPiecesSpan[13] == aPiecesSpan[8])
                     {
                         _ = MakeTurnAsync("R U' R' d R' U' R U' R' U' R");
                         continue;
                     }
-                }
 
-                // 40   R U R' U' R U' R' U2 y' (R' U' R) or R U' R' U d R' U' R U' (R' U R)
-                if (aPiecesSpan[49] == aPiecesSpan[15] && aPiecesSpan[4] == aPiecesSpan[3] && aPiecesSpan[4] == aPiecesSpan[6] && aPiecesSpan[4] == aPiecesSpan[7] && aPiecesSpan[4] == aPiecesSpan[12] && aPiecesSpan[4] == aPiecesSpan[47])
-                {
-                    if (aPiecesSpan[13] == aPiecesSpan[5] && aPiecesSpan[13] == aPiecesSpan[8] && aPiecesSpan[13] == aPiecesSpan[14] && aPiecesSpan[13] == aPiecesSpan[16] && aPiecesSpan[13] == aPiecesSpan[17])
-                    {
-                        _ = MakeTurnAsync("R U' R' U d R' U' R U' R' U R");
-                        continue;
-                    }
+                    //continue;
                 }
-
-                // 41   R U' R' U y' R' U2 R U2' (R' U R) or R U' R' d R' U2 R U2' (R' U R) or [R' F R F'][R U' R' U][R U' R' U2](R U' R')
-                if (aPiecesSpan[49] == aPiecesSpan[47] && aPiecesSpan[4] == aPiecesSpan[3] && aPiecesSpan[4] == aPiecesSpan[6] && aPiecesSpan[4] == aPiecesSpan[7] && aPiecesSpan[4] == aPiecesSpan[8] && aPiecesSpan[4] == aPiecesSpan[12])
-                {
-                    if (aPiecesSpan[13] == aPiecesSpan[5] && aPiecesSpan[13] == aPiecesSpan[14] && aPiecesSpan[13] == aPiecesSpan[15] && aPiecesSpan[13] == aPiecesSpan[16] && aPiecesSpan[13] == aPiecesSpan[17])
-                    {
-                        _ = MakeTurnAsync("R U' R' d R' U2 R U2 R' U R");
-                        continue;
-                    }
-                }
-
-                //continue;
 
                 //--------------------------------------------------------------------------------------------------------------
 
@@ -2149,45 +1371,36 @@ namespace RubiksCube
                 //--------------------------------------------------------------------------------------------------------------
 
                 // https://drive.google.com/file/d/1nzAXYUWZJ6H2wIOXaHdWXep3W57tArbR/view
-                // Section 2: Advanced F2L
-                // 36 advanced cases: 1 piece is in the wrong slot.
-                // Section 2A: Edge is in the wrong slot.
-                // White sticker faces Up
-                // 1. U' R' U R2 U' R'
-                if (aPiecesSpan[49] == aPiecesSpan[44] && aPiecesSpan[4] == aPiecesSpan[9] && aPiecesSpan[4] == aPiecesSpan[21])
+                // Piece 4 = 7 and piece 13 = 16
+                if (aPiecesSpan[4] == aPiecesSpan[7] && aPiecesSpan[13] == aPiecesSpan[16])
                 {
-                    if (aPiecesSpan[13] == aPiecesSpan[2] && aPiecesSpan[13] == aPiecesSpan[14])
+                    // Section 2: Advanced F2L
+                    // 36 advanced cases: 1 piece is in the wrong slot.
+                    // Section 2A: Edge is in the wrong slot.
+                    // White sticker faces Up
+                    // 1.  U' R' U R2 U' R'
+                    if (aPiecesSpan[49] == aPiecesSpan[44] && aPiecesSpan[4] == aPiecesSpan[9] && aPiecesSpan[4] == aPiecesSpan[21] && aPiecesSpan[13] == aPiecesSpan[2] && aPiecesSpan[13] == aPiecesSpan[14])
                     {
                         _ = MakeTurnAsync("U' R' U R2 U' R'");
                         continue;
-
                     }
-                }
 
-                // 2. y U L U' L2' U L
-                if (aPiecesSpan[49] == aPiecesSpan[44] && aPiecesSpan[4] == aPiecesSpan[3] && aPiecesSpan[4] == aPiecesSpan[9])
-                {
-                    if (aPiecesSpan[13] == aPiecesSpan[2] && aPiecesSpan[13] == aPiecesSpan[32])
+                    // 2.  y U L U' L2' U L
+                    if (aPiecesSpan[49] == aPiecesSpan[44] && aPiecesSpan[4] == aPiecesSpan[3] && aPiecesSpan[4] == aPiecesSpan[9] && aPiecesSpan[13] == aPiecesSpan[2] && aPiecesSpan[13] == aPiecesSpan[32])
                     {
                         _ = MakeTurnAsync("y U L U' L2 U L");
                         continue;
                     }
-                }
 
-                // 3. U2 (R' U R) U' (S R S') or y R' F R2 U' R' U2 F' or y2 U2 (L F' L' F) (L U L')
-                if (aPiecesSpan[49] == aPiecesSpan[44] && aPiecesSpan[4] == aPiecesSpan[9] && aPiecesSpan[4] == aPiecesSpan[14])
-                {
-                    if (aPiecesSpan[13] == aPiecesSpan[2] && aPiecesSpan[13] == aPiecesSpan[21])
+                    // 3.  U2 (R' U R) U' (S R S') or y R' F R2 U' R' U2 F' or y2 U2 (L F' L' F) (L U L')
+                    if (aPiecesSpan[49] == aPiecesSpan[44] && aPiecesSpan[4] == aPiecesSpan[9] && aPiecesSpan[4] == aPiecesSpan[14] && aPiecesSpan[13] == aPiecesSpan[2] && aPiecesSpan[13] == aPiecesSpan[21])
                     {
                         _ = MakeTurnAsync("U2 R' U R U' S R S'");
                         continue;
                     }
-                }
 
-                // 4. y U2 (L U' L') U (S' L' S) or L F' L2' U L U2' F or y' U2 (R' F R F') (R' U' R)
-                if (aPiecesSpan[49] == aPiecesSpan[44] && aPiecesSpan[4] == aPiecesSpan[9] && aPiecesSpan[4] == aPiecesSpan[32])
-                {
-                    if (aPiecesSpan[13] == aPiecesSpan[2] && aPiecesSpan[13] == aPiecesSpan[3])
+                    // 4.  y U2 (L U' L') U (S' L' S) or L F' L2' U L U2' F or y' U2 (R' F R F') (R' U' R)
+                    if (aPiecesSpan[49] == aPiecesSpan[44] && aPiecesSpan[4] == aPiecesSpan[9] && aPiecesSpan[4] == aPiecesSpan[32] && aPiecesSpan[13] == aPiecesSpan[2] && aPiecesSpan[13] == aPiecesSpan[3])
                     {
                         _ = MakeTurnAsync("y U2 L U' L' U S' L' S");
                         continue;
@@ -2204,7 +1417,7 @@ namespace RubiksCube
         /// <returns></returns>
         private static Task<bool> SolveBottomLayerOrientation()
         {
-            // Create a span for the arrays
+            // Create a span for the array aPieces
             ReadOnlySpan<string> aPiecesSpan = aPieces;
 
             int nLoopTimes = 0;
@@ -2641,7 +1854,7 @@ namespace RubiksCube
         /// <returns></returns>
         private static Task<bool> SolveBottomLayerPermutation()
         {
-            // Create a span for the arrays
+            // Create a span for the array aPieces
             ReadOnlySpan<string> aPiecesSpan = aPieces;
 
             _ = ClassSolveCubeCommon.SolveTopLayerLineUpCenterAsync();

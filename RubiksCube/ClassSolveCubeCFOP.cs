@@ -1524,7 +1524,8 @@ namespace RubiksCube
                 }
 
                 // Cross 1
-                if (aPieces[40] == aPieces[0] && aPieces[40] == aPieces[9] && aPieces[40] == aPieces[11] && aPieces[40] == aPieces[20] && aPieces[40] == aPieces[37] && aPieces[40] == aPieces[39] && aPieces[40] == aPieces[41] && aPieces[40] == aPieces[43])                {
+                if (aPieces[40] == aPieces[0] && aPieces[40] == aPieces[9] && aPieces[40] == aPieces[11] && aPieces[40] == aPieces[20] && aPieces[40] == aPieces[37] && aPieces[40] == aPieces[39] && aPieces[40] == aPieces[41] && aPieces[40] == aPieces[43])
+                {
                     await MakeTurnAsync("L U' R' U L' U R U R' U R");
                     continue;
                 }
