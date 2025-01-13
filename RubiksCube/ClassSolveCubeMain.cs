@@ -539,11 +539,7 @@ namespace RubiksCube
             // Solve the cube (CFOP solution)
             if (cSolution == "CFOP")
             {
-#if WINDOWS
-                return await ClassSolveCubeCFOP.SolveTheCubeCFOPAsync();        // Regular arrays are faster than Span<T> in Windows
-#else
-                return await ClassSolveCubeCFOPSpan.SolveTheCubeCFOPAsync();    // Span<T> is faster than regular arrays in Android and iOS
-#endif
+                return await ClassSolveCubeCFOP.SolveTheCubeCFOPAsync();
             }
 
             // Solve the cube (Basic-80 solution)
