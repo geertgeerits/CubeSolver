@@ -179,7 +179,7 @@ namespace RubiksCube
             // Output the line number and turn
             if (nLineNo > 0)
             {
-                Debug.WriteLine($"LineNo {nLineNo}: {cTurn}");
+                Debug.WriteLine($"nLineNo: {nLineNo} - cTurn: {cTurn}");
             }
 #endif
         }

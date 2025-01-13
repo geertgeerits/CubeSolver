@@ -787,14 +787,14 @@ namespace RubiksCube
                     // 3 Case
                     if (aPieces[49] == aPieces[15] && aPieces[4] == aPieces[41] && aPieces[4] == aPieces[47] && aPieces[13] == aPieces[8] && aPieces[13] == aPieces[10])
                     {
-                        await MakeTurnAsync("R U R'");
+                        await MakeTurnAsync2("R U R'");
                         continue;
                     }
 
                     // 3 Case mirror
                     if (aPieces[49] == aPieces[8] && aPieces[4] == aPieces[1] && aPieces[4] == aPieces[15] && aPieces[13] == aPieces[43] && aPieces[13] == aPieces[47])
                     {
-                        await MakeTurnAsync("F' U' F");
+                        await MakeTurnAsync2("F' U' F");
                         continue;
                     }
 
@@ -802,14 +802,14 @@ namespace RubiksCube
                     // 1 Case
                     if (aPieces[49] == aPieces[9] && aPieces[4] == aPieces[2] && aPieces[4] == aPieces[5] && aPieces[13] == aPieces[12] && aPieces[13] == aPieces[44])
                     {
-                        await MakeTurnAsync("U F' U F");
+                        await MakeTurnAsync2("U F' U F");
                         continue;
                     }
 
                     // 1 Case mirror
                     if (aPieces[49] == aPieces[2] && aPieces[4] == aPieces[5] && aPieces[4] == aPieces[44] && aPieces[13] == aPieces[9] && aPieces[13] == aPieces[12])
                     {
-                        await MakeTurnAsync("U' R U' R'");
+                        await MakeTurnAsync2("U' R U' R'");
                         continue;
                     }
 
@@ -1677,28 +1677,28 @@ namespace RubiksCube
                     // 36 advanced cases: 1 piece is in the wrong slot.
                     // Section 2A: Edge is in the wrong slot.
                     // White sticker faces Up
-                    // 1. U' R' U R2 U' R'
+                    // 1.  U' R' U R2 U' R'
                     if (aPieces[49] == aPieces[44] && aPieces[4] == aPieces[9] && aPieces[4] == aPieces[21] && aPieces[13] == aPieces[2] && aPieces[13] == aPieces[14])
                     {
                         await MakeTurnAsync("U' R' U R2 U' R'");
                         continue;
                     }
 
-                    // 2. y U L U' L2' U L
+                    // 2.  y U L U' L2' U L
                     if (aPieces[49] == aPieces[44] && aPieces[4] == aPieces[3] && aPieces[4] == aPieces[9] && aPieces[13] == aPieces[2] && aPieces[13] == aPieces[32])
                     {
                         await MakeTurnAsync("y U L U' L2 U L");
                         continue;
                     }
 
-                    // 3. U2 (R' U R) U' (S R S') or y R' F R2 U' R' U2 F' or y2 U2 (L F' L' F) (L U L')
+                    // 3.  U2 (R' U R) U' (S R S') or y R' F R2 U' R' U2 F' or y2 U2 (L F' L' F) (L U L')
                     if (aPieces[49] == aPieces[44] && aPieces[4] == aPieces[9] && aPieces[4] == aPieces[14] && aPieces[13] == aPieces[2] && aPieces[13] == aPieces[21])
                     {
                         await MakeTurnAsync("U2 R' U R U' S R S'");
                         continue;
                     }
 
-                    // 4. y U2 (L U' L') U (S' L' S) or L F' L2' U L U2' F or y' U2 (R' F R F') (R' U' R)
+                    // 4.  y U2 (L U' L') U (S' L' S) or L F' L2' U L U2' F or y' U2 (R' F R F') (R' U' R)
                     if (aPieces[49] == aPieces[44] && aPieces[4] == aPieces[9] && aPieces[4] == aPieces[32] && aPieces[13] == aPieces[2] && aPieces[13] == aPieces[3])
                     {
                         await MakeTurnAsync("y U2 L U' L' U S' L' S");
