@@ -157,10 +157,10 @@ namespace RubiksCube
         /// <summary>
         /// Make a turn (with 1 letter [plus ' or 2]) of the cube/face/side - with line number for testing
         /// </summary>
-        /// <param name="cTurn"></param>
         /// <param name="nLineNo"></param>
+        /// <param name="cTurn"></param>
         /// <returns></returns>
-        public static async Task MakeTurnAsync2(string cTurn, int nLineNo = 0)
+        public static async Task MakeTurnAsync2(int nLineNo, string cTurn)
         {
             // Remove leading and trailing whitespace
             cTurn = cTurn.Trim();
