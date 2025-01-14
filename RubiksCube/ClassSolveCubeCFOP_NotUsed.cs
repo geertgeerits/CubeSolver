@@ -1,4 +1,8 @@
-﻿using System.Diagnostics;
+﻿// https://www.rubiksplace.com/speedcubing/F2L-algorithms/ page 61
+// https://www.myrubik.com/descarregues.php?lang=en page 367
+// file://C:/Sources/MAUI/CubeSolver/Miscellaneous/Manuals/CubeSkills/f2l-algorithms-different-slot-positions.pdf page 666
+
+using System.Diagnostics;
 using static RubiksCube.Globals;
 
 namespace RubiksCube
@@ -14,9 +18,6 @@ namespace RubiksCube
         /// <returns></returns>
         private static async Task<bool> SolveTheCubeCFOPAsync()
         {
-            // Create and start a stopwatch instance
-            //long startTime = Stopwatch.GetTimestamp();
-
             // F2L (Solving the first two layers completely)
             if (!await SolveFirstTwoLayersAsync())
             {
@@ -26,10 +27,6 @@ namespace RubiksCube
             // Check if the cube is solved
             if (ClassColorsCube.CheckIfSolved())
             {
-                // Stop the stopwatch and get the elapsed time
-                //TimeSpan delta = Stopwatch.GetElapsedTime(startTime);
-                //await Application.Current!.Windows[0].Page!.DisplayAlert("SolveTheCubeCFOPAsync", $"Time elapsed (hh:mm:ss.xxxxxxx): {delta}", "OK");
-
                 return true;
             }
 
@@ -55,28 +52,6 @@ namespace RubiksCube
                 }
 
                 // If solved, break the loop
-                cT = aPieces[49];
-                if (cT == aPieces[45] && cT == aPieces[46] && cT == aPieces[47] && cT == aPieces[48] && cT == aPieces[50] && cT == aPieces[51] && cT == aPieces[52] && cT == aPieces[53])
-                {
-                    cT = aPieces[4];
-                    if (cT == aPieces[3] && cT == aPieces[5] && cT == aPieces[6] && cT == aPieces[7] && cT == aPieces[8])
-                    {
-                        cT = aPieces[13];
-                        if (cT == aPieces[12] && cT == aPieces[14] && cT == aPieces[15] && cT == aPieces[16] && cT == aPieces[17])
-                        {
-                            cT = aPieces[22];
-                            if (cT == aPieces[21] && cT == aPieces[23] && cT == aPieces[24] && cT == aPieces[25] && cT == aPieces[26])
-                            {
-                                cT = aPieces[31];
-                                if (cT == aPieces[30] && cT == aPieces[32] && cT == aPieces[33] && cT == aPieces[34] && cT == aPieces[35])
-                                {
-                                    Debug.WriteLine("CFOP_B: number of turns first two layers: " + lCubeTurns.Count);
-                                    break;
-                                }
-                            }
-                        }
-                    }
-                }
 
                 // Turn the cube
                 if (nLoopTimes > 1)
@@ -1320,14 +1295,14 @@ namespace RubiksCube
                         }
 
                         // 3.  U' (L' U L)
-                        if (aPieces[49] == aPieces[0] && aPieces[4] == aPieces[39] && aPieces[4] == aPieces[42])
+                        if (aPieces[49] == aPieces[0] && aPieces[4] == aPieces[39] && aPieces[4] == aPieces[42] && aPieces[31] == aPieces[29])
                         {
                             await MakeTurnAsync("U' L' U L");
                             continue;
                         }
 
                         // 4.  y' (R U R') --- y (L U L')
-                        if (aPieces[49] == aPieces[0] && aPieces[4] == aPieces[10] && aPieces[4] == aPieces[42] && aPieces[31] == aPieces[41])
+                        if (aPieces[49] == aPieces[0] && aPieces[4] == aPieces[10] && aPieces[4] == aPieces[42] && aPieces[31] == aPieces[29] && aPieces[31] == aPieces[41])
                         {
                             await MakeTurnAsync("y' R U R'");
                             continue;
@@ -1335,34 +1310,104 @@ namespace RubiksCube
 
                         // F2L Case 1
                         // 1.  U (L' U' L U') (L' U' L)
+                        if (aPieces[49] == aPieces[29] && aPieces[4] == aPieces[0] && aPieces[4] == aPieces[41] && aPieces[31] == aPieces[10] && aPieces[31] == aPieces[42])
+                        {
+                            await MakeTurnAsync("U L' U' L U' L' U' L");
+                            continue;
+                        }
 
                         // 2.  L U2' L2' U' (L2 U' L')
+                        if (aPieces[49] == aPieces[29] && aPieces[4] == aPieces[0] && aPieces[4] == aPieces[43] && aPieces[31] == aPieces[1] && aPieces[31] == aPieces[42])
+                        {
+                            await MakeTurnAsync("L U2 L2 U' L2 U' L'");
+                            continue;
+                        }
 
                         // 3.  U (L' U L U') (L' U' L)
+                        if (aPieces[49] == aPieces[29] && aPieces[4] == aPieces[0] && aPieces[4] == aPieces[39] && aPieces[31] == aPieces[42])
+                        {
+                            await MakeTurnAsync("U L' U L U' L' U' L");
+                            continue;
+                        }
 
                         // 4.  U (L' U L U') y' (R U R')
+                        if (aPieces[49] == aPieces[0] && aPieces[4] == aPieces[42] && aPieces[31] == aPieces[29] && aPieces[31] == aPieces[37])
+                        {
+                            await MakeTurnAsync("U L' U L U' y' R U R'");
+                            continue;
+                        }
 
                         // 5.  U (L' U2 L) U' y' (R U R')
+                        if (aPieces[49] == aPieces[0] && aPieces[4] == aPieces[42] && aPieces[31] == aPieces[29] && aPieces[31] == aPieces[39])
+                        {
+                            await MakeTurnAsync("U L' U2 L U' y' R U R'");
+                            continue;
+                        }
 
                         // 6.  y' U' (R U' R' U) (R U R')
+                        if (aPieces[49] == aPieces[0] && aPieces[4] == aPieces[1] && aPieces[4] == aPieces[42] && aPieces[31] == aPieces[29] && aPieces[31] == aPieces[43])
+                        {
+                            await MakeTurnAsync("y' U' R U' R' U R U R'");
+                            continue;
+                        }
 
                         // F2L Case 2
                         // 1.  y' (U' R U R') U2 (R U' R') --- (L U L') y'(U R U' R') --- Note: the second algorithm should only be used when the back-left slot is empty
+                        if (aPieces[49] == aPieces[29] && aPieces[4] == aPieces[0] && aPieces[4] == aPieces[10] && aPieces[31] == aPieces[41] && aPieces[31] == aPieces[42])
+                        {
+                            await MakeTurnAsync("y' U' R U R' U2 R U' R'");
+                            continue;
+                        }
 
                         // 2.  y' U' (R U2' R') U2 (R U' R')
+                        if (aPieces[49] == aPieces[29] && aPieces[4] == aPieces[0] && aPieces[31] == aPieces[37] && aPieces[31] == aPieces[42])
+                        {
+                            await MakeTurnAsync("y' U' R U2 R' U2 R U' R'");
+                            continue;
+                        }
 
                         // 3.  (U L' U' L) U2' (L' U L)
+                        if (aPieces[49] == aPieces[0] && aPieces[4] == aPieces[37] && aPieces[4] == aPieces[42] && aPieces[31] == aPieces[29])
+                        {
+                            await MakeTurnAsync("U L' U' L U2 L' U L");
+                            continue;
+                        }
 
                         // 4.  U (L' U2 L) U2' (L' U L)
+                        if (aPieces[49] == aPieces[0] && aPieces[4] == aPieces[41] && aPieces[4] == aPieces[42] && aPieces[31] == aPieces[10] && aPieces[31] == aPieces[29])
+                        {
+                            await MakeTurnAsync("U L' U2 L U2 L' U L");
+                            continue;
+                        }
 
                         // F2L Case 3
                         // 1.  y' U (R U2' R') U (R U' R')
+                        if (aPieces[49] == aPieces[42] && aPieces[4] == aPieces[10] && aPieces[4] == aPieces[29] && aPieces[31] == aPieces[0] && aPieces[31] == aPieces[41])
+                        {
+                            await MakeTurnAsync("y' U R U2 R' U R U' R'");
+                            continue;
+                        }
 
                         // 2.  F R U2' R' F'
+                        if (aPieces[49] == aPieces[42] && aPieces[4] == aPieces[19] && aPieces[4] == aPieces[29] && aPieces[31] == aPieces[0] && aPieces[31] == aPieces[37])
+                        {
+                            await MakeTurnAsync("F R U2 R' F'");
+                            continue;
+                        }
 
                         // 3.  U' (L' U2 L) U' (L' U L)
+                        if (aPieces[49] == aPieces[42] && aPieces[4] == aPieces[29] && aPieces[4] == aPieces[37] && aPieces[31] == aPieces[0] && aPieces[31] == aPieces[19])
+                        {
+                            await MakeTurnAsync("U' L' U2 L U' L' U L");
+                            continue;
+                        }
 
                         // 4.  U2 (L' U' L) U' (L' U L)
+                        if (aPieces[49] == aPieces[42] && aPieces[4] == aPieces[29] && aPieces[4] == aPieces[41] && aPieces[31] == aPieces[0] && aPieces[31] == aPieces[10])
+                        {
+                            await MakeTurnAsync("U2 L' U' L U' L' U L");
+                            continue;
+                        }
 
                         // Page 6. Algorithms for slot in front-left position
                         // Incorrectly Connected Pieces
